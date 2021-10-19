@@ -474,3 +474,93 @@
         </p>
     </challenge>
 </section>
+
+
+<section>
+    <h2>Operador ternari</h2>
+    <p>La sintaxi general de l'operador ternari <w>?:</w> és aquesta:</p>
+
+    <sc java>
+        condicio ? valorSiCerta : valorSiFalsa
+    </sc>
+
+    <p>Aquest operador retorna el valor <w>valorSiCerta</w> si la <w>condició</w> s'avalua a <w>true</w>. 
+    Si la condició resulta ser <w>false</w>, aleshores retorna <w>valorSiFalsa</w>.</p>
+
+    <p>Exemple:</p>
+    <sc java>
+        System.out.println(10 > 5 ? "major" : "menor");   // major
+
+        int num = 10;
+        System.out.println(num % 2 == 0 ? "parell" : "imparell");   // parell
+        
+        num = 11;
+        System.out.println(num % 2 == 0 ? "parell" : "imparell");   // imparell
+    </sc>
+
+    <p>També podem guardar el resultat que retorna l'operador ternari en un variable. El tipus d'aquesta
+        variable ha de coincidir amb el tipus dels valors <w>valorSiCerta</w> i <w>valorSiFalsa</w>. 
+        Per exemple, el següent programa calcula la 'quota mensual' d'un soci, si el soci té més de 10 anys d'antiguetat, 
+        la quota són 30, i si no en són 40.</p>
+    
+        <sc java>
+        int anysAntiguetat = 3;
+
+        float quotaMensual = anysAntiguetat > 10 ? 30f : 40f;
+
+        System.out.println(quotaMensual);   // 40.0
+    </sc>
+
+    <p>L'operador ternari es pot enllaçar per a fer expressions més complexes:</p>
+
+    <sc java>
+          condicio1 ? valor1 
+        : condicio2 ? valor2
+        : condicio3 ? valor3
+        valor4;
+    </sc>
+
+    <p> El valor retornat és el que primer compleix la condició. Si no es compleix cap condició, aleshores es 
+        retorna l'últim valor. </p>
+    <sc java>
+        int edat = 18;
+        String beguda = edat < 18 ? "Coca-cola"
+                      : edat < 45 ? "Cervesa"
+                      : "Vi";
+        System.out.println(beguda);  // Cervesa
+    </sc>
+
+    <quizz>
+        <question single>
+            <statement>
+                <p>Quin valor tindrà la variable <w>x</w>?</p>
+                <sc java>
+                    int a = 10;
+                    int b = 30;
+                    int c = 20;
+
+                    String x = a < b ? "One"
+                             : b < c ? "Two"
+                             : "Three";
+                </sc>
+            </statement>
+            <o correct>One</o>
+            <o>Two</o>
+            <o>Three</o>
+        </question>
+    </quizz>
+
+    <challenge>
+
+        <p>
+            <a href="https://www.hackerrank.com/contests/dam-m3/challenges/hora-dapertura-operadors-ternari">Hora d'apertura</a>
+            <br>
+            <a href=""></a>
+            <br>
+            <a href=""></a>
+            <br>
+            <a href="https://www.hackerrank.com/contests/dam-m3/challenges/pares-o-nones">Pares o nones</a>
+        </p>
+    </challenge>
+
+</section>
