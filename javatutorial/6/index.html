@@ -1544,58 +1544,7 @@
                 L'has endevinat
             </shell>
         </step>
-    </stepper>
-
-    <h3>Bucles niats</h3>
-    <p>És possible niar un bucle-for dintre d'un altre bucle-for. Ens pot servir per a processar 
-        estructures multidimensionals com taules (matrius), cubs, etc...
-    </p>
-
-    <p>Com a exemple, el següent programa imprimeix la taula de mutliplicar del <w>1</w> fins al <w>9</w>:</p>
-
-    <sc java>
-        for (int i = 1; i &lt; 10; i++) {
-            for (int j = 1; j &lt; 10; j++) {
-                System.out.print(i * j + "\t");
-            }
-            System.out.println();
-        }
-    </sc>
-
-    <shell>
-        1   2   3   4   5   6   7   8   9  
-        2   4   6   8   10  12  14  16  18  
-        3   6   9   12  15  18  21  24  27  
-        4   8   12  16  20  24  28  32  36  
-        5   10  15  20  25  30  35  40  45  
-        6   12  18  24  30  36  42  48  54  
-        7   14  21  28  35  42  49  56  63  
-        8   16  24  32  40  48  56  64  72  
-        9   18  27  36  45  54  63  72  81 
-    </shell>
-
-    <info>
-        <p>Quan niem un bucle dintre d'un altre cal tenir en compte que el bucle intern es repetirà
-            des del principi cada vegada que es faci una nova repetició de l'extern.
-        </p>
-
-        <p>Per exemple, als següents dos bucles, l'extern es repeteix 2 vegades, per tant l'intern 
-            es repetirà des del principi cadascuna d'aquestes dues vegades. És a dir, el bucle intern
-            es farà 3 vegades la primera repetetició de l'extern, i 3 vegades més a la segona repetició de 
-            l'extern.
-        </p>
-        <sc java>
-            for (int i = 0; i &lt; 2; i++) {
-                // ...
-                for (int j = 0; j &lt; 3; j++) {
-                    // ...
-                }
-                // ...
-            }
-        </sc>
-
-        <img src="img/forniat.gif">
-    </info>
+    </stepper>   
 
     <quizz>
         <question single>
