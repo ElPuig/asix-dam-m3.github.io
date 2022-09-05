@@ -7,15 +7,15 @@
 <nav></nav>
 
 <header>
-<h1>Imprimir literals</h1>
+<h1>Terminologia bàsica i impresió de literals</h1>
 
     <abstract>
         <p>En aquesta primera activitat programaràs el teu primer programa Java.</p>
 
         <p>Aprendràs:</p>
-        <check>Com es veu un programa Java bàsic per dintre</check>
-        <check>Què són els literals i com utilitzar-los</check>
-        <check>Com imprimir text correctament</check>
+        <check>Com es veu un programa Java bàsic per dintre.</check>
+        <check>Quina és la terminiloigía bàsica per a referirse a les diferents parts d'un programa.</check>
+        <check>Com imprimir (mostrar) text per pantalla.</check>
     </abstract>
 </header>
 
@@ -43,215 +43,8 @@
 </section>
 
 <section>
-    <h2>Literals bàsics</h2>
-
-    <h3>Literals</h3>
-    <p>Independentment de la seva complexitat, un programa
-        sempre realitza operacions sobre números, texts i altres valors.
-        Aquests valors són anomenats <strong>literals</strong>.
-        Hi ha molts tipus de literals en Java, però pel moment ens
-        centrarem només en alguns d'ells: aquells que ens envolten
-        tot el temps en el dia a dia.
-    </p>
-
-    <h3>Números</h3>
-
-    <h4>Enters</h4>
-    <p>Aquests nombres s'utilitzen per a comptar coses al món real. I també,
-    els utilitzarem sovint en Java.</p>
-
-    <p>Aquí tens exemples de literals enters vàlids separats
-        per comes: <w>0</w>, <w>1</w>, <w>2</w>, <w>10</w>, <w>11</w>, <w>100</w>.
-    </p>
-
-    <p>Si un valor enter conté molts dígits, podem afegir "guions baixos"
-        per a dividir el nombre en blocs i augmentar la seva
-        legibilitat: <w>1_000_000</w>. És més legible que el mateix
-        valor escrit <w>1000000</w>.
-    </p>
-
-    <h4>Decimals</h4>
-    <p>Els nombres decimals expressen una fracció d'un nombre enter. S'utilitzen 
-        en les medicions: l'alçada d'una persona, la temperatura, els diners.
-    </p>
-
-    <p>En llenguatge Java expressarem els nombres decimals utilitzant el 
-        punt <w>.</w> i afegirem una <w>f</w> al final. Per exemple:
-    <w>3.14f</w>, <w>0.123f</w>, <w>100.5f</w></p>
-
-    <p>Si la part decimal d'un número és <w>.0</w> no és necessari posar-ho. 
-    És a dir, és el mateix <w>100.0f</w> que <w>100f</w>.</p>
-
-    <p>En els decimals també podem utilitzar guions baixos <w>_</w> per a separar dígits.
-    Per exemple: <w>10_000_000.75f</w>.</p>
-
-    <info>
-        <p>
-            Java també permet literals decimals sense la terminació <w>f</w>, 
-            però en aquest curs sempre els utilitzarem amb la <w>f</w> al final.
-        </p>
-
-        <p>
-            Hi ha altres formes per a representar literals: hexadecimals, binaris,
-            notació científica, unicode, seqüències d'escapament, ... 
-            <br>Podeu trobar més info al <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html">tutorial de Java d'Oracle</a>.
-        </p>       
-    </info>
-
-    <h3>Text</h3>
-    <h4>Caracters</h4>
-    <p>Un simple caracter pot representar un dígit, una lletra o un altre símbol.
-        Per a escriure un caracter, utilitzem cometes simples així:
-        <w>'A'</w>, <w>'B'</w>, <w>'C'</w>, <w>'z'</w>, <w>'0'</w>, <w>'1'</w>, <w>'9'</w>.
-        Els literals caracter poden representar símbols d'un alfabet, dígits de <w>'0'</w>
-        a <w>'9'</w>, espais en blanc <w>' '</w>, o altres símbols <w>'$'</w>.
-    </p>
-
-    <p>No s'han de confondre caracters que representen números (e.g. <w>'9'</w>),
-    amb els propis números (e.g. <w>9</w>).</p>
-
-    <p>Un caracter no pot incloure més d'un dígit, lletra o símbol perquè
-        només en pot representar un. Per exemple, <w>'abc'</w> o <w>'543'</w>,
-        són incorrectes perquè contenen massa caracters.
-    </p>
-
-    <h4>Strings</h4>
-    <p>Un string (<em>cadena</em>) és una seqüència de varis caracters.
-    Els Strings representen un text.</p>
-
-    <p>Per a escriure un string utilitzarem cometes dobles en lloc de simples.
-        Aquí hi ha alguns exemples vàlids: <w>"text"</w>, <w>"Vull aprendre Java"</w>,
-        <w>"123456"</w>, <w>"email123@mail.com"</w>. Un string que conté només
-        un caracter com <w>"A"</w> també és vàlid, per no s'ha de confondre amb
-        el caracter <w>'A'</w>.
-    <p>Pots veure que els strings poden incloure lletres, dígits, espais, i altres caracters.</p>
-    </p>
-
-    <h3>Booleans</h3>
-    <p>Els valors booleans expressen la veracitat o falsedat d'una afirmació.</p>
     
-    <p>
-        En Java hi ha dos valors especials, <w>true</w> i <w>false</w>, que 
-        permeten expressar els dos valors booleans.
-    </p>
-
-    <p>S'escriuen en mínuscules i sense cometes.</p>
-
-    <observe>
-        <p>Recorda! No s'han de confondre aquests literals:</p>
-        <ul>
-            <li><w>123</w> és un número enter, <w>"123"</w> és un String;</li>
-            <li><w>'A'</w> és un caracter, <w>"A"</w> és un String;</li>
-            <li><w>'1'</w> és un caracter, <w>1</w> és un número enter.</li>
-            <li><w>true</w> és un booleà, <w>"true"</w> és un String.</li>
-        </ul>
-    </observe>
-
-    <quizz>
-        <question match>
-            <statement>Emparella els tipus de literals</statement>
-            <o>String</o>   <o>"4631###0207"</o>
-            <o>Enter</o>   <o>100_000_000</o>
-            <o>Caracter</o>   <o>'H'</o>
-            <o>Booleà</o>   <o>false</o>
-            <o>Decimal</o>   <o>1.75f</o>
-            <o>Literal invàlid</o>   <o>'text'</o>
-        </question>
-
-        <question single>
-            <statement>Troba el literal invàlid</statement>
-            <o><m>"10000000"</m></o>
-            <o correct><m>'10000000'</m></o>
-            <o><m>10_000_000</m></o>
-            <o><m>10000000</m></o>
-            <o><m>10000000f</m></o>
-        </question>
-
-        <question multi>
-            <statement>Selecciona els literals que <strong>NO</strong> són strings</statement>
-            <o correct><m>7000</m></o>
-            <o><m>"7000"</m></o>
-            <o correct><m>true</m></o>
-            <o correct><m>'3'</m></o>
-            <o><m>"false"</m></o>
-            <o><m>"3"</m></o>
-            <o correct><m>'a'</m></o>
-        </question>
-        
-        <question single>
-            <statement>Els <strong>caracters</strong> literals s'escriuen com</statement>
-            <o correct>'A', 'B', 'C',...</o>
-            <o>A, B, C, ...</o>
-            <o>{A}, {B}, {C}, ...</o>
-            <o>"A", "B", "C", ...</o>
-        </question>
-
-        <question multi>
-            <statement>Selecciona els literals <strong>string</strong> vàlids</statement>
-            <o><m>443</m></o>
-            <o><m>'q'</m></o>
-            <o correct><m>"q"</m></o>
-            <o><m>'5'</m></o>
-            <o correct><m>"text"</m></o>
-            <o correct><m>"2312"</m></o>
-            <o>true</o>
-        </question>
-
-        <question multi>
-            <statement>Selecciona les sentències que <strong>NO</strong> són vàlides</statement>
-            <o correct><w>"123456"</w>&nbsp; és un número</o>
-            <o><w>"1"</w>&nbsp; és un string</o>
-            <o><w>'8'</w>&nbsp; és un caracter</o>
-            <o><w>1</w>&nbsp; és un número</o>
-            <o correct><w>True</w>&nbsp; és un booleà</o>
-            <o correct><w>1f</w> és un enter</o>
-        </question>
-
-        <question single>
-            <statement>Quin literal és adequat per a representar una adreça postal?</statement>
-            <o>un caracteral literal</o>
-            <o>un enter literal</o>
-            <o correct>un string literal</o>
-            <o>un decimal literal</o>
-            <o>un booleà literal</o>
-        </question>
-
-        <question multi>
-            <statement>Selecciona els literals numèrics (enters i decimals)</statement>
-            <o>"500f"</o>
-            <o>'8'</o>
-            <o>"800_000"</o>
-            <o correct>100_000_000</o>
-            <o correct>0</o>
-            <o correct>0.0f</o>
-            <o correct>3_0_0f</o>
-        </question>
-    </quizz>
-</section>
-
-<section>
-    <h2>El programa Hello World</h2>
-
-    <p>Tornem a veure el programa <strong>Hello world</strong>:</p>
-    <sc java>
-        public class Main {
-            public static void main(String[] args) {
-                System.out.println("Hello, World!");
-            }
-        }
-    </sc>
-
-    <p>Quan executem aquest programa, veurem:</p>
-    <shell>
-        Hello, world!
-    </shell>
-
-    <challenge>
-        <p>Escriu i executa el programa <strong>Hello World</strong> utilitzant IntelliJ.</p>
-    </challenge>
-
-    
-    <h3>Terminologia bàsica</h3>
+    <h2>Terminologia bàsica</h2>
     <p>Un cop vist el resultat, anem a aprendre alguna terminologia bàsica i 
         després tractarem d'entendre aquest programa.</p>
     <ul>
@@ -609,3 +402,25 @@
     </challenge>
 </section>
 
+
+<section>
+    <h2>El programa Hello World</h2>
+
+    <p>Tornem a veure el programa <strong>Hello world</strong>:</p>
+    <sc java>
+        public class Main {
+            public static void main(String[] args) {
+                System.out.println("Hello, World!");
+            }
+        }
+    </sc>
+
+    <p>Quan executem aquest programa, veurem:</p>
+    <shell>
+        Hello, world!
+    </shell>
+
+    <challenge>
+        <p>Escriu i executa el programa <strong>Hello World</strong> utilitzant IntelliJ.</p>
+    </challenge>
+</section>
