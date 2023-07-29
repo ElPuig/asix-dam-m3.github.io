@@ -179,7 +179,8 @@ a[href*='github']::before {
     text-decoration: none;
 }
 
-a[href*='hackerrank']::before {
+a[href*='hackerrank']::before,
+a[href*='dmoj']::before {
     content: '\f5f7';
     font-family: 'FABrands';
     margin-right: .5em;
