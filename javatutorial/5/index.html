@@ -6,558 +6,200 @@
 
 <nav></nav>
 <header>
-    <h1>Sentències condicionals</h1>
+    <h1>Conversió de tipus</h1>
 
     <abstract>
-        <p>En aquesta activitat aprendràs a fer ús de les sentències condicionals, que permeten
-            a un programa fer distintes accions depenent del valor d'una expressió Booleana.
+        <p>En aquesta activitat aprendràs les distintes formes de convertir un valor 
+            d'un tipus a un altre tipus.
         </p>
-        <p>Aprendràs:</p>        
-        <check>A utilitzar la sentència <strong>switch</strong>.</check>
-        <check>A utilitzar la sentència <strong>if-else</strong>.</check>
+        <p>Aprendràs:</p>
+        <check>Casting (implícit i explícit).</check>
+        <check>Mètodes de conversió.</check>
     </abstract>
 </header>
 
 <section>
-    <h2>Sentència switch</h2>
-    <p>L'ús més habitual de la sentència <w>switch</w> és quan es necessita realitzar diferents accions en funció del 
-    valor d'una variable o expressió.</p>
-    <p>Un ús molt típic es dona en les pantalles que mostren un menú d'opcions. Per exemple, escollir diferents accions
-        en el menú d'un joc. Utilitzant la sentència <w>if-else</w> es pot fer així:</p>
+    <h2>Casting</h2>
+    <p>La conversió entre tipus primitius es realitza mitjançant el <em>casting</em>. 
+    Java proporciona dos tipus de casting: implicit i explícit. L'implicit es realitza 
+    automàticament, mentre que l'explicit l'hem d'escriure nosaltres.</p>
+
+    <h3>Casting implicit</h3>
+
+    <p>El compilador realitza automàticament el casting implícit quan el tipus al que s'ha de convertir
+        una dada és més ampli que el tipus original.</p>
+    <p>És a dir, Java farà el casting implícit automàticament quan convertim:</p>
+
+    <ul>
+        <li><p>de <w>char</w> a <w>int</w> o de <w>char</w> a <w>float</w></p></li>
+        <li><p>de <w>int</w> a <w>float</w></p></li>
+    </ul>
+
+    <img src="img/casting.png">
+
+    <p>Per exemple: </p>
 
     <sc java>
-        System.out.println("1-Start\n2-Load\n3-Help\n4-Exit"); // es mostra el menu
+        float foo = 'a';   // convertim el char 'a' a float. El valor de foo sera 97.0f
 
-        int action = scanner.nextInt(); // l'usuari escull una opcio
+        int bar = 'a';     // convertim el char 'a' a int. EL valor de bar sera 97
+
+        float baz = 97;    // convertim el int 97 a float. El valor de baz sera 97.0f
+    </sc>
+
+    <p>Si tractem de fer un casting implícit a l'inrevés, el compilador ens donarà un error:</p>
+    <sc java>
+        char bar = 65633;   // error, casting implicit de int a char no permes
         
-        if (action == 1) {
-            System.out.println("Starting a new game...");
-        } else if (action == 2) {
-            System.out.println("Loading a saved game");
-        } else if (action == 3) {
-            System.out.println("Displaying help...");
-        } else if (action == 4) {
-            System.out.println("Exiting...");
-        } else {
-            System.out.println("Unsuitable action, please, try again");
-        }
+        char baz = 97f;   // error, casting implicit de float a char no permes
+
+        int qux = 97f;    // error, casting implicit de float a int no permes
     </sc>
 
-    <p>Aquest codi es perfectament vàlid, però en cas de que hi hagi moltes branques pot arribar a ser molt dens.</p>
 
-    <h3>switch, case, default</h3>
-    <p>La sentència <w>switch</w> proporciona una forma d'escollir entre múltiples accions en el cas de que una 
-    variable o expressió tingui un valor o un altre.</p>
+    <warn>
+        <p>El casting amb els tipus <w>boolean</w> i <w>String</w> no es pot realitzar.</p>
+    </warn>
 
-    <p>Utilitzant la sentència <w>switch</w> el codi anterior es veuria així:</p>
+    <h3>Casting explícit</h3>
+    <p>Hem vist que el casting implícit no es pot realitzar quan volem convertir a un tipus més estret (per exemple, 
+        convertir de <w>float</w> a <w>int</w>, ja que es perden els decimals). Però a voltes necessitem
+        fer-ho, tot sabent que perdrem precisió. En aquest cas hem d'explicitar el casting.
+    </p>
 
-    <sc java>
-        System.out.println("1-Start\n2-Load\n3-Help\n4-Exit"); // es mostra el menu
-
-        int action = scanner.nextInt(); // l'usuari escull una opcio
-
-        switch (action) {
-            case 1:
-                System.out.println("Starting a new game...");
-                break;
-            case 2:
-                System.out.println("Loading a saved game");
-                break;
-            case 3:
-                System.out.println("Displaying help...");
-                break;
-            case 4:
-                System.out.println("Exiting...");
-                break;
-            default:
-                System.out.println("Unsuitable action, please, try again");
-        }
-    </sc>
-
-    <p>Tot i que no hem explicat les paraules-clau <w>switch</w>, <w>case</w>, <w>default</w> i <w>break</w>, 
-    et pots fer una idea del que fa el codi.</p>
-
-    <p>La forma més general d'utilització de la sentència <w>switch</w> és aquesta:</p>
-
-    <sc java>
-        switch (expressio) {
-            case valor1:
-                // fer accio1
-                break;
-            case valor2:
-                // fer accio2
-                break;
-            
-            //... altres casos
-            
-            case valorN:
-                // fer accio N
-                break;
-            default:
-                // fer accio 'per defecte'
-        }
-    </sc>
-
-    <p><w>switch</w> avalua l'expressió (o variable), i després mira amb quin valor de cada cláusula <w>case</w> coincideix, 
-    i aleshores executa les sentències que hi hagi a partir d'aquí fins que trobi un <w>break</w>. En cas de que l'expressió no 
-    coincideixi amb el valor de cap <w>case</w>, s'executen les sentències que hi hagi al <w>default</w>.</p>
-
-    <p>Veiem un exmple d'una aplicació per a un supermercat on els clients escriuen el nom d'un producte i l'aplicació 
-        informa del seu preu:
+    <p>Per a realitzar un casting explícit, s'ha d'escriure el <strong>tipus al que es vol convertir</strong> entre parèntesi, just
+        abans del <strong>valor que es vol convertir</strong>.
     </p>
 
     <sc java>
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Producte: ");
-
-        String producte = scanner.nextLine();
-
-        switch (producte){
-            case "Taronjes":
-                System.out.println("1.55 euros/kilo");
-                break;
-            case "Pomes":
-                System.out.println("2.30 euros/kilo");
-                break;
-            case "Peres":
-                System.out.println("2.30 euros/kilo");
-                break;
-            case "Platans":
-                System.out.println("0.89 euros/kilo");
-                break;
-            default:
-                System.out.println("Producte no disponible");
-        }
+        (tipus) valor
     </sc>
 
-    <shell>
-        Producte:
-        <in>Peres</in>
-        2.30 euros/kilo
-    </shell>
+    <p>Els següents exemples il·lustren l'ús del casting explícit:</p>
 
-    <p>Fixa't que en aquest exemple el preu de les Pomes i les Peres és el mateix. Podem simplificar 
-        el <w>switch</w> una mica, així:</p>
-    <sc java data-line="5,6,7,8">
-        switch (producte){
-            case "Taronjes":
-                System.out.println("1.55 euros/kilo");
-                break;
-            case "Pomes":
-            case "Peres":
-                System.out.println("2.30 euros/kilo");
-                break;
-            case "Platans":
-                System.out.println("0.89 euros/kilo");
-                break;
-            default:
-                System.out.println("Producte no disponible");
-        }
+    <sc java>
+        // de int a char
+        char bar = (char) 65633;   // bar es 97 (el valor màxim de char es 65535)
+
+        // de float a char
+        char baz = (char) 97.53f;  // baz es 97, es perden els decimals
+
+        // de float a int
+        int quux = (int) 14.67565f;  // quux es 14, es perden els decimals
     </sc>
 
-    <p>Recorda que s'executen totes les sentències a partir del <w>case</w> que coincideix amb l'expressió fins que es troba
-    un <w>break</w>, així doncs en el cas de que la variable <w>producte</w> sigui <string>Pomes</string>, també s'executarà 
-    la sentència <ln>7</ln>, fins a trobar el <w>break</w> de la línia <ln>8</ln>.</p>
+    <sc java>
+        // de int a char
+        int fooa = 65633;
+        char bar = (char) fooa;   // bar es 97, el valor màxim de char es 65535
 
-    <!--TODO: switch fallthrough-->
+        // de float a char
+        float foob = 97.53f;
+        char baz = (char) foob;  // baz es 97, es perden els decimals
 
-    <info>
-        <p>A la versió 12 de Java s'incorpora una forma abreujada de la sentència <w>switch</w> que utilitza fletxes <w>-&gt;</w>
-        en lloc dels dos punts <w>:</w> per a les cláules <w>case</w>. En aquesta nova forma no cal utilitzar <w>break</w>.</p>
-        <p>El programa anterior es podria escriure així:</p>
+        // de float a int
+        float fooc = 14.67565f;
+        int quux = (int) fooc;  // quux es 14, es perden els decimals
+    </sc>
 
-        <sc java>
-            switch (producte) {
-                case "Taronjes" -> System.out.println("1.55 euros/kilo");
-                case "Pomes", "Peres" -> System.out.println("2.30 euros/kilo");
-                case "Platans" -> System.out.println("0.89 euros/kilo");
-                default -> System.out.println("Producte no disponible");
-            }    
-        </sc>
-    </info>
+    <sc java>
+        float foo = 5 / 2;          // foo es 2.0f
+
+        float bar = (float) 5 / 2;  // bar es 2.5f
+    </sc>
 
     <quizz>
-        <question text>
-            <statement>
-                <p>Què imprimeix el següent programa?</p>
-
-                <sc java>
-                    String foo = "B";
-                    int bar = 0;
-            
-                    switch (foo){
-                        case "A":
-                            bar += 10;
-                        case "B":
-                            bar += 20;
-                        case "C":
-                            bar += 30;
-                        default:
-                            bar += 40;
-                    }
-            
-                    System.out.println(bar);
-                </sc>
-            </statement>
-            <o>90</o>
-        </question>
-    </quizz>
-
-    <challenge>
-        <p>
-            <a href="https://dmoj.elpuig.xeill.net/problem/c2l12lletresscra">Lletres de l'Scrabble</a>
-            <br>
-            <a href="https://dmoj.elpuig.xeill.net/problem/c2l17saludaendi">Saluda en diferents idiomes</a>
-        </p>
-    </challenge>
-</section>
-
-
-<section>
-    <h2>Sentència if-else</h2>
-
-    <p>La sentència <w>if-else</w> és una construcció que permet a un programa realitzar distintes accions
-        depenent del valor d'una expressió Booleana. Si és <w>true</w>, el programa realitza unes accions,
-        en cas contrari, si és <w>false</w>, el programa realitza unes altres operacions. Alguns exemples
-        de expressións Booleanes són: <w>a > b</w>, <w>i -j == 1</w>, <w>p && q</w>, etc.
-    </p>
-    <p>La sentència <w>if-else</w> te distintes formes. Anem a veure-les.</p>
-
-    <h3>if</h3>
-
-    <p>La forma més simple és la sentència <w>if</w> única. Consisteix en la paraula-clau <w>if</w>, una 
-    expressió Booleana entre parèntesi i un bloc tancat entre claus:</p>
-
-    <sc java>
-        if (expressio) {
-            // cos: fer alguna cosa
-        }
-    </sc>
-
-    <p>Si l'expressió és <w>true</w>, les sentències dintre del bloc s'executen; en cas contrari, el programa
-    se les salta.</p>
-
-    <p>Per exemple:</p>
-
-    <sc java>
-        int edat = ...; // l'edat que sigui
-        if (edat > 17) {
-            System.out.println("Pots votar");
-        }
-    </sc>
-
-    <p>En aquest exemple, si l'<w>edat</w> és més gran que 17 el codi imprimeix "Pots votar", 
-    en cas contrari, no fa res.</p>
-
-    <p>L'expressió també pot ser el valor d'una variable de tipus <w>boolean</w>. Si el valor és <w>true</w>, el
-    bloc s'executarà, i si és <w>false</w> no.</p>
-
-    <sc java>
-        int edat = ...;
-        boolean majorEdat = edat > 17;
-        if (majorEdat) {
-            System.out.println("Pots votar");
-        }
-    </sc>
-
-    <challenge>
-        <p>
-            <a href="https://dmoj.elpuig.xeill.net/problem/enquestaframeworks">Enquesta frameworks</a>
-        </p>
-    </challenge>
-
-
-    <h3>if-else</h3>
-    <p>La sentència <w>if</w> es pot extendre amb la paraula-clau <w>else</w> i un altre bloc per a fer accions 
-    alternatives quan l'expressió és falsa.</p>
-
-    <sc java>
-        if (expressio) {
-            // fer una cosa
-        } else {
-            // fer una altra cosa
-        }
-    </sc>
-
-    <p>En aquest cas, quan l'expressió és <w>true</w>, s'executa el primer bloc de codi; en cas contrari s'executa 
-    el segon bloc, però mai els dos.</p>
-
-    <p>Al següent exemple, el programa imprimeix texts diferents depenent del valor de <w>num</w> (parell o imparell).</p>
-
-    <sc java>
-        int num = ...;  // num s'inicialitza en algun valor
-        
-        if (num % 2 == 0) {
-            System.out.println("Nombre parell");
-        } else {
-            System.out.println("Nombre imparell");
-        }
-    </sc>
-
-    <h3>if-else-if</h3>
-
-    <p>La forma més general de la sentència condicional consisteix en vàries condicions encadenades:</p>
-
-    <sc java>
-        if (expressio0) {
-            // accions0
-        } else if (expressio1) {
-            // accions1
-        } else if (expressio2) {
-            // accions2
-        // ...
-        } else {
-            // accions else
-        }
-    </sc>
-
-    <p>En aquest cas el programa executa les accions en les que primer es compleix l'expressió. Si cap expressió 
-        es <w>true</w>, aleshores s'executa l'última acció.
-    </p>
-
-    <p>El següent exemple recomana l'ordinador que es pot comprar depenent del pressupost.</p>
-
-    <sc java>
-        int pressupost = ...;
-
-        if (pressupost < 1000) {
-            System.out.println("Portatil");
-        } else if (pressupost < 2000) {
-            System.out.println("PC");
-        } else if (pressupost < 100_000) {
-            System.out.println("Servidor");
-        } else {
-            System.out.println("Comprat un data center o un ordinador quantic!");
-        }
-    </sc>
-
-    <p>Una sentència condicional amb múlitples branques crea un <strong>arbre de decisió</strong>, el 
-    qual els seus nodes són expressions booleanes, i cada branca es marca amb <em>true</em> o <em>false</em>. 
-    La <em>branca-true</em> porta a un bloc de sentències i la <em>branca-false</em> porta a comprovar la 
-    següent expressió. L'última <em>branca-false</em> significa <em>"en qualsevol altre cas"</em>.</p>
-
-    <info>
-        <p>Quan parlem sobre sentències condicionals, sovint els programadors utilitzen el terme 
-            "sentències de control de flux". El <strong>control de flux</strong> és l'ordre en que s'executen les 
-            diferents parts del programa.
-        </p>
-    </info>
-
-    <p>Aquest diagrama il·lustra l'arbre de decisió de l'exemple del pressupost.</p>
-
-    <img src="img/arbre decisio.png">
-
-    <h3>Niament de sentències if-else</h3>
-    <p>Les sentències <w>if-else</w> es poden niar (posar unes dintre d'altres). És a dir, en el bloc
-    d'una condició es poden posar altres <w>if-else</w>, que només seran executades si es compleix la condició ( 
-    i per tant s'executa el bloc).</p>
-    
-    <p>El següent exemple executa un editor específic depenent del Sistema Operatiu i la seva versió:</p>
-
-    <sc java>
-        import java.io.IOException;
-        import java.util.Scanner;
-
-        public class Main {
-            public static void main(String[] args) throws IOException {
-                Scanner scanner = new Scanner(System.in);
-
-                String os = scanner.nextLine();
-                String version = scanner.nextLine();
-
-                if (os.equals("Ubuntu")) {
-                    System.out.println("Checking Ubuntu version...");
-                    if(version.equals("20.04")) {
-                        Runtime.getRuntime().exec("gedit");
-                    } else if (version.equals("18.04")){
-                        Runtime.getRuntime().exec("nano");
-                    } else {
-                        System.out.println("Ubuntu version not supported");
-                    }
-                } else if (os.equals("Windows")) {
-                    System.out.println("All Windows versions supported");
-                    if(version.equals("10 Pro")) {
-                        Runtime.getRuntime().exec("notepad.exe");
-                    } else {
-                        Runtime.getRuntime().exec("write.exe");
-                    }
-                } else {
-                    System.out.println("OS not supported");
-                }
-            }
-        }
-    </sc>
-    
-    <p>Aquest és l'arbre de decisió:</p>
-    <img src="img/arbre decisio OS.png">
-
-    <quizz>
-        <question single>
-            <statement>
-                <p>Si <w>val</w> és 50, quina és la sortida d'aquest codi?</p>
-                <sc java>
-                    if (val == 10) {
-                        System.out.println("val == 10");
-                    } else if (val >= 20 && val &lt; 50) {
-                        System.out.println("20 &lt;= val &lt; 50");
-                    } else {
-                        if (val &lt; 20) {
-                            System.out.println("val &lt; 20");
-                        } else {
-                            System.out.println("val >= 50");
-                        }
-                    }
-                </sc>
-            </statement>
-            <o>val &lt; 20</o>
-            <o correct>val >= 50</o>
-            <o>val == 10</o>
-            <o>20 &lt;= val &lt; 50</o>
-            <o>Cap d'aquestes</o>
-        </question>
-
-        <question single>
-            <statement>
-                <p>Selecciona l'exemple correcte de la sentència condicional</p>
-            </statement>
-
-            <o><sc java>
-                if i &lt; j { 
-                    String a = "Hello";
-                 }</sc></o>
-            <o><sc java>
-                if (i &lt; j): 
-                String a = "Hello";
-                </sc></o>
-            <o correct><sc java>
-                if (i &lt; j) { 
-                    String a = "Hello";
-                }</sc></o>
-            <o><sc java>
-                if {i &lt; j} ( 
-                    String a = "Hello";
-                )</sc></o>
-            <o><sc java>
-                if [i &lt; j] 
-                    String a = "Hello";
-                </sc></o>
-        </question>
-
         <question multi>
             <statement>
-                <p>Selecciona la sortida del programa segons el valor de la variable <w>a</w>.</p>
-                <sc java>
-                    if (a &lt;= 0) {
-                        if(a == 0) {
-                            System.out.print("a");
-                        } else { 
-                            System.out.print("b");
-                        }
-                    }
-                    System.out.print("c");
+                <p>Selecciona les línies on es requereix el casting explícit.</p>
+
+                <sc java data-line="1,2,3,4,5,6">
+                    float a = 10;
+                    int b = a;
+                    char d = a;
+                    float c = b;
+                    int e = d;
+                    char f = c;
                 </sc>
             </statement>
-            <p><w>a = 0</w></p>
-            <o>a</o>
-            <o>ab</o>
-            <o correct>ac</o>
-            <o>c</o>
-            <p><w>a = -1</w></p>
-            <o>ab</o>
-            <o correct>bc</o>
-            <o>ac</o>
-            <o>c</o>
-            <p><w>a = 1</w></p>
-            <o>ab</o>
-            <o>bc</o>
-            <o>ac</o>
-            <o correct>c</o>
-        </question>
-    </quizz>
-</section>
-
-<section>
-    <h2>Operador ternari</h2>
-    <p>La sintaxi general de l'operador ternari <w>?:</w> és aquesta:</p>
-
-    <sc java>
-        condicio ? valorSiCerta : valorSiFalsa
-    </sc>
-
-    <p>Aquest operador retorna el valor <w>valorSiCerta</w> si la <w>condició</w> s'avalua a <w>true</w>. 
-    Si la condició resulta ser <w>false</w>, aleshores retorna <w>valorSiFalsa</w>.</p>
-
-    <p>Exemple:</p>
-    <sc java>
-        System.out.println(10 > 5 ? "major" : "menor");   // major
-
-        int num = 10;
-        System.out.println(num % 2 == 0 ? "parell" : "imparell");   // parell
-        
-        num = 11;
-        System.out.println(num % 2 == 0 ? "parell" : "imparell");   // imparell
-    </sc>
-
-    <p>També podem guardar el resultat que retorna l'operador ternari en un variable. El tipus d'aquesta
-        variable ha de coincidir amb el tipus dels valors <w>valorSiCerta</w> i <w>valorSiFalsa</w>. 
-        Per exemple, el següent programa calcula la 'quota mensual' d'un soci, si el soci té més de 10 anys d'antiguetat, 
-        la quota són 30, i si no en són 40.</p>
-    
-        <sc java>
-        int anysAntiguetat = 3;
-
-        float quotaMensual = anysAntiguetat > 10 ? 30f : 40f;
-
-        System.out.println(quotaMensual);   // 40.0
-    </sc>
-
-    <p>L'operador ternari es pot enllaçar per a fer expressions més complexes:</p>
-
-    <sc java>
-          condicio1 ? valor1 
-        : condicio2 ? valor2
-        : condicio3 ? valor3
-        valor4;
-    </sc>
-
-    <p> El valor retornat és el que primer compleix la condició. Si no es compleix cap condició, aleshores es 
-        retorna l'últim valor. </p>
-    <sc java>
-        int edat = 18;
-        String beguda = edat < 18 ? "Coca-cola"
-                      : edat < 45 ? "Cervesa"
-                      : "Vi";
-        System.out.println(beguda);  // Cervesa
-    </sc>
-
-    <quizz>
-        <question single>
-            <statement>
-                <p>Quin valor tindrà la variable <w>x</w>?</p>
-                <sc java>
-                    int a = 10;
-                    int b = 30;
-                    int c = 20;
-
-                    String x = a < b ? "One"
-                             : b < c ? "Two"
-                             : "Three";
-                </sc>
-            </statement>
-            <o correct>One</o>
-            <o>Two</o>
-            <o>Three</o>
+            <o>1</o>
+            <o correct>2</o>
+            <o correct>3</o>
+            <o>4</o>
+            <o>5</o>
+            <o correct>6</o>
         </question>
     </quizz>
 
     <challenge>
+        <a href="https://dmoj.elpuig.xeill.net/problem/unicodepoints">Unicode points</a>
+        <br>
+        <a href="https://dmoj.elpuig.xeill.net/problem/c1l28notacioalge">Notació algebraica als escacs</a>
+    </challenge>
+</section>
 
+<section>
+    <h2>Conversió textual</h2>
+
+    <p>A més a més de les conversions amb casting, Java incorpora una sèrie de mètodes per a fer altres conversions.</p>
+
+    <h3>Concatenació</h3>
+    <p>Es pot convertir qualsevol valor en un <w>String</w> només concatenant-lo amb un String buit <w>""</w>.</p>
+    <sc java>
+        String foo = "" + 'a';    // foo es "a"
+        String bar = "" + 865;    // bar es "865"
+        String baz = "" + 23.78f; // baz es "23.78"
+        String quux = "" + true;  // quux es "true"
+    </sc>
+
+    <h3>String.valueOf()</h3>
+    <p>De forma equivalent a la concatenació, es pot utilitzar el mètode <w>String.valueOf()</w> per a convertir a <w>String</w>.</p>
+
+    <sc java>
+        String foo = String.valueOf('a');    // foo es "a"
+        String bar = String.valueOf(865);    // bar es "865"
+        String baz = String.valueOf(23.78f); // baz es "23.78"
+        String quux = String.valueOf(true);  // quux es "true"
+    </sc>
+
+    <h3>charAt()</h3>
+    <p>Lògicament, no podem convertir un <w>String</w> en un <w>char</w>, ja que l'String pot tenir varis caracters.
+    Però podem usar el mètode <w>charAt()</w> per a obtenir un caracter que estigui en una determinada posició.</p>
+    <sc java>
+        char foo = "java8".charAt(0);  // foo es 'j' 
+        char baz = "java8".charAt(4);  // baz es '8' 
+    </sc>
+
+    <p>Cal tenir en compte que les posicions comencen per <w>0</w>.</p>
+
+    <h3>Character.getNumericValue()</h3>
+    <p>Al punt anterior hem vist que si fem el casting implícit per a convertir un <w>char</w> en un <w>int</w>, 
+        obtenim el valor Unicode del caracter.</p>
+    <p>Si volem obtenir el valor que representa el caracter es pot fer amb el mètode <w>Character.getNumericValue()</w>.</p>
+    <sc java>
+        char foo = '9';
+
+        int bar = foo; // bar es 57, amb el casting obtenim el valor unicode
+        
+        int baz = Character.getNumericValue(foo); // baz es 9, obtenim el valor representat pel caracter
+    </sc>
+
+    <h3>parseInt() i parseFloat()</h3>
+    <p>Per a obtenir el valor numèric representat per un <w>String</w> podem utilitzar <w>parseInt()</w> o <w>parseFloat()</w>.</p>
+    <sc java>
+        String foo = "213";
+
+        int bar = Integer.parseInt(foo);  // bar es 213
+    </sc>
+    <sc java>
+        String foo = "23.78";
+
+        float bar = Float.parseFloat(foo);  // bar es 23.78f
+    </sc>
+
+    <challenge>
         <p>
-            <a href="https://dmoj.elpuig.xeill.net/problem/horadaperturaopera">Hora d'apertura</a>            
-            <br>
-            <a href="https://dmoj.elpuig.xeill.net/problem/paresonones">Pares o nones</a>
-            <br>
-            <a href="https://dmoj.elpuig.xeill.net/problem/c1l19sobrenous">Sobren ous</a>
+            <a href="https://dmoj.elpuig.xeill.net/problem/extracciodenumeros">Extracció de números</a>
         </p>
     </challenge>
 

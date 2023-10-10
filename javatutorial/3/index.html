@@ -6,812 +6,563 @@
 
 <nav></nav>
 <header>
-    <h1>Operadors</h1>
+    <h1>Escanejar variables d'entrada</h1>
 
     <abstract>
-        <p>En aquesta activitat aprendràs a fer operacions amb els literals i variables d'un programa.
+        <p>En aquesta activitat aprendràs a fer programes interactius que demanen dades i després les utilitzen.
         </p>
         <p>Aprendràs:</p>
-        <check>Com utilitzar els operadors aritmètics, lògics i relacionals.</check>
+        <check>Com obtenir dades de l'entrada estàndard i guardar-les en variables</check>
     </abstract>
 </header>
 
-
-
-
-
-
-
-
-
-
 <section>
-    <h2>Operadors aritmètics</h2>
+    <h2>L'entrada estàndard i la classe Scanner</h2>
 
-    <p>En la vida real, sovint realitzem operacions aritmètiques. 
-        Ens ajuden a determinar el canvi quan fem una compra, l'àrea 
-        d'una habitació, comptar la gent que hi ha a una cua, i coses així. 
-        Les mateixes operacions s'utilitzen als programes.
+    <p>L'<strong>entrada estàndard</strong> és un flux de dades que van cap al programa.
+    Està suportada pel sistema operatiu. Per defecte, l'entrada estàndard obté les dades del 
+    teclat, tot i que és possible redirigir-la per a obtenir les dades d'un fitxer.</p>
+    <p>De fet, no tots els programes utilitzen l'entrada estàndard. Però nosaltres l'utilitzarem 
+        molt sovint per a demanar dades als usuaris per teclat, o per a obtenir les dades dels casos
+        de prova en els exercicis.
     </p>
-
-    <h3>Operacions aritmètiques</h3>
-
-    <p>El llenguatge de programació Java proporciona operadors 
-        per a realitzar operacions aritmètiques:
-    </p>
-
-    <ul>
-        <li>suma <w>+</w></li>
-        <li>resta <w>-</w></li>
-        <li>multiplicació <w>*</w></li>
-        <li>divisió <w>/</w></li>
-        <li>mòdul <w>%</w></li>
-    </ul>
-
-    <p>En aquest exemple s'imprimeixen el resultat d'aquestes operacions 
-        aritmètiques amb operadors enters:</p>
-    <sc java>
-        System.out.println(5 + 10);  // 15
-
-        System.out.println(10 - 5);  // 5
-        System.out.println(5 - 10);  // -5
         
-        System.out.println(5 * 10);  // 50
-        
-        System.out.println(10 / 5);  // 2
-        
-        System.out.println( 10 % 5); // 0
-    </sc>
-
-    <p>Tal vegada l'operador menys conegut és el <strong>mòdul</strong> <w>%</w>. 
-    Aquest operador retorna el residu de la divisió:</p>
-
-    <sc java>
-        System.out.println(151 % 4);  // 3
-        System.out.println(151 / 4);  // 37
-    </sc>
-    <img src="img/modul.png">
-
-    <h3>Precedència d'operadors</h3>
-    <p>Hi ha un <a href="https://ca.wikipedia.org/wiki/Ordre_de_les_operacions">ordre de preferència</a> a les operacions artimètiques, inclosos els parèntesi:</p>
-
-    <p><w>()</w>&nbsp;&nbsp; 🡒&nbsp;&nbsp; <w>* / %</w>&nbsp;&nbsp; 🡒&nbsp;&nbsp; <w>+ -</w></p>
-
-    <p>Tenint en compte aquesta preferència es poden realitzar expressions més complexes:</p>
-
-    <sc java>
-        System.out.println(1 + 3 * 4 - 2);     // 11
-        System.out.println((1 + 3) * (4 - 2)); // 8  
-
-        System.out.println(-10 + 4);   // -6
-        System.out.println(-(10 + 4)); // -14
-    </sc>
-
-    <h3>Tipus dels operadors</h3>
-    <p>El resultat d'una expressió artimètica depèn també del tipus dels seus operadors (<w>int</w> o <w>float</w>).</p>
-
-    <p>Si una operació es realitza amb operadors <w>int</w> el resultat serà de tipus <w>int</w>, però 
-    si en una operació al menys un operand és <w>float</w> el resultat serà de tipus <w>float</w>.</p>
-    
-    <p>Aquesta regla és especialment important en les divisions, ja que una operació de divisió entre operands 
-        enters donarà com a resultat un enter (és a dir, sense decimals), però si hi ha un decimal aleshores donarà 
-    el resultat amb decimals:</p>
-
-    <sc java>
-        System.out.println(5 / 2);    // 2  (resultat enter, sense decimals)
-        System.out.println(5f / 2);   // 2.5
-        System.out.println(5 / 2f);   // 2.5
-        System.out.println(5f / 2f);  // 2.5
-    </sc>
-    
-    <quizz>
-        <question text>
-            <statement>
-                <p>Escriu el resultat d'aquesta operació:</p>
-                <p><w>2 + 3 * 4 + 5</w></p>
-            </statement>
-            <o>19</o>
-        </question>
-
-        <question text>
-            <statement>
-                <p>Què imprimirà aquesta sentència?</p>
-                <sc java>
-                    System.out.println(2 + (-3) + 5 + (-8));
-                </sc>
-            </statement>
-            <o>-4</o>
-        </question>
-
-        <question match>
-            <statement><p>Ordena els operadors segons la preferència</p></statement>
-            <o>1</o><o>( )</o>
-            <o>2</o><o>* / %</o>
-            <o>3</o><o>+ -</o>
-        </question>
-
-        <question text>
-            <statement>
-                <p>Escriu el valor que retorna aquesta expressió:</p>
-                <p><w>(-5) * (-10) * (-20)</w></p>
-            </statement>
-            <o>-1000</o>
-        </question>
-        
-        <question multi>
-            <statement>
-                <p>Quina de les següents expressions és igual a <w>12</w>?</p>
-            </statement>
-            <o correct><w>24 / 2</w></o>
-            <o><w>24 % 2</w></o>
-            <o correct><w>25 / 2</w></o>
-            <o correct><w>12 % 13</w></o>
-        </question>
-
-        <question text>
-            <statement>
-                <p>Quin és el resultat d'aquesta expressió?</p>
-                <p><w>3 / 2f</w></p>
-            </statement>
-            <o>1.5</o>
-        </question>
-        
-        <question text>
-            <statement>
-                <p>Què imprimeixen aquestes sentències?</p>
-            </statement>
-            <sc java>System.out.println((5 / 2) * (5 / 2));</sc> <o>4</o>
-            <br>
-            <sc java>System.out.println((5 / 2) * (5f / 2));</sc> <o>5.0</o>
-            <br>
-        </question>
-    </quizz>
-
-    <h3>Operadors aritmètics amb caracters i Strings</h3>
-
-    <h4>Caracters</h4>
-    <p>Quan utilitzem els operadors aritmètics amb valors de tipus <w>char</w>, 
-        s'utilitza el valor numèric Unicode corresponent al caracter.
-    </p>
-    <p>Així, per exemple, el <a href="https://unicode-table.com/en/0061/">valor unicode del caracter <w>'a'</w></a> és <w>97</w>, 
-    i serà aquest el valor que s'utilitzi en les operacions aritmètiques amb el caracter <w>'a'</w>.</p>
-
-    <sc java>
-        System.out.println('a' + 0);     // 97    (97 + 0)
-        System.out.println(5 + 'a');     // 102   (5 + 97)
-        System.out.println('a' - 5);     // 92    (97 - 5)
-        System.out.println('a' * 10);    // 970   (97 * 10)
-        System.out.println('a' / 10);    // 9     (97 / 10)
-        System.out.println(-'a' + 'b');  // 1    (-97 + 98)
-    </sc>
-
-    <info>
-        <p>A la wikipedia pots trobar la <a href="https://en.wikipedia.org/wiki/List_of_Unicode_characters#Basic_Latin">taula de caracters Unicode.</a>
-        
-        Per a esbrinar el valor numèric d'un caracter busca'l a la columna 
-        <strong>Glyph</strong> i el seu valor a la columna <strong>Decimal</strong></p>
-    </info>
-
-    <h4>Strings</h4>
-    <p>Podem utilitzar l'operador suma <w>+</w> amb Strings, però la seva funció no serà la suma, sinò la 
-    <strong>concatenació</strong>, és a dir, unir els elements un darrere de l'altre.</p>
-
-    <p>D'aquesta forma, si algun dels dos operands en una expressió és un String, el resultat serà 
-        la concatenació dels operands, i no la suma.</p>
-
-    <sc java>
-        System.out.println("Java" + "Script");  // JavaScript
-        System.out.println("Java" + 8);         // Java8
-        System.out.println("Java" + 14 + 1);    // Java141
-        System.out.println("Java" + (14 + 1));  // Java15    (primer es fan els parentesi)
-        System.out.println("Java" + 8 * 2);     // Java16    (primer es fa la multiplicacio)
-        System.out.println("Java" + 8  + " TM");    // Java8 TM    (primer es fa la multiplicacio)
-
-        System.out.println("Java" - 8);         // Error! només es pot usar l'operador + 
-        System.out.println("Java" + 8 - 1);     // Error! No és vàlid ja que "Java"+8 és "Java8", 
-                                                // i després el  "Java8" - 1  no és valid 
-    </sc>
-
-    <quizz>
-        <question text>
-            <statement>
-                <p>Què imprimiran les següents sentències?</p>
-            </statement>
-
-            <sc java>System.out.println("Hola " + "mon");</sc> <o>Hola mon</o>
-            <br>
-            <sc java>System.out.println("Hola " + 330);</sc> <o>Hola 330</o>
-            <br>
-            <sc java>System.out.println("Hola " + 'm' + 'o' + 'n');</sc> <o>Hola mon</o>
-            <br>
-            <sc java>System.out.println("Hola " + ('m' + 'o' + 'n'));</sc> <o>Hola 330</o>
-            <br>
-            <sc java>System.out.println('m' + 'o' + 'n' + "Hola");</sc> <o>330Hola</o>
-        </question>
-    </quizz>
-
-    <h3>Operacions aritmètiques amb variables</h3>
-
-    <p>També podem utilitzar els valors de les variables per a realitzar operacions aritmètiques.
-        Com ja hem fet anteriorment, accedirem al valor d'una variable pel seu nom.
-    </p>
-
-    <sc java>
-        int a = 20;
-        int b = 10;
-
-        System.out.println(a + b + 5);  // 35  (20 + 10 + 5);
-    </sc>
-
-    <sc java>
-        float temperatura = 37.5f;
-
-        System.out.println("Temperatura màxima = " + temperatura);    // concatenacio
-    </sc>
-
-    <p>Per una altra banda, podem guardar en una variable el resultat retornat per una expressió, sempre que 
-        la variable sigui del tipus adequat al valor que retorna una expressió.
-    </p>
-
-    <sc java>
-        int a = 10 + 10;
-        int b = a + 10;
-
-        System.out.println(a + b + 5);  // 55   (20 + 30 + 5)
-    </sc>
-
-    <sc java>
-        char versio = '8';
-        String llenguatge = "Java";
-
-        String llenguatgeVersio = llenguatge + " " + versio;   // Java 8 
-    </sc>
-
-    <p>Per últim, també es pot utilitzar el valor d'una variable en una expressió, i guardar el valor 
-        resultant en la mateixa variable.
-    </p>
-
-    <sc java>
-        int n = 10;
-        
-        n = n + 4;    // 14   (10 + 4)
-
-        System.out.println(n); // 14
-    </sc>
-
-    <sc java>
-        String lang = "";
-
-        lang = lang + 'j';   
-        lang = lang + 'a';
-        lang = lang + 'v';
-        lang = lang + 'a';  // java
-    </sc>
-
-    <p>L'operador d'asignació <w>=</w> té una forma abreujada de fer aquestes operacions. Consisteix 
-    a posar la operació que s'ha de realitzar abans del <w>=</w>. Els exemples anteriors es poden 
-    abreujar així:</p>
-
-    <sc java>
-        int n = 10;
-
-        n += 4;   // equivalent a  'n = n + 4'
-    </sc>
-
-    <sc java>
-        String lang = "";
-
-        lang += 'j';   
-        lang += 'a';
-        lang += 'v';
-        lang += 'a';  // java
-    </sc>
-
-    <p>Com pots veure, aquesta forma és més concisa. Es poden usar els altres operadors d'aquesta forma 
-        abreujada: <w>-=</w>, <w>*=</w>, <w>/=</w>, <w>%=</w>.
-    </p>
-
-    <h3>Operadors artimètics unaris</h3>
-
-    <p>L'operador d'increment <w>++</w>, i l'operador de decrement <w>--</w>, incrementen/decrementen el 
-    valor d'una variable en <w>1</w>.</p>
-
-    <sc java>
-        int n = 10;  // 10
-        n++;         // 11
-        n--;         // 10
-    </sc>
-
-    <p>Seria l'equivalent a escriure:</p>
-    <sc java>
-        int n = 10;  // 10
-        n += 1;      // 11
-        n -= 1;      // 10
-    </sc>
-
-    <p>I també equivalent a:</p>
-    <sc java>
-        int n = 10;  // 10
-        n = n + 1;   // 11
-        n = n - 1;   // 10
-    </sc>
-
-    <p>Tres formes diferents d'escriure el mateix!</p>
-
-    <quizz>
-       
-        <question text>
-            <statement>
-                <p>Introdueix el valor de la variable <w>result</w></p>
-                <sc java>
-                    int a = 4, b = 6;
-                    int c = a + b;
-                    int result = c + (a + b) * c;
-                </sc>
-            </statement>
-            <o>110</o>
-        </question>
-
-
-        <question text>
-            <statement>
-                <p>Introdueix el valor de cada variable, <strong>després</strong> de cada sentència d'aquest programa:</p>
-            </statement>
-
-            <table>
-                <thead>
-                    <th style="width: 14em;"></th><th><w>a</w></th><th><w>b</w></th></th>
-                </thead>
-                <tr>
-                    <td><w>int a = 0;</w></td>
-                    <td><o>0</o></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td><w>int b = a + 1;</w></td>
-                    <td><o>0</o></td>
-                    <td><o>1</o></td>
-                </tr>
-                <tr>
-                    <td><w>a = a + 1;</w></td>
-                    <td><o>1</o></td>
-                    <td><o>1</o></td>
-                </tr>
-                <tr>
-                    <td><w>b *= 2;</w></td>
-                    <td><o>1</o></td>
-                    <td><o>2</o></td>
-                </tr>
-                <tr>
-                    <td><w>a++;</w></td>
-                    <td><o>2</o></td>
-                    <td><o>2</o></td>
-                </tr>
-            </table>
-        </question>
-        <question text>
-            <statement>
-                <p>Introdueix el valor de cada variable, <strong>després</strong> de cada sentència d'aquest programa:</p>
-            </statement>
-
-            <table>
-                <thead>
-                    <th style="width: 14em;"></th><th><w>a</w></th><th><w>b</w></th></th>
-                </thead>
-                <tr>
-                    <td><w>int a = 10;</w></td>
-                    <td><o>10</o></td>
-                    <td></td>
-
-                </tr>
-                <tr>
-                    <td><w>int b = a + 10;</w></td>
-                    <td><o>10</o></td>
-                    <td><o>20</o></td>
-                </tr>
-                <tr>
-                    <td><w>a += 10;</w></td>
-                    <td><o>20</o></td>
-                    <td><o>20</o></td>
-                </tr>
-                <tr>
-                    <td><w>a += b;</w></td>
-                    <td><o>40</o></td>
-                    <td><o>20</o></td>
-                </tr>
-                <tr>
-                    <td><w>a += a + b;</w></td>
-                    <td><o>100</o></td>
-                    <td><o>20</o></td>
-                </tr>
-                <tr>
-                    <td><w>a += a + a;</w></td>
-                    <td><o>300</o></td>
-                    <td><o>20</o></td>
-                </tr>
-            </table>
-        </question>
-    </quizz>
-    
-    <challenge>
-        <p>
-            <a href="https://dmoj.elpuig.xeill.net/problem/esquirolsinous">Esquirols i nous</a>
-            <br><a href="https://dmoj.elpuig.xeill.net/problem/arecompte">Sortida en autobús</a>
-            <br><a href="https://dmoj.elpuig.xeill.net/problem/c1l15notamitjana">Nota mitjana</a>
-            <br><a href="https://dmoj.elpuig.xeill.net/problem/c1l111perimetred">Perímetre d'un rectangle</a>
-            <br><a href="https://dmoj.elpuig.xeill.net/problem/c1l112artropodes">Artròpodes</a>
-            <br><a href="https://dmoj.elpuig.xeill.net/problem/stigidsert">stigíD serT</a>
-            <br><a href="https://dmoj.elpuig.xeill.net/problem/c1l110comptantel">Comptant els minuts per cap d'any</a>
-        </p>
-    </challenge>
-</section>
-
-<section>
-    <h2>Operadors booleans</h2>
-
-    <p>Recordem que el tipus de dada <w>boolean</w> només té 
-    dos valors possibles: <w>true</w> i <w>false</w>. També 
-    és conegut com el tipus <strong>lògic</strong>.</p>
-
-    <p>Aquest tipus s'usa de forma habitual en els llenguatges 
-        de programació per a representar coses que només poden 
-        tenir dos estats oposats com <strong>on</strong>/<strong>off</strong>, 
-        <strong>sí</strong>/<strong>no</strong>.
-    </p>
-
-    <p>Si estas escrivint un programa que fa el seguiment de 
-        les obertures de portes trobaràs natural utilitzar un 
-        <w>boolean</w> per a guardar l'estat actual d'una porta (oberta/tancada).
-        O en un videojoc, hi pot haver moltes variables <w>boolean</w> 
-        per a mantenir l'estat d'un jugador (isAlive, isJumping, hasSword, ...).</p>
-
-    <p>Les operacions que podem realitzar sobre valors <w>boolean</w> són:</p>
-    <ul>
-        <li>
-            <p><strong>NOT</strong> <w>!</w></p>
-            <p>Retorna la <strong>inversió</strong> d'un valor booleà:</p>
-            <sc java>
-                System.out.println(!false);  // true
-                System.out.println(!true);   // false
-            </sc>
-        </li>
-
-        <li>
-            <p><strong>AND</strong> <w>&&</w></p>
-            <p>Retorna <w>true</w> si <strong>tots</strong> dos operands són <w>true</w>, si no, retorna <w>false</w>.</p>
-            <sc java>
-                System.out.println(true  && true);   // true
-                System.out.println(true  && false);  // false
-                System.out.println(false && true);   // false
-                System.out.println(false && false);  // false
-            </sc>    
-        </li>
-        <li>
-            <p><strong>OR</strong> <w>||</w></p>
-            <p>Retorna <w>true</w> si <strong>al menys un</strong> operand és <w>true</w>, si no, retorna <w>false</w>.</p>
-            <sc java>
-                System.out.println(true  || true);   // true
-                System.out.println(true  || false);  // true
-                System.out.println(false || true);   // true
-                System.out.println(false || false);  // false
-            </sc>    
-        </li>
-    </ul>
-
-    <info>
-        <p>
-        Hi ha un altre operador anomenat <strong>XOR</strong> <w>^</w>. 
-        En aquest curs utilitzarem més sovint <w>!</w> <w>&&</w> <w>||</w>. 
-        Però en cas de que el necessitis, que sàpigues que hi és.
-
-        Retorna <w>true</w> si els dos operands tenen diferents valors, si no, 
-        retorna <w>false</w>
-    </p>
-        <sc java>
-            System.out.println(true  ^ true);   // false
-            System.out.println(true  ^ false);  // true
-            System.out.println(false ^ true);   // true
-            System.out.println(false ^ false);  // false
-        </sc>
-    
-    </info>
-
-    <h3>Precedència d'operadors lògics</h3>
-   
-    <p>A sota hi ha els operadors booleans ordenats de més a menys prioritat:</p>
-
-    <p><w>()</w>&nbsp;&nbsp; &#8594; &nbsp;&nbsp; <w>!</w>&nbsp;&nbsp; &#8594; &nbsp;&nbsp; <w>&&</w>&nbsp;&nbsp; &#8594; &nbsp;&nbsp; <w>||</w></p>
-
-    <p>Tenint en compte aquesta precedència podem realitzar expressions complexes.</p>
-
-    <sc java>
-        System.out.println(true && !false);  // true
-        System.out.println(true && !true);   // false
-        System.out.println(false || !false); // true
-        System.out.println(true && false || true); // true
-        System.out.println(true || true && false); // true
-        System.out.println((true || true) && false); // false
-        System.out.println(!(true || false)); // false
-    </sc>
-
-    <h3>Curtcircuit</h3>
-
-    <info>
-        <p>Un punt interessant és que els operadors <w>&&</w> i <w>||</w> no avaluen el segon operand si no és necessari.
-            Quan el primer operand d'una operació <w>&&</w> és <w>false</w>, el resultat serà <w>false</w> sigui quin sigui 
-            el segon operand; i quan el primer operand d'una operació <w>||</w> és <w>true</w>, el resultat serà <w>true</w> sigui quin 
-            sigui el segon operand. Així que:
-            </p>
-        
-        <ul>
-            <li><p><w>false && ...</w> &nbsp; 🡒&nbsp; <w>false</w>, ja que no és necessari saber que hi ha a la dreta</p></li>
-            <li><p><w>true || ...</w> &nbsp; 🡒&nbsp; <w>true</w>, ja que no és necessari saber que hi ha a la dreta</p></li>
-        </ul>
-    
-        <p>Aquest comportament es conegut com <strong>avaluació curtcircuit</strong> (no confondre amb curtcircuit elèctric).
-            Redueix el temps de computació i pot ser utilitzat per a evitar alguns errors en programes.</p>
-
-        <p>Fixa't en aquest codi:</p>
-
-        <sc java>
-            System.out.println(false && (true || (false && !true) || (!true && (false && true) && true || !false)));
-        </sc>
-
-        <p>No importa el que hi hagi més enllà del primer <w>false &&</w>; retorni <w>true</w> o <w>false</w>, el 
-        resultat de l'expressió completa serà <w>false</w>.</p>
-    </info>
-
-    <h3>Operacions booleanes amb variables</h3>
-
-    <p>Igual que amb els operadors aritmètics, podem usar variables en les expressions booleanes. I també guardar el
-        valor retornat per una expressió booleana en una variable de tipus <w>boolean</w>.
-    </p>
-
-    <sc java>
-        boolean a = true;
-
-        boolean b = a || false;  // true
-
-        b = !b;  // false
-    </sc>
-
-    <p>Un altre exemple amb una expressió booleana complexa, 
-        per a determinar la possibilitat d'anar a fer senderisme
-         a l'estiu o en altres estacions:</p>
-
-    <sc java>
-        boolean faFred = false;
-        boolean faSol = true;
-        boolean esEstiu = false;  // suposem que es tardor
-
-        boolean senderisme = faSol && (!faFred || esEstiu);  // true, let's go trekking
-    </sc>
-
-    <quizz>
-        <question text>
-            <statement>
-                <p>Escriu el resultat d'avaluar aquestes expressions lògiques:</p>
-            </statement>
-
-            <p><w>!(true || false)</w><o>false</o></p>
-            <p><w>!true && !false</w><o>false</o></p>
-            <p><w>!(true && false)</w><o>true</o></p>
-            <p><w>true || true || !true</w><o>true</o></p>
-            <p><w>true && true && !true</w><o>false</o></p>
-        </question>
-
-
-        <question text>
-            <statement>
-                <p>Hi ha aquestes variables:</p>
-                <sc java>
-                    boolean b1 = true;
-                    boolean b2 = false;
-                    boolean b3 = true;
-                    boolean b4 = false;
-                </sc>
-                <p>Quin és el resultat d'aquesta expressió?</p>
-                <w>b1 && (b2 || (b3 || b4))</w>
-            </statement>
-            <o>true</o>
-        </question>
-    </quizz>
-
-    <challenge>
-        <p>
-            <a href="https://dmoj.elpuig.xeill.net/problem/c1l16llumsapagad">Llums apagats</a>
-        </p>
-    </challenge>
-</section>
-
-<section>
-    <h2>Operadors relacionals</h2>
-    <p>Java proporciona sis operadors relacionals per a comparar números:</p>
-    <ul>
-        <li><w>==</w> (igual a)</li>
-        <li><w>!=</w> (no igual a)</w></li>
-        <li><w>></w>  (major que)</li>
-        <li><w>>=</w> (major o igual que)</li>
-        <li><w><</w>  (menor que)</li>
-        <li><w><=</w> (menor o igual que)</li>
-    </ul>
-
-    <p>El resultat d'aplicar un d'aquests operadors relacionals és de 
-        tipus <w>boolean</w> independentment dels tipus dels seus operands.
-    </p>
-
-    <p>Aquí tens exemples d'aplicar els operadors relacionals a diferents tipus 
-        d'operands. Observa que el valor retornat en avaluar l'expressió és sempre 
-        <w>true</w> o <w>false</w>.
-    </p>
-
-    <sc java>
-        System.out.println(5 > 2);  // true
-        System.out.println(5 == 2); // false
-        System.out.println(5 >= 2); // true
-        System.out.println(5 != 2); // true
-        System.out.println(4 + 1 == 5);  // true  
-        System.out.println(5f == 5);  // true  
-        System.out.println(!false == true);  // true
-        System.out.println(false == true);  // false
-        System.out.println('a' == 97);  // true
-        System.out.println('a' < 'b');  // true
-    </sc>
-
-    <p>Fixa't que podem fer operacions relacionals entre enters, floats i chars (recorda que 
-        els chars són convertits al seu valor Unicode). També podem fer operacions 
-        relacionals entre booleans. Però no podem fer-ho entre números i booleans, ja que no té 
-        cap sentit:</p>
-    
-        <sc java>
-            System.out.println(5 <= true);  // invalid! no té cap sentit
-        </sc>
-
-    <h3>Comparar Strings</h3>
-    <p>Per últim has de notar que no hem fet cap operació relacional amb el tipus <w>String</w>.
-        Java permet comparar la igualtat de dos <w>Strings</w> però <strong>no</strong> és amb l'operador <w>==</w>.</p>
-
-    <p>Per a comparar dos Strings hem d'utilitzar el mètode <w>equals()</w>, així: </p>
-
-    <sc java>
-        "hola".equals("adeu")  // false
-        "hola".equals("ho" + "la")  // true
-    </sc>
-
-    <h3>Operadors relacionals amb variables</h3>
-    <p>
-        Com ja hauràs suposat, podem utilitzar variables en les expressions relacionals. 
-        Per a guardar el resultat d'una expressió relacional, usarem variables de tipus <w>boolean</w>.
-    </p>
-
-    <sc java>
-        int h1 = 10;
-        int h2 = 20;
-
-        boolean mesGran = h1 > h2;   // false
-        boolean diferents = h1 != h2;  // true
-    </sc>
-
-    <sc java>
-        String langA = "Java";
-        String langB = "JavaScript";
-
-        boolean sameLang = langA.equals(langB);  // false
-    </sc>
-
-    <quizz>
-        <question single>
-            <statement>
-                <p>Què imprimeix aquest programa?</p>
-                <sc java>
-                    System.out.println("java".equals('j' + 'a' + 'v' + 'a'));
-                </sc>
-            </statement>
-
-            <o><w>true</w></o>
-            <o correct><w>false</w></o>
-            <o>És invàlid, perquè falta un parèntesi</o>
-            <o>És invàlid, perquè no es poden sumar caracters</o>
-        </question>
-
-        <question text>
-            <statement>
-                <p>Què imprimeix aquest programa?</p>
-                <sc java>
-                    int number = 1000;
-                    boolean result = number + 10 > number + 9;
-                    System.out.println(result);
-                </sc>
-            </statement>
-            <o>true</o>
-        </question>
-    </quizz>
-
-    <challenge>
-        <p>
-            <a href="https://dmoj.elpuig.xeill.net/problem/majordedat">Major d'edat</a>
-            <br>
-            <a href="https://dmoj.elpuig.xeill.net/problem/c1l14">Llibres i prestatgeries</a> 
-        </p>
-    </challenge>
-</section>
-
-<section>
-    <h2>Combinar operadors artimètics, relacionals i lògics</h3>
-    <p>En Java, no es pot escriure una expresió com <w>a < b < c</w> 
-    (per veure si <strong>b</strong> està entre mig d'<strong>a</strong> i <strong>c</strong>).
-    En lloc d'això, has d'unir dos expressions booleanes utilitzant operadors com <w>||</w> i <w>&&</w>.</p>
-
-    <sc java>
-        a < b && b < c   // significa a < b < c 
-    </sc>
-
-    <p>Podem combinar en una mateixa expressió, operadors aritmètics, relacionals i lògics. 
-        La prioritat dels tipus d'operadors és:</p>
-
-    <p style="text-align: center">Aritmètics&nbsp;&nbsp; 🡒&nbsp;&nbsp; Relacionals &nbsp;&nbsp; 🡒&nbsp;&nbsp; Lògics</p>
-
-    <p>En el següent exemple hi han els tres tipus d'operadors:</p>
-    <sc java>
-        System.out.println(2 + 2 == 5 || 3 + 3 == 6);  // true
-    </sc>
-
-    <p>El programa imprimeix <w>true</w>, perquè:</p>
+    <p>La forma típica en que resoldrem problemes és aquesta:</p>
     <ol>
-        <li>
-            <p>Primer es fan els Aritmètics (la suma):</p>
-            <sc java>
-                System.out.println(4 == 5 || 6 == 6);
-            </sc>        
-        </li>
-        <li>
-            <p>Després els relacionals (l'igual que):</p>
-            <sc java>
-                System.out.println(false || true);
-            </sc>        
-        </li>
-        <li>
-            <p>Per últim els lògics (l'OR):</p>
-            <sc java>
-                System.out.println(true);
-            </sc>        
-        </li>
+        <li><p>Llegir dades de l'entrada estàndard (<w>System.in</w>)</p></li>
+        <li><p>Processar les dades per a obtenir un resultat</p></li>
+        <li><p>Imprimir el resultat a la sortida estàndard (<w>System.out</w>)</p></li>
     </ol>
 
-    <p>El següent exemple comprova que un número estigui dintre d'un rang:</p>
+    <p>Aquest tipus de problemes de programació es poden provar fàcilment amb diferents 
+        formats de dades d'entrada, i per aquest motiu, els utilitzarem molt.
+    </p>
+
+    <h3>Llegir dades amb un scanner</h3>
+
+    <p>La forma més simple d'obtenir dades de l'entrada estàndard és utilitzar la 
+        classe <w>Scanner</w>. Permet als programes llegir valors de diferents tipus
+        (strings, números, etc.) de l'entrada estàndard.
+    </p>
+
+    <p>Per a utilitzar la classe <w>Scanner</w> s'ha d'afegir aquesta sentència d'importació 
+    al principi del fitxer de codi:</p>
 
     <sc java>
-        int number = 150;
-        int inferior = 100, superior = 200;
-
-        boolean dintreDelRang = number > inferior && number < superior; 
+        import java.util.Scanner;
     </sc>
 
-    <quizz>
-        <question single>
-            <statement>
-                <p>Quin valor retorna aquesta expressió?</p>
-                <sc java>10 % 5 >= 2 || 10 / 5 <= 2 && !(10 - 5 != 2)</sc>
-            </statement>
+    <p>Després s'ha d'afegir aquesta construcció a dintre del mètode <w>main</w>:</p>
 
-            <o><w>true</w></o>
-            <o correct><w>false</w></o>
-        </question>
-    </quizz>
+    <sc java>
+        Scanner scanner = new Scanner(System.in); 
+    </sc>
+
+    <p>En aquesta línia hem creat un objecte de la classe <w>Scanner</w>, que ens 
+    permet utilitzar els seus mètodes. Aprendrem més sobre classes i objectes més 
+    endavant. <w>System.in</w> indica que es llegirà el flux de dades de l'entrada 
+    estàndard (habitualment, el teclat). De moment, no és necessari que comprenguis aquesta línia, solament 
+    escriu-la exactament així.</p>
+
+    <p>Anem a escriure el primer programa que llegeix dades del teclat:</p>
 
     <challenge>
-        <p>
-            <a href="https://dmoj.elpuig.xeill.net/problem/elspetitsdavant">Els petits davant</a>
-            <br>
-            <a href="https://dmoj.elpuig.xeill.net/problem/contractarunprogra">Contractar un programador</a>
-            <br>
-            <a href="https://dmoj.elpuig.xeill.net/problem/c1l24aprovarelm">Aprovar el mòdul</a>
+        <p>Prova a escriure i executar aquest programa a l'IntelliJ.</p>
+    </challenge>
+
+    <sc java data-line="1,6,10,13">
+        import java.util.Scanner; 
+
+        public class Main {
+
+            public static void main(String[] args) {
+                Scanner scanner = new Scanner(System.in);  
+
+                System.out.println("Hola, com et dius?");
+
+                String nom = scanner.nextLine();
+
+                System.out.print("Hola ");
+                System.out.print(nom);
+                System.out.println("!");
+            }
+        }
+    </sc>
+
+
+    
+    <p>Quan l'executem, veurem el següent (en verd es mostra l'entrada 
+        introduïda per teclat):
+    </p>
+    <shell>
+        Hola, com et dius?
+        <in>Josep Ramon</in> 
+        Hola Josep Ramon!
+    </shell>
+
+    <p>Veiem pas a pas, l'execució del programa:</p>
+    <ul>
+        <li>A <ln>1</ln> importem la classe <w>Scanner</w></li>
+        <li>A <ln>6</ln> creem l'objecte <w>scanner</w> que s'utilitza per llegir 
+        dades introduïdes per teclat.</li>
+        <li>A <ln>10</ln> utilitzem el mètode <w>nextLine()</w> per a llegir una 
+        línia de dades del teclat. Guardem les dades llegides a la variable <w>nom</w></li>
+        <li>A <ln>13</ln> imprimim la variable <w>nom</w>, que conté les dades que s'han 
+        llegit a <ln>10</ln></li>
+    </ul>
+
+    <h3>Mètodes de la classe Scanner</h3>
+    <p>Hi ha diversos mètodes a la classe <w>Scanner</w> que ens permeten llegir 
+        diferents tipus de dades de l'entrada estàndard. En aquesta taula tens un
+        resum dels mètodes que més utilitzarem en aquest curs: </p>
+    <table>
+        <thead><tr><th>Mètode</th><th>Tipus</th><th>Utilitat</th></tr></thead>
+        <tr><td><w>nextInt()</w></td><td><w>int</w></td><td>llegeix un número enter</td></tr>
+        <tr><td><w>nextFloat()</w></td><td><w>float</w></td><td>llegeix un número decimal</td></tr>
+        <tr><td><w>nextBoolean()</w></td><td><w>boolean</w></td><td>llegeix un valor booleà</td></tr>
+        <tr><td><w>next()</w></td><td><w>String</w></td><td>llegeix una paraula</td></tr>
+        <tr><td><w>nextLine()</w></td><td><w>String</w></td><td>llegeix fins al final de línia</td></tr>
+    </table>
+
+    <p>Quan llegim dades utilitzant aquests mètodes hem d'utilitzar les variables del tipus 
+        adequat per a guardar la dada que es llegeix. Per exemple:
+    </p>
+
+    <sc java>
+        import java.util.Scanner;
+
+        public class Main {
+            public static void main(String[] args){
+                Scanner scanner = new Scanner(System.in);
+
+                int quantitat = scanner.nextInt();
+                float preu = scanner.nextFloat();
+                boolean pagat = scanner.nextBoolean();
+                String codi = scanner.next();
+                String nom = scanner.nextLine();
+
+                System.out.println(quantitat);
+                System.out.println(preu);
+                System.out.println(pagat);
+                System.out.println(codi);
+                System.out.println(nom);
+            }
+        } 
+    </sc>
+
+    <shell>
+        <in>5 1,99 true PR101 Galetes Maria</in>     
+        5
+        1.99
+        true
+        PR101
+         Galetes Maria
+    </shell>
+
+    <observe>
+        <p>Observa que el preu introduït per teclat s'ha escrit utilitzant una coma
+        <w>,</w> en lloc d'un punt <w>.</w> per a separar les xifres decimals 
+        (<w>1,99</w> en lloc de <w>1.99</w>). Això es degut a que l'<w>Scanner</w> 
+        utilitza l'idioma del Sistema Operatiu per al format d'entrada, i en 
+        castellà/català els decimals es separen amb una coma <w>,</w>. Si tinguèssim el 
+        Sistema Operatiu configurat en anglès, caldria haver introduït el número decimal 
+        utlitzant un punt.</p>
+
+        <p>Es pot forçar a l'Scanner a utilitzar l'idioma anglès per al format de dades 
+            d'entrada, és a dir, a utilitzar el punt en els decimals. Ho podem fer amb 
+            el mètode <w>setLocale()</w>, just després de crear l'<w>scanner</w>, així:
         </p>
+
+        <sc java>
+            Scanner scanner = new Scanner(System.in);
+            scanner.useLocale(Locale.US);   // usar el format angles
+        </sc>
+
+        <p>Per contra, els mètodes <w>print()</w> i <w>println()</w> sempre imprimeixen 
+            separant els decimals amb un punt.
+        </p>
+    </observe>
+
+    <p>Hem vist que cal utilitzar el <strong>tipus</strong> de variable adequat 
+    al mètode que utilitzem per a llegir. Si no utilitzem el tipus adequat, el programa
+    no s'executarà. Per exemple, no podem utilitzar una variable de tipus <w>String</w> 
+    per a guardar un valor llegit amb <w>nextInt()</w>:</p>
+
+    <sc java>
+        String a = scanner.nextInt();   // error, cal utlitzar el tipus int
+    </sc>
+
+    <p>Per sort, l'IDE ens ajuda a detectar i solucionar aquests errors, indicant en 
+        subratllat vermell l'error i proporcionant ajuda sobre com solucionar-lo:
+    </p>
+
+    <img src="img/typeerror.png">
+
+    <h3>InputMismatchException</h3>
+    <p>Una altre error que pot ocòrrer és que l'usuari no introdueixi una dada que 
+        correspongui amb el tipus que s'ha de llegir. En aquest cas, el programa donarà 
+        una excepció i s'aturarà inesperadament.
+    </p>
+
+    <p>Per exemple, el següent programa tracta de llegir un enter del teclat, però 
+        l'usuari introdueix un text (<string>holaaa</string>). L'execució del programa s'abortarà amb una excepció 
+        de tipus <w>InputMismatchException</w>:
+    </p>
+
+    <sc java>
+        System.out.println("Introdueix un número:");
+        int numero = scanner.nextInt();
+    </sc>
+
+    <shell>
+        Introdueix un número:
+        <in>holaaa</in>
+        <exception>
+        Exception in thread "main" java.util.<strong>InputMismatchException</strong>
+            at java.base/java.util.Scanner.throwFor(Scanner.java:939)
+            at java.base/java.util.Scanner.next(Scanner.java:1594)
+            at java.base/java.util.Scanner.nextInt(Scanner.java:2258)
+        </exception>
+    </shell>
+
+    <info>
+        <p>Més endavant veurem com prevenir aquestes situacions, i fer el nostre 
+        programa resistent a qualsevol entrada que introdueixi l'usuari.
+        </p>
+    </info>
+
+
+    <h3>Consumir dades de l'entrada</h3>
+
+    <p>Les crides als mètodes de lectura de l'<w>scanner</w> van consumint dades de l'entrada
+        sempre que hi hagi, i si no hi han dades esperaran fins que hi hagin.
+    </p>
+
+    <p>Vegem-ho amb un exemple. Aquest programa llegeix dos números de l'entrada:</p>
+
+    <sc java data-line="2,4">
+        System.out.println("Introdueix el primer número:")
+        int a = scanner.nextInt();
+        System.out.println("Introdueix el segon número:")
+        int b = scanner.nextInt();
+
+        System.out.println("Els números introduïts són:")
+        System.out.println(a);
+        System.out.println(b);
+    </sc>
+
+    <p>Quan executem el programa, la primera crida a <w>nextInt()</w> <ln>2</ln>, quedarà 
+    esperant a que l'usuari introdueixi un número. Si l'usuari <strong>introdueix un únic 
+    número</strong>, aquest serà consumit de l'entrada i assignat a la variable <w>a</w>. 
+    Quan es fa la segona crida a <w>nextInt()</w> <ln>4</ln>, el programa tornarà a esperar 
+    a que s'introdueixi un altre número.</p>
+
+    <shell>
+        Introdueix el primer número:
+        <in>1234</in>
+        Introdueix el segon número:
+        <in>6789</in>
+        Els números introduïts són:
+        1234
+        6789
+    </shell>
+
+    <p>Però, si a la primera crida a <w>nextInt()</w> <ln>2</ln>, l'usuari <strong>introdueix 
+    dos números</strong>, el primer d'ells serà consumit per l'<w>scanner</w> i assignat a la 
+    variable <w>a</w>, i el segon número quedarà pendent per consumir. Així, a la segona crida 
+    a <w>nextInt()</w> <ln>4</ln>, l'<w>scanner</w> no esperarà a que s'introdueixi un 
+    altre número, sinò que consumirà el número que havia quedat per consumir i quedarà 
+    assignat a la variable <w>b</w> sense esperar a que s'introdueixi un altre número.</p>
+    <shell>
+        Introdueix el primer número:
+        <in>1234 6789</in>                    <comment>// introdueix dos numeros</comment>
+        Introdueix el segon número:  <comment>// consumeix el segon número</comment>
+        Els números introduïts són:
+        1234
+        6789
+    </shell>
+
+    <p>Hi ha situacions en què és una mica enrevesada la lectura de dades. Cal tenir en 
+        compte la posició del cursor i la forma en que llegeixen les dades els mètodes.
+    </p>
+
+    <p>El primer a tenir en compte és que tots els mètodes, excepte el <w>nextLine()</w>, 
+    descarten qualsevol espai-en-blanc o salt-de-línia que troben al flux de dades de l'entrada,
+    fins que troben una dada per a llegir. Per contra, <w>nextLine()</w>, llegirà tots els 
+    caracters (incloent espais-en-blanc) fins que trobi un salt-de-línia (que descartarà).</p>
+
+    <p>Vejem els comportaments d'aquests mètodes amb varis exemples. Al flux de dades 
+        d'entrada indicarem els espais-en-blanc amb el símbol <w>␣</w> i els salts-de-línia 
+        amb el símbol <w>⏎</w>.
+    </p>
+
+    <ul>
+        <li><p>Exemple 1</p>
+            <p>Veiem un exmple amb el mètode <w>nextInt()</w>. Si tenim aquest programa:</p>
+
+            <sc java>
+                int a = scanner.nextInt();
+            </sc>
+
+            <p>i al flux d'entrada s'introdueix el següent:</p>
+
+            <shell>
+                ␣␣␣␣␣␣␣␣1234␣␣␣␣␣␣␣␣6789⏎
+            </shell>
+
+            <p>el mètode <w>nextInt()</w> descartarà els espais-en-blanc que hi ha al principi,
+            i llegirà unicament el número <w>1234</w>. Els espais-en-blanc de després i el 
+            número <w>6789</w> quedaran a l'espera de ser consumits.</p>
+
+            <shell>
+                <discard>␣␣␣␣␣␣␣␣</discard><consume>1234</consume>␣␣␣␣␣␣␣␣6789⏎
+            </shell>
+
+        </li>
+        <li>
+            <p>Exemple 2</p>
+            <p>Si tenim aquest programa:</p>
+            <sc java>
+                boolean a = scanner.nextBoolean();
+                float b = scanner.nextFloat();
+                String c = scanner.next();
+                int d = scanner.nextInt();
+                String e = scanner.nextLine();
+            </sc>
+
+            <p>i al flux d'entrada tenim el següent:</p>
+
+            <shell>
+                ␣␣␣true␣␣⏎
+                ␣14.5␣␣␣hola␣␣⏎
+                ␣␣2345␣␣␣que tal?␣␣⏎
+            </shell>
+
+            <p>La crida a <w>nextBoolean()</w> descartarà els espais/salts fins a llegir 
+            la dada <w>true</w>:</p>
+                <shell>
+                    <discard>␣␣␣</discard><consume>true</consume>␣␣⏎
+                    ␣14.5␣␣␣hola␣␣⏎
+                    ␣␣2345␣␣␣que tal?␣␣⏎
+                </shell>
+
+            <p>La crida a <w>nextFloat()</w> descartarà els espais/salts fins a llegir 
+                la dada <w>14.5</w>:</p>
+                <shell>
+                    <consumed>␣␣␣true</consumed><discard>␣␣⏎</discard>
+                    <discard>␣</discard><consume>14.5</consume>␣␣␣hola␣␣⏎
+                    ␣␣2345␣␣␣que tal?␣␣⏎
+                </shell>
+            <p>La crida a <w>next()</w> ignorarà els espais/salts fins a llegir 
+                la dada <w>hola</w>:</p>
+                <shell>
+                    <consumed>␣␣␣true␣␣⏎</consumed>
+                    <consumed>␣14.5</consumed><discard>␣␣␣</discard><consume>hola</consume>␣␣⏎
+                    ␣␣2345␣␣␣que tal?␣␣⏎
+                </shell>
+            <p>La crida a <w>nextInt()</w> ignorarà els espais/salts fins a llegir 
+                la dada <w>2345</w>:</p>
+                <shell>
+                    <consumed>␣␣␣true␣␣⏎
+                    >␣14.5␣␣␣hola</consumed><discard>␣␣⏎
+                    ␣␣</discard><consume>2345</consume>␣␣␣que tal?␣␣⏎
+                </shell>
+            <p>La crida a <w>nextLine()</w> no descartarà els espais i llegirà 
+                la dada <w>␣␣␣que tal?␣␣</w>, però sí que descartarà el salt-de-línia:</p>
+                <shell>
+                    <consumed>␣␣␣true⏎
+                    14.5␣␣␣hola␣␣⏎
+                    ␣␣2345</consumed><consume>␣␣␣que tal?␣␣</consume><discard>⏎</discard>
+                </shell>
+        </li>
+        <li><p>Exemple 3</p>
+            <p>Aquest exemple mostra una situació que és una font de confusió
+                molt comuna quan s'està aprenent a utilitzar l'<w>Scanner</w>.            
+            </p>
+            <p>Considera el següent programa:</p>
+            <sc java data-line="8,10">
+                import java.util.Scanner;
+
+                public class Main {
+                    public static void main(String[] args){
+                        Scanner scanner = new Scanner(System.in);
+
+                        System.out.println("Introdueix un número:");
+                        int numero = scanner.nextInt();
+                        System.out.println("Introdueix un text:");
+                        String text = scanner.nextLine();
+                
+                        System.out.println("El numero és " + numero);
+                        System.out.println("El text és " + text);
+                    }
+                }
+            </sc>
+
+            <warn>
+                <p>Abans de seguir amb l'exemple, és interessant que escriguis aquest programa
+                i l'executis a l'IDE.</p>
+            </warn>
+
+            <p>Si has executat aquest programa, veuràs una comportament força extrany. El programa llegeix 
+                correctament el número que introduïm <ln>8</ln>, però es "salta" la lectura del text <ln>10</ln>!
+            </p>
+
+            <shell>
+                Introdueix un número:
+                <in>1234</in>
+                Introdueix un text:
+                El numero és 1234
+                El text és 
+            </shell>
+
+            <p>Veiem perquè ocorre això i com corregir-ho.</p>
+
+            <p>Quan introduim un número i després polsem <kbd>Intro</kbd>, les dades que estem 
+            posant a l'entrada estàndard són el número i un salt-de-línia:</p>
+
+            <shell>
+                1234⏎
+            </shell>
+
+            <p>La primera crida a <w>nextInt()</w> <ln>8</ln> llegeix el número, però no descarta el salt-de-línia:</p>
+
+            <shell>
+                <consume>1234</consume>⏎
+            </shell>
+
+            <p>La següent crida a <w>nextLine()</w> troba el salt-de-línia i el descarta. Per tant el que ha llegit 
+            és un <w>String</w> buit, i per això no ha esperat a que s'introdueixin més dades a l'entrada.</p>
+            <shell>
+                <consumed>1234</consumed><discard>⏎</discard>
+            </shell>
+
+            <p>La forma de corregir aquest error, és realitzar un <w>nextLine()</w> <strong>extra</strong> per 
+            a que consumeixi el salt-de-línia que hi ha a continuació del número. El programa quedaria així:</p>
+
+            <sc java data-line="2,3,5">
+                System.out.println("Introdueix un número:");
+                int numero = scanner.nextInt();
+                scanner.nextLine();   // consumim el salt-de-linia
+                System.out.println("Introdueix un text:");
+                String text = scanner.nextLine();
+            </sc>
+
+            <p>D'aquesta manera el primer <w>nextInt()</w> <ln>2</ln> llegirà el número:</p>
+
+            <shell>
+                <consume>1234</consume>⏎
+            </shell>
+
+            <p>El següent <w>nextLine()</w> <ln>3</ln> descartarà el salt-de-línia</p>
+            <shell>
+                <consumed>1234</consumed><discard>⏎</discard>
+            </shell>
+
+            <p>Com ja no queden dades a consumir a l'entrada, el <w>nextLine()</w> <ln>5</ln> esperarà 
+            a que s'introdueixin més dades a l'entrada.</p>
+
+            <info>
+                <p>
+                    Com a norma general, quan llegim dades línia a línia, 
+                    haurem de posar un <w>nextLine()</w> <strong>extra</strong> 
+                    enmig d'un
+                    <br><w>nextInt()</w>, <w>nextBoolean()</w>, <w>nextFloat()</w> o <w>next()</w>, 
+                    <br>i un 
+                    <br><w>nextLine()</w>.
+                </p>
+            </info>
+        </li>
+
+        <li>
+            <p>Exemple 4</p>
+            <p>L'últim exemple que veurem també és una situació que sovint costa de resoldre, i que
+                es dona quan llegim diferents dades en una mateixa línia.
+            </p>
+
+            <p>Considerem aquest programa:</p>
+            <sc java data-line="2,3">
+                System.out.println("Introdueixi la seva edat i el seu nom:");
+                int edat = scanner.nextInt();
+                String nom = scanner.nextLine();
+        
+                System.out.println("Edat:");
+                System.out.println(edat);
+                System.out.println("Nom:");
+                System.out.println(nom);
+            </sc>
+
+            <shell>
+                Introdueixi la seva edat i el seu nom:
+                <in>24 Joan Ramon</in>
+                Edat:
+                24
+                Nom:
+                 Joan Ramon
+            </shell>
+
+            <p>En aquest programa, l'usuari introdueix l'edat i el nom a la mateixa línia. L'edat es llegeix correctament 
+                però observa l'espai-en-blanc que s'ha llegit abans del nom.
+            </p>
+
+            <p>La crida a <w>nextInt()</w> <ln>2</ln> ha llegit el número, i ha deixat el cursor just a continuació:</p>
+            <shell>
+                <consume>24</consume>␣Joan␣Ramon⏎
+            </shell>
+
+            <p>Com el <w>nextLine()</w> <ln>3</ln> no descarta els espais, ha llegit els caracters restants fins el salt-de-línia.</p>
+            <shell>
+                <consumed>24</consumed><consume>␣Joan␣Ramon</consume><discard>⏎</discard>
+            </shell>
+
+            <p>Per a corregir aquesta anomalia, podem utilitzar el mètode <w>trim()</w>, que elimina els espais 
+            en blanc al principi d'un text. Així, quan vulguem llegir una línia, i estar segurs de que no tindrem 
+            espais molests al principi, ho podem fer així: <w>nextLine().trim()</w>.</p>
+
+            <p>El programa quedaria així:</p>
+            <sc java data-line="3">
+                System.out.println("Introdueixi la seva edat i el seu nom:");
+                int edat = scanner.nextInt();
+                String nom = scanner.nextLine().trim();   // eliminem els espais al principi
+        
+                System.out.println("Edat:");
+                System.out.println(edat);
+                System.out.println("Nom:");
+                System.out.println(nom);
+            </sc>
+        </li>
+    </ul>
+    
+    <quizz>
+        <question match>
+            <statement><p>Fes coincidir els mètodes de la classe <w>Scanner</w> amb el tipus de valor que llegeixen.</p></statement>
+            <o>nextInt()</o><o>int</o>
+            <o>nextBoolean()</o><o>boolean</o>
+            <o>nextFloat()</o><o>float</o>
+            <o>next()</o><o>String</o>
+        </question>
+
+        <question single>
+            <statement>
+                <p>Invoquem el mètode <w>next()</w> i introduïm el número <w>9</w> a l'entrada estàndard, quin tipus 
+                    de dada serà?</p>
+            </statement>
+            <o correct>String</o>
+            <o>char</o>
+            <o>int</o>
+            <o>float</o>
+        </question>
+    </quizz>
+    <challenge>
+        <p>
+            <a href="https://dmoj.elpuig.xeill.net/problem/ahelloyou">Hello you</a>
+            <br>
+            <a href="https://dmoj.elpuig.xeill.net/problem/cadaparaulaaunal">Cada paraula a una línia</a>
+            <br>
+            <a href="https://dmoj.elpuig.xeill.net/problem/contractarunxef">Contractar un xef</a>
+            <br>
+            <a href="https://dmoj.elpuig.xeill.net/problem/cartaformal">Carta formal</a>
+            <br>
+            <a href="https://dmoj.elpuig.xeill.net/problem/arxiusdecodifont">Arxius de codi font</a>
+        </p>        
     </challenge>
 </section>
-
-
-
-
-

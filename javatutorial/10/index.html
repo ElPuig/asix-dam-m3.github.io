@@ -6,252 +6,276 @@
 
 <nav></nav> 
 <header>
-    <h1>Mètodes</h1>
+    <h1>Classes i objectes</h1>
     <abstract>
         <p>        </p>
         <p>Aprendràs:</p>
-        <check>A declarar <strong>mètodes</strong></check>
-        <check>A invocar <strong>mètodes</strong> dels objectes</check>
+        <check>A declarar <strong>classes</strong></check>
+        <check>A crear <strong>objectes</strong> d'aquestes classes</check>
     </abstract>
 </header>
 
 <!--Analogy, Diagram, Example, Plain English, Technical-->
 <section>
-    <h2>Mètodes</h2>
+    <h2>Classes i objectes</h2>
 
-    <p>A més a més de variables, els objectes també poden tenir mètodes.</p>
-    <p>Els mètodes, també anomenats <strong>funcions</strong>, són blocs de codi als quals els hi posem un nom.
-    Ens permeten executar aquest codi des d'altres parts del programa, invocant-los pel seu nom. 
-    Quan s'invoca un mètode, el programa salta al bloc de codi d'aquest mètode, i després retorna al lloc on
-        s'havia invocat. Veiem un exemple:
+    <p>Un objecte és una agrupació de variables (i mètodes, que veurem més endavant). S'utilitzen per a organitzar el codi, agrupant aquelles
+        variables i mètodes que estan relacionades entre sí.</p>
+
+    <p>Si seguim l'analogia de les capses que vam utilitzar per a les variables i arrays, podríem veure un objecte com una capsa
+        que a dintre conté altres capses.
     </p>
-
-    <sc java>
-        class Alumne {
-            String nom;
-        
-            void saludar(){
-                System.out.println("Hola");
-                System.out.println("Que tal?");
-            }
-        }
-        
-        public class Main {
-            public static void main(String[] args) {
-        
-                Alumne unAlumne = new Alumne();
-        
-                System.out.println("Ara farem una salutacio");
-                unAlumne.saludar();
-                System.out.println("Adeeeu");
-            }
-        }
-    </sc>
-
-    <p>El següent programa imprimirà:</p>
-
-    <shell>
-        Ara farem una salutacio
-        Hola
-        Que tal?
-        Adeeeu
-    </shell>
-
-    <p>Quan hem invocat al mètode <w>saludar()</w> de l'objecte <w>unAlumne</w>, el fluxe d'execució ha saltat al bloc de codi
-    d'aquest mètode, i en finalitzar a tornat al lloc des d'on s'havia invocat:
-    </p>
-
-    <img src="img/m1.png">
-
-    <h3>Accés als camps de l'objecte</h3>
-
-    <p>Els mètodes d'un objecte poden accedir als camps d'aquest objecte:</p>
-
-    <sc java>
-        class Alumne {
-            String nom;
-        
-            void saludar(){
-                System.out.println("Hola, em dic " + nom);
-            }
-        }
-        
-        public class Main {
-            public static void main(String[] args) {
-        
-                Alumne unAlumne = new Alumne();
-        
-                unAlumne.nom = "Joan";
-                unAlumne.saludar();
-        
-                Alumne unAltreAlumne = new Alumne();
-        
-                unAltreAlumne.nom = "Anna";
-                unAltreAlumne.saludar();
-            }
-        }
-    </sc>
-
-    <shell>
-        Hola, em dic Joan
-        Hola, em dic Anna
-    </shell>
     
-    <img src="img/m2.png">
+
+    <p>Per exemple, si estem fent un programa per a gestionar un institut, segurament necessitem guardar dades dels alumnes.
+        Per exemple, podríem utilitzar aquestes tres variables per a guardar les dades d'un alumne:
+    </p>
+
+    <sc java>
+        String nom = "Joan";
+        int edat = 25;
+        float nota = 7.5f;
+    </sc>
+
+    <img style="width: 340px" src="img/c1.png">
+
+    <p>Un objecte ens permetria tenir aquestes tres variables agrupades.</p>
+
+    <h3>Crear objectes</h3>
+
+    <p>Per a crear objectes, primer s'ha de definir una classe especificant quines variables tindran aquests objectes.</p>
+
+    <p>Definim la classe <w>Alumne</w> i especifiquem les tres variables que tindran els objectes d'aquesta classe:</p>
+    <sc java>
+        class Alumne {
+            String nom;
+            int edat;
+            float nota;
+        }
+    </sc>
+
+    <p>Un cop definida la classe, es poden crear objectes a partir d'ella d'aquesta manera:</p>
+
+    <sc java>
+        Alumne unAlumne = new Alumne();
+    </sc>
+
+    <p>A partir de la definició de la classe <w>Alumne</w> hem creat un objecte i l'hem assignat a la variable <w>unAlumne</w>.
+        L'objecte al que fa referència la variable <w>unAlumne</w> conté totes les variables que s'han definit a classe <w>Alumne</w>. 
+    Se sol dir que la definició d'una classe és com el plànol amb el qual s'han de construir els objectes d'aquesta classe.
+    </p>
+
+    <img style="width: 600px"  src="img/c2.png">
+
+    <p>Podem utilitzar la definició de la classe <w>Alumne</w> per a crear nous objectes d'aquesta classe. Per exemple, podem crear 
+    un nou objecte per a guardar les dades d'un altre alumne:</p>
+
+    <sc java>
+        Alumne unAltreAlumne = new Alumne();
+    </sc>
+
+    <img style="width: 600px" src="img/c4.png">
+
+
+    <p>Per a accedir a les variables que hi ha a dintre d'un objecte utilitzarem l'operador punt <w>.</w>:</p>
+
+    <sc java>
+        unAlumne.nom = "Joan";
+        unAlumne.edat = 25;
+        unAlumne.nota = 7.5f;
+    </sc>
+
+    <img style="width: 300px"  src="img/c3.png">
+
+    <p>Així doncs, la sintaxi per a definir una classe és:</p>
+
+    <sc java>
+        class NomClasse {
+            tipus nomCamp;
+            tipus nomCamp2;
+
+            ...
+        }
+    </sc>
+
+    <p>Per a crear objectes d'una classe:</p>
+
+    <sc java>
+        NomClasse nomObjecte = new NomClasse();
+    </sc>
+
+    <p>Per a accedir als camps d'un objecte utilitzarem:</p>
+
+    <sc java>
+        nomObjecte.nomCamp
+    </sc>
+
+    <h3>Arrays d'objectes</h3>
+
+    <p>Si destijem guardar dades de diversos alumnes, posem que en són tres, ens serà convinent utilitzar un array d'objectes de classe <w>Alumne</w>:</p>
+
+    <sc java>
+        Alumne[] alumnes = new Alumne[3];
+
+        alumnes[0] = new Alumne();
+        alumnes[0].nom = "Joan";
+        alumnes[0].edat = 25;
+        alumnes[0].nota = 7.5f;
+
+        alumnes[1] = new Alumne();
+        alumnes[1].nom = "Anna";
+        alumnes[1].edat = 30;
+        alumnes[1].nota = 8.75f;
+
+        alumnes[2] = new Alumne();
+        alumnes[2].nom = "Marc";
+        alumnes[2].edat = 18;
+        alumnes[2].nota = 6.2f;
+    </sc>
+
+    <img src="img/obj1.png">
+    <!--
+    // TODOOO
+    <p>
+    Sharing references
+
+    More than one variable can refer to the same object.
+    </p>
+
+    <p>
+        It is important to understand that two variables refer to the same data in memory rather than two independent copies. Since our class is mutable, we can modify the object using both references.
+    </p>
+    <p>Les variables de les clases s'anomenen camps</p>
+    <p>
+        Nullability
+
+As for any reference types, a variable of a class-type can be null which means it is not initialized yet.
+
+Patient patient = null;
+
+This is a common feature in Java available for classes since they are reference types.
+    </p>
+    <sc java>
+        class Patient {
+
+            String name;
+            int age;
+            float height;
+        }
+    </sc>
+
+    -->
 </section>
 
+
+
 <section>
-    <h2>Paràmetres i valor de retorn</h2>
 
-    <p>Quan s'invoca un mètode es possible passar-li dades. El mètode ha de definir quins tipus de dades ha de rebre, 
-        i quan s'invoca el mètode se li han de passar obligatòriament dades d'aquests tipus. 
-        
-        Un mètode també pot retornar dades al punt des d'on s'ha invocat. Les dades
-        que  a un mètode s'anomenen <strong>paràmetres</strong>, i 
-        les que retorna s'anomenen <strong>valor de retorn</strong>.
-    </p>
+    <quizz>
+        <question single>
+            <statement>
+                <p>Per a definir una classe amb un camp enter, quina és la forma correcta de fer-ho?</p>
+            </statement>
+            <o>
+                <sc java>
+                    new LaMevaClasse() { }
+                </sc>
+            </o>
+            <o>
+                <sc java>
+                    class LaMevaClasse(){
+                        int elMeuCamp;
+                    }
+                </sc>
+            </o>
+            <o>
+                <sc java>
+                    LaMevaClasse {
+                        int elMeuCamp;
+                    }
+                </sc>
+            </o>
+            <o correct>
+                <sc java>
+                    class LaMevaClasse {
+                        int elMeuCamp;
+                    }
+                </sc>
+            </o>
+            <o>
+                <sc java>
+                    LaMevaClasse() {
+                        int elMeuCamp;
+                    }
+                </sc>
+            </o>
+        </question>
+        <question multi>
+            <statement>
+                <p>Donada la següent classe:</p>
+                <sc java>
+                    class Point3D {
+                        double x, y, z;
+                    }
+                </sc>
+                <p>Diges les afirmacions correctes sobre ella:</p>
+            </statement>
+            <o correct>La classe té tres camps del mateix tipus</o>
+            <o correct>La sentència <w>Ponint3D p = new Ponint3D();</w> crea un objecte d'aquesta classe</o>
+            <o>La declaració de la classe és incorrecta</o>
+            <o>Els valors dels camps són sempre els mateixos per a tots els objectes de la classe.</o>
+        </question>
+        <question single>
+            <statement>
+                <p>Quina és la paraula-clau per a crear objectes d'una classe?</p>
+            </statement>
+            <o>throw</o>
+            <o>type</o>
+            <o correct>new</o>
+            <o>create</o>
+        </question>
+        <question single>
+            <statement>
+                <p>Suposa qe tens aquesta classe al teu programa:</p>
+                <sc java>
+                    class Hotel {
+                        String name;
+                        String address;
+                        int rating;
+                    }
+                </sc>
+                <p>Hi han diversos objectes d'aquesta classe:</p>
+                <sc java>
+                    Hotel h1 = new Hotel();
+                    Hotel h2 = new Hotel();
+                    Hotel h3 = h2;
 
-    <p>Quan definim un mètode és necessari, doncs, especificar els seus paràmetres. És a dir, 
-        els tipus de les dades que ha de rebre i donar un identificador a cadascuna d'aquestes dades.
-    </p>
+                    h2.rating = 9;
+                    h3.rating = 8;
+                    h1.rating = 7;
+                </sc>
+                <p>Quin és el valor de <w>h2.rating</w> després d'executar el codi anterior?</p>
+            </statement>
+            <o>0</o>
+            <o>9</o>
+            <o>7</o>
+            <o correct>8</o>
 
-    <p>De la mateixa forma caldrà especificar el tipus de dada que retorna el mètode.</p>
+        </question>
+    </quizz>
 
-    <p>Quan definim un mètode hem d'indicar en primer lloc el tipus de dada que retorna. A continuació el nom del mètode, i
-        després la llista de paràmetres entre parèntesis <w>()</w>. Després ja ve el bloc d'instruccions del mètode entre claus <w>{}</w>
-    </p>
-
-    <sc java>
-        TipusDelValorDeRetorn nomDelMetode(TipusDelParametre1 identificadorDelParametre1, ...) {
-            // bloc d'instruccions
-        }
-    </sc>
-
-    <p>Per exemple anem a definir un mètode al qual li passem un número i un total, i ens retorna el percentatge que 
-        representa aquest número del total:</p>
-
-    <sc java>
-        class Calculadora {
-
-            float calculaPercentatge(int unitats, int total) {
-                return unitats*100f/total;
-            }
-        }
-    </sc>
-
-    <p>La definició d'aquest mètode indica que quan s'invoqui, se li han de passar dos números <w>int</w>. 
-        Les dues variables (<w>unitats</w> i <w>total</w>) que hem definit entre els parèntesis, tindràn el 
-    valor que se li passi quan s'invoqui el mètode. També s'indica que el mètode retornarà un valor de tipus <w>float</w>.
-    </p>
-
-    <p>Podem invocar aquest mètode de la següent manera:</p>
-
-    <sc java>
-        <low>
-        class Calculadora {
-            float calculaPercentatge(int unitats, int total) {
-                return unitats*100f/total;
-            }
-        }
-
-        public class Main {
-            public static void main(String[] args){
-                Calculadora calculadora = new Calculadora();</low>
-
-                System.out.println( calculadora.calculaPercentatge(10, 20) );
-
-                System.out.println( calculadora.calculaPercentatge(15, 20) );
-        <low>
-            }
-        }</low>
-    </sc>
-
-    <p>A la primera invocació del mètode el paràmetre <w>unitats</w> rep el valor <w>10</w>, i el paràmetre <w>total</w>
-    rep el valor <w>20</w>. El mètode retorna el valor <w>50.0</w>, i aquest valor és el que es passa al mètode println 
-    per que l'imprimeixi.</p>
-
-    <p>A la segona invocació del mètode el paràmetre <w>unitats</w> rep el valor <w>15</w>, i el paràmetre <w>total</w>
-        rep el valor <w>20</w>. El mètode retorna el valor <w>75.0</w>, i aquest valor és el que es passa al mètode println 
-        per que l'imprimeixi.</p>
-
-    <p>En aquest codi hem passat el valor retornat pel mètode <w>calculaPercentatge()</w> directament al mètode <w>println()</w>.
-
-        També es pot emmagatzemar el valor retornat per un mètode en una variable, per a ser utilitzat més endavant.
-    </p>
-
-    <sc java>
-        <low>
-        class Calculadora {
-            float calculaPercentatge(int unitats, int total) {
-                return unitats*100f/total;
-            }
-        }
-
-        public class Main {
-            public static void main(String[] args){
-                Calculadora calculadora = new Calculadora();</low>
-
-                float percentatge = calculadora.calculaPercentatge(10, 20);
-
-                if (percentatge > 50) {
-                    System.out.println("El percentatge " + percentatge + " es majoria.")
-                }
-        <low>
-            }
-        }</low>
-    </sc>
-
-    <p>Es a dir, quan finalitzi un mètode, el seu valor de retorn serà utilitzat allà on s'ha invocat el mètode:</p>
-
-    <sc java>
-        <low>
-        class Calculadora {
-            float calculaPercentatge(int unitats, int total) {
-                return unitats*100f/total;
-            }
-        }
-
-        public class Main {
-            public static void main(String[] args){
-                Calculadora calculadora = new Calculadora();</low>
-
-                if (calculadora.calculaPercentatge(10, 20) &lt; 10) {
-                    System.out.println("El percentatge es molt baix.")
-                }
-        <low>
-            }
-        }</low>
-    </sc>
-
-    <h4>void</h4>
-
-    <p>També es possible que un mètode no retorni cap valor, aleshores especificarem <w>void</w> com a tipus de retorn a la seva
-    declaració:</p>
-
-    <sc java>
-        class Calculadora {
-            float resultat;
-
-            void calculaPercentatge(int unitats, int total){
-                resultat = unitats*100f/total;
-            }
-        }
-
-        <low>
-        public class Main {
-            public static void main(String[] args){</low>
-                Calculadora calculadora = new Calculadora();
-        
-                calculadora.calculaPercentatge(10, 20);
-
-                if (calculadora.resultat &lt; 10) {
-                    System.out.println("El percentatge es molt baix.")
-                }
-        <low>
-            }
-        }</low>
-    </sc>
-
+    <challenge>
+        <p>
+            <a href="https://dmoj.elpuig.xeill.net/problem/definirlaclasseco">Definir la classe CompteCorrent</a>
+            <br>
+            <a href="https://dmoj.elpuig.xeill.net/problem/bookclass4">Defineix la classe Book.</a>
+            <br>
+            <a href="https://dmoj.elpuig.xeill.net/problem/innerbox">La capsa dins la capsa.</a>
+            <br>
+            <a href="https://dmoj.elpuig.xeill.net/problem/f2eb6players">Crea els objectes necessaris (videojoc).</a>
+            <br>
+        </p>
+    </challenge>
 </section>
 
 <section>
@@ -275,390 +299,296 @@
         Alumne[] alumnes;
 
         // les variables 'unArrayDeNumeros', 'alumne' i 'alumnes' són variables de referència.
-    </sc>          
+    </sc>
+    
+    <p>Les variables prmitives emmagatzemen el valor que se les assigna, mentre que les variables de referència emmgatzemen una 
+        referència a l'objecte o array que se les assigna.
+    </p>
 
-    <p>Vejem què passa quan passem per paràmetre una variable <strong>primitiva</strong>:</p>
+    <sc java>
+        int unNumero = 99;
+
+        int[] tresNumeros = new int[3];
+
+        class Alumne {
+            int edat;
+            float nota;
+        }
+
+        Alumne alumne = new Alumne();
+    </sc>
+
+    <img src="img/ref1.png">
+
+    <p>La diferència entre emmagatzemar el valor o la referència s'observa quan assignem el valor d'una variable a un altra, 
+        de forma directa amb <w>=</w>, o quan fem el pas de paràmetres a mètodes.
+    </p>
+
+    <p>Vejem què passa quan assignem una variable <strong>primitiva</strong> a una altra:</p>
 
     <stepper class="stepper2">
         <step>
             <explanation>
-                <img src="img/refd0.png">
+                 <img src="img/refb0.png">
             </explanation>
             <sc java>
-                class Professor {
-                    void aprovar(float parametreNota) {
-                        parametreNota = 5;
-                    }
-                }
-
-                float nota = 0;
-                Professor unProfessor = new Professor();
-
-                unProfessor.aprovar(nota);
-
-                System.out.println(nota);  // 0
+                int numA = 98 + 1;
+        
+                int numB = numA;
+        
+                numB = 55;
+        
+                System.out.println(numA);       // 99
+                System.out.println(numB);       // 55
             </sc>
         </step>
         <step>
             <explanation>
-                <img src="img/refd0.png">
+                 <img src="img/refb0.png">
             </explanation>
             <sc java>
-                class Professor {
-                    void aprovar(float parametreNota) {
-                        parametreNota = 5;
-                    }
-                }
-
-                <h>float nota = 0;</h>
-                Professor unProfessor = new Professor();
-
-                unProfessor.aprovar(nota);
-
-                System.out.println(nota);  // 0
+                int numA = <h>98 + 1</h>;
+        
+                int numB = numA;
+        
+                numB = 55;
+        
+                System.out.println(numA);       // 99
+                System.out.println(numB);       // 55
             </sc>
         </step>
         <step>
             <explanation>
-                <img src="img/refd1.png">
+                <img src="img/refb1.png">
             </explanation>
             <sc java>
-                class Professor {
-                    void aprovar(float parametreNota) {
-                        parametreNota = 5;
-                    }
-                }
-
-                float nota = 0;
-                Professor unProfessor = <h>new Professor()</h>;
-
-                unProfessor.aprovar(nota);
-
-                System.out.println(nota);  // 0
+                <h>int numA = 98 + 1;</h>
+        
+                int numB = numA;
+        
+                numB = 55;
+        
+                System.out.println(numA);       // 99
+                System.out.println(numB);       // 55
             </sc>
         </step>
         <step>
             <explanation>
-                <img src="img/refd2.png">
+                  <img src="img/refb2.png">
             </explanation>
             <sc java>
-                class Professor {
-                    void aprovar(float parametreNota) {
-                        parametreNota = 5;
-                    }
-                }
-
-                float nota = 0;
-                <h>Professor unProfessor = new Professor();</h>
-
-                unProfessor.aprovar(nota);
-
-                System.out.println(nota);  // 0
+                int numA = 98 + 1;
+        
+                <h>int numB = numA;</h>
+        
+                numB = 55;
+        
+                System.out.println(numA);       // 99
+                System.out.println(numB);       // 55
             </sc>
         </step>
         <step>
             <explanation>
-                <img src="img/refd3.png">
+                  <img src="img/refb3.png">
             </explanation>
             <sc java>
-                class Professor {
-                    void aprovar(float parametreNota) {
-                        parametreNota = 5;
-                    }
-                }
-
-                float nota = 0;
-                Professor unProfessor = new Professor();
-
-                <h>unProfessor.aprovar(nota);</h>
-
-                System.out.println(nota);  // 0
+                int numA = 98 + 1;
+        
+                int numB = numA;
+        
+                <h>numB = 55;</h>
+        
+                System.out.println(numA);       // 99
+                System.out.println(numB);       // 55
             </sc>
         </step>
         <step>
             <explanation>
-                <img src="img/refd3.png">
+                  <img src="img/refb4.png">
             </explanation>
             <sc java>
-                class Professor {
-                    void aprovar(<h>float parametreNota</h>) {
-                        parametreNota = 5;
-                    }
-                }
-
-                float nota = 0;
-                Professor unProfessor = new Professor();
-
-                unProfessor.aprovar(nota);
-
-                System.out.println(nota);  // 0
+                int numA = 98 + 1;
+        
+                int numB = numA;
+        
+                numB = 55;
+        
+                <h>System.out.println(numA);</h>       // 99
+                System.out.println(numB);       // 55
             </sc>
         </step>
         <step>
             <explanation>
-                <img src="img/refd4.png">
+                  <img src="img/refb4.png">
             </explanation>
             <sc java>
-                class Professor {
-                    void aprovar(float parametreNota) {
-                        <h>parametreNota = 5;</h>
-                    }
+                int numA = 98 + 1;
+        
+                int numB = numA;
+        
+                numB = 55;
+        
+                System.out.println(numA);       // 99
+                <h>System.out.println(numB);</h>       // 55
+            </sc>
+        </step>
+        
+    </stepper>
+   
+    <p>Vejem què passa quan assignem una variable <strong>de referència</strong> a una altra:</p>
+    <stepper class="stepper2">
+        <step>
+            <explanation>
+                <img src="img/refc0.png">
+            </explanation>
+            <sc java>
+                class Alumne {
+                    float nota;
                 }
 
-                float nota = 0;
-                Professor unProfessor = new Professor();
+                Alumne aluA = new Alumne();
+                aluA.nota = 10;
 
-                unProfessor.aprovar(nota);
+                Alumne aluB = aluA;
+                aluB.nota = 5;
 
-                System.out.println(nota);  // 0
+                System.out.println(aluA.nota);
+                System.out.println(aluB.nota);
             </sc>
         </step>
         <step>
             <explanation>
-                <img src="img/refd5.png">
+                <img src="img/refc0.png">
             </explanation>
             <sc java>
-                class Professor {
-                    void aprovar(float parametreNota) {
-                        parametreNota = 5;
-                    }
+                class Alumne {
+                    float nota;
                 }
 
-                float nota = 0;
-                Professor unProfessor = new Professor();
+                Alumne aluA = <h>new Alumne()</h>;
+                aluA.nota = 10;
 
-                unProfessor.aprovar(nota);
+                Alumne aluB = aluA;
+                aluB.nota = 5;
 
-                <h>System.out.println(nota);</h>  // 0
+                System.out.println(aluA.nota);
+                System.out.println(aluB.nota);
+            </sc>
+        </step>
+        <step>
+            <explanation>
+                <img src="img/refc1.png">
+            </explanation>
+            <sc java>
+                class Alumne {
+                    float nota;
+                }
+
+                <h>Alumne aluA = new Alumne();</h>
+                aluA.nota = 10;
+
+                Alumne aluB = aluA;
+                aluB.nota = 5;
+
+                System.out.println(aluA.nota);
+                System.out.println(aluB.nota);
+            </sc>
+        </step>
+        <step>
+            <explanation>
+                <img src="img/refc2.png">
+            </explanation>
+            <sc java>
+                class Alumne {
+                    float nota;
+                }
+
+                Alumne aluA = new Alumne();
+                <h>aluA.nota = 10;</h>
+
+                Alumne aluB = aluA;
+                aluB.nota = 5;
+
+                System.out.println(aluA.nota);
+                System.out.println(aluB.nota);
+            </sc>
+        </step>
+        <step>
+            <explanation>
+                <img src="img/refc3.png">
+            </explanation>
+            <sc java>
+                class Alumne {
+                    float nota;
+                }
+
+                Alumne aluA = new Alumne();
+                aluA.nota = 10;
+
+                <h>Alumne aluB = aluA;</h>
+                aluB.nota = 5;
+
+                System.out.println(aluA.nota);
+                System.out.println(aluB.nota);
+            </sc>
+        </step>
+        <step>
+            <explanation>
+                <img src="img/refc4.png">
+            </explanation>
+            <sc java>
+                class Alumne {
+                    float nota;
+                }
+
+                Alumne aluA = new Alumne();
+                aluA.nota = 10;
+
+                Alumne aluB = aluA;
+                <h>aluB.nota = 5;</h>
+
+                System.out.println(aluA.nota);
+                System.out.println(aluB.nota);
+            </sc>
+        </step>
+        <step>
+            <explanation>
+                <img src="img/refc5.png">
+            </explanation>
+            <sc java>
+                class Alumne {
+                    float nota;
+                }
+
+                Alumne aluA = new Alumne();
+                aluA.nota = 10;
+
+                Alumne aluB = aluA;
+                aluB.nota = 5;
+
+                <h>System.out.println(aluA.nota);</h>
+                System.out.println(aluB.nota);
+            </sc>
+        </step>
+        <step>
+            <explanation>
+                <img src="img/refc5.png">
+            </explanation>
+            <sc java>
+                class Alumne {
+                    float nota;
+                }
+
+                Alumne aluA = new Alumne();
+                aluA.nota = 10;
+
+                Alumne aluB = aluA;
+                aluB.nota = 5;
+
+                System.out.println(aluA.nota);
+                <h>System.out.println(aluB.nota);</h>
+
             </sc>
         </step>
     </stepper>
-    <p>Vejem què passa quan passem per paràmetre una variable <strong>de referència</strong>:</p>
-
-    <stepper class="stepper2" style="--sc-h:5; --mm-h:0; --sh-h:0; --ex-h:17; --sc-w:20;    --sc-mh:5; --mm-mh:1; --sh-mh:7; --ex-mh:1;">
-        <step>
-            <explanation>
-                <img src="img/refa2.png">
-            </explanation>
-            <sc java>
-                class Alumne {
-                    float nota;
-                }
-
-                class Professor {
-                    void aprovar(Alumne parametreAlumne) {
-                        parametreAlumne.nota = 5;
-                    }
-                }
-
-                Alumne unAlumne = new Alumne();
-                Professor unProfessor = new Professor();
-
-                unProfessor.aprovar(unAlumne);
-
-                System.out.println(unAlumne.nota);  // 5
-            </sc>
-        </step>
-        <step>
-            <explanation>
-                <img src="img/refa2.png">
-            </explanation>
-            <sc java>
-                class Alumne {
-                    float nota;
-                }
-
-                class Professor {
-                    void aprovar(Alumne parametreAlumne) {
-                        parametreAlumne.nota = 5;
-                    }
-                }
-
-                Alumne unAlumne = <h>new Alumne()</h>;
-                Professor unProfessor = new Professor();
-
-                unProfessor.aprovar(unAlumne);
-
-                System.out.println(unAlumne.nota);  // 5
-            </sc>
-        </step>
-        <step>
-            <explanation>
-                <img src="img/refa3.png">
-            </explanation>
-            <sc java>
-                class Alumne {
-                    float nota;
-                }
-
-                class Professor {
-                    void aprovar(Alumne parametreAlumne) {
-                        parametreAlumne.nota = 5;
-                    }
-                }
-
-                <h>Alumne unAlumne = new Alumne()</h>;
-                Professor unProfessor = new Professor();
-
-                unProfessor.aprovar(unAlumne);
-
-                System.out.println(unAlumne.nota);  // 5
-            </sc>
-        </step>
-        <step>
-            <explanation>
-                <img src="img/refa4.png">
-            </explanation>
-            <sc java>
-                class Alumne {
-                    float nota;
-                }
-
-                class Professor {
-                    void aprovar(Alumne parametreAlumne) {
-                        parametreAlumne.nota = 5;
-                    }
-                }
-
-                Alumne unAlumne = new Alumne();
-                Professor unProfessor = <h>new Professor()</h>;
-
-                unProfessor.aprovar(unAlumne);
-
-                System.out.println(unAlumne.nota);  // 5
-            </sc>
-        </step>
-        <step>
-            <explanation>
-                <img src="img/refa5.png">
-            </explanation>
-            <sc java>
-                class Alumne {
-                    float nota;
-                }
-
-                class Professor {
-                    void aprovar(Alumne parametreAlumne) {
-                        parametreAlumne.nota = 5;
-                    }
-                }
-
-                Alumne unAlumne = new Alumne();
-                <h>Professor unProfessor = new Professor()</h>;
-
-                unProfessor.aprovar(unAlumne);
-
-                System.out.println(unAlumne.nota);  // 5
-            </sc>
-        </step>
-        <step>
-            <explanation>
-                <img src="img/refa6.png">
-            </explanation>
-            <sc java>
-                class Alumne {
-                    float nota;
-                }
-
-                class Professor {
-                    void aprovar(Alumne parametreAlumne) {
-                        parametreAlumne.nota = 5;
-                    }
-                }
-
-                Alumne unAlumne = new Alumne();
-                Professor unProfessor = new Professor();
-
-                <h>unProfessor.aprovar(unAlumne);</h>
-
-                System.out.println(unAlumne.nota);  // 5
-            </sc>
-        </step>
-        <step>
-            <explanation>
-                <img src="img/refa6.png">
-            </explanation>
-            <sc java>
-                class Alumne {
-                    float nota;
-                }
-
-                class Professor {
-                    void aprovar(<h>Alumne parametreAlumne</h>) {
-                        parametreAlumne.nota = 5;
-                    }
-                }
-
-                Alumne unAlumne = new Alumne();
-                Professor unProfessor = new Professor();
-
-                unProfessor.aprovar(unAlumne);
-
-                System.out.println(unAlumne.nota);  // 5
-            </sc>
-        </step>
-        <step>
-            <explanation>
-                <img src="img/refa7.png">
-            </explanation>
-            <sc java>
-                class Alumne {
-                    float nota;
-                }
-
-                class Professor {
-                    void aprovar(Alumne parametreAlumne) {
-                        <h>parametreAlumne.nota = 5</h>;
-                    }
-                }
-
-                Alumne unAlumne = new Alumne();
-                Professor unProfessor = new Professor();
-
-                unProfessor.aprovar(unAlumne);
-
-                System.out.println(unAlumne.nota);  // 5
-            </sc>
-        </step>
-        <step>
-            <explanation>
-                <img src="img/refa8.png">
-            </explanation>
-            <sc java>
-                class Alumne {
-                    float nota;
-                }
-
-                class Professor {
-                    void aprovar(Alumne parametreAlumne) {
-                        parametreAlumne.nota = 5;
-                    }
-                }
-
-                Alumne unAlumne = new Alumne();
-                Professor unProfessor = new Professor();
-
-                unProfessor.aprovar(unAlumne);
-
-                <h>System.out.println(unAlumne.nota);</h>  // 5
-            </sc>
-        </step>
-    </stepper>
-
-    <challenge>
-        <p>
-        <a href="https://dmoj.elpuig.xeill.net/problem/gosigat">El gat i el gos.</a>
-        <br>
-        <a href="https://dmoj.elpuig.xeill.net/problem/holapersona">Crea la classe Persona.</a>
-        <br>
-        <a href="https://dmoj.elpuig.xeill.net/problem/c5l11leds">La tira de LEDs.</a>
-        <br>
-        <a href="https://dmoj.elpuig.xeill.net/problem/b0ae0cotxeclassl0">El constructor de la classe Cotxe.</a>
-        <br>
-        <a href="https://dmoj.elpuig.xeill.net/problem/d3da3paperrocksci">Pedra, paper i tissora: amb classes i mètodes.</a>
-        <br>
-        <a href="https://dmoj.elpuig.xeill.net/problem/elpenjat">El joc del penjat.</a>
-        </p>
-    </challenge>
-
 </section>

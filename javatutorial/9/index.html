@@ -6,589 +6,3745 @@
 
 <nav></nav> 
 <header>
-    <h1>Classes i objectes</h1>
+    <h1>Sentències de ramificació</h1>
     <abstract>
-        <p>        </p>
+        <p>Les sentències de ramificació permeten alterar el fluxe 
+            d'execució estàndard d'un mètode, un bucle, o un switch.
+        </p>
         <p>Aprendràs:</p>
-        <check>A declarar <strong>classes</strong></check>
-        <check>A crear <strong>objectes</strong> d'aquestes classes</check>
+        <check>A utilitzar la sentència <strong>break</strong></check>
+        <check>A utilitzar la sentènciea <strong>continue</strong></check>
+        <check>A utilitzar la sentència <strong>return</strong></check>
     </abstract>
 </header>
 
-<!--Analogy, Diagram, Example, Plain English, Technical-->
 <section>
-    <h2>Classes i objectes</h2>
+    <h2>Sentència break</h2>
 
-    <p>Un objecte és una agrupació de variables (i mètodes, que veurem més endavant). S'utilitzen per a organitzar el codi, agrupant aquelles
-        variables i mètodes que estan relacionades entre sí.</p>
+    <p>La sentència <w>break</w> té dos usos</p>
+    <ul>
+        <li><p>finalitza el loop actual (for, while, do-while)</p></li>
+        <li><p>finalitza el switch</p></li>
+    </ul>
 
-    <p>Si seguim l'analogia de les capses que vam utilitzar per a les variables i arrays, podríem veure un objecte com una capsa
-        que a dintre conté altres capses.
+    <p>A la <a href="../5">secció 5</a> ja vam veure el seu ús a la sentència switch. 
+        En aquesta ocasió veurem el seu ús per a finalitzar loops.</p>
+
+    <p>El següent exemple és una demostració d'un loop que inclou un <w>break</w>.
+    La condició per a continuar el loop sempre és <w>true</w>, però s'aturarà quan la variable <w>i</w>
+    sigui <w>5</w> amb l'ús de la sentència <w>break</w> que hi ha a dintre del condicional.
     </p>
+
+    <stepper style="--sc-h:7; --mm-h:1; --sh-h:1; --ex-h:1; --sc-w:22;    --sc-mh:9; --mm-mh:1; --sh-mh:1; --ex-mh:2;">
+        <step>
+            <explanation></explanation>
+            <sc java>
+                int i = 10;
+                while (true) { 
+                    System.out.print(i + " ");
+                    if (i == 5) {  
+                        break;
+                    }
+                    i--;
+                }
+                
+                System.out.print("Final");
+            </sc>
+            <mem></mem>
+            <shell></shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                <h>int i = 10;</h>
+                while (true) { 
+                    System.out.print(i + " ");
+                    if (i == 5) {  
+                        break;
+                    }
+                    i--;
+                }    
+                
+                System.out.print("Final");
+            </sc>
+            <mem></mem>
+            <shell></shell>
+        </step>
+        <step>
+            <explanation>
+                Aquest bucle, en principi, no pararia mai, ja que la 
+                seva condició sempre és <w>true</w>.
+            </explanation>
+            <sc java>
+                int i = 10;
+                while (<h>true</h>) { 
+                    System.out.print(i + " ");
+                    if (i == 5) {  
+                        break;
+                    }
+                    i--;
+                }
+                
+                System.out.print("Final");
+            </sc>
+            <mem>i: 10</mem>
+            <shell></shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                int i = 10;
+                while (true) { 
+                    <h>System.out.print(i + " ");</h>
+                    if (i == 5) {  
+                        break;
+                    }
+                    i--;
+                }      
+                
+                System.out.print("Final");
+            </sc>
+            <mem>i: 10</mem>
+            <shell></shell>
+        </step>
+        <step>
+            <explanation>10 no és igual a 5</explanation>
+            <sc java>
+                int i = 10;
+                while (true) { 
+                    System.out.print(i + " ");
+                    if (<h>i == 5</h>) {  
+                        break;
+                    }
+                    i--;
+                }   
+                
+                System.out.print("Final");
+            </sc>
+            <mem>i: 10</mem>
+            <shell>10 </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                int i = 10;
+                while (true) { 
+                    System.out.print(i + " ");
+                    if (i == 5) {  
+                        break;
+                    }
+                    <h>i--;</h>
+                }        
+
+                System.out.print("Final");
+            </sc>
+            <mem>i: 10</mem>
+            <shell>10 </shell>
+        </step>
+
+
+
+        <step>
+            <explanation></explanation>
+            <sc java>
+                int i = 10;
+                while (<h>true</h>) { 
+                    System.out.print(i + " ");
+                    if (i == 5) {  
+                        break;
+                    }
+                    i--;
+                } 
+                
+                System.out.print("Final");
+            </sc>
+            <mem>i: 9</mem>
+            <shell>10 </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                int i = 10;
+                while (true) { 
+                    <h>System.out.print(i + " ");</h>
+                    if (i == 5) {  
+                        break;
+                    }
+                    i--;
+                }   
+                
+                System.out.print("Final");
+            </sc>
+            <mem>i: 9</mem>
+            <shell>10 </shell>
+        </step>
+        <step>
+            <explanation>9 no és igual a 5</explanation>
+            <sc java>
+                int i = 10;
+                while (true) { 
+                    System.out.print(i + " ");
+                    if (<h>i == 5</h>) {  
+                        break;
+                    }
+                    i--;
+                }   
+                
+                System.out.print("Final");
+            </sc>
+            <mem>i: 9</mem>
+            <shell>10 9 </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                int i = 10;
+                while (true) { 
+                    System.out.print(i + " ");
+                    if (i == 5) {  
+                        break;
+                    }
+                    <h>i--;</h>
+                }   
+                
+                System.out.print("Final");
+            </sc>
+            <mem>i: 9</mem>
+            <shell>10 9 </shell>
+        </step>
+
+        <step>
+            <explanation></explanation>
+            <sc java>
+                int i = 10;
+                while (<h>true</h>) { 
+                    System.out.print(i + " ");
+                    if (i == 5) {  
+                        break;
+                    }
+                    i--;
+                }  
+                
+                System.out.print("Final");
+            </sc>
+            <mem>i: 8</mem>
+            <shell>10 9 </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                int i = 10;
+                while (true) { 
+                    <h>System.out.print(i + " ");</h>
+                    if (i == 5) {  
+                        break;
+                    }
+                    i--;
+                }
+                
+                System.out.print("Final");
+            </sc>
+            <mem>i: 8</mem>
+            <shell>10 9 </shell>
+        </step>
+        <step>
+            <explanation>8 no és igual a 5</explanation>
+            <sc java>
+                int i = 10;
+                while (true) { 
+                    System.out.print(i + " ");
+                    if (<h>i == 5</h>) {  
+                        break;
+                    }
+                    i--;
+                }  
+                
+                System.out.print("Final");
+            </sc>
+            <mem>i: 8</mem>
+            <shell>10 9 8 </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                int i = 10;
+                while (true) { 
+                    System.out.print(i + " ");
+                    if (i == 5) {  
+                        break;
+                    }
+                    <h>i--;</h>
+                }  
+                
+                System.out.print("Final");
+            </sc>
+            <mem>i: 8</mem>
+            <shell>10 9 8 </shell>
+        </step>
+
+        <step>
+            <explanation>
+            </explanation>
+            <sc java>
+                int i = 10;
+                while (<h>true</h>) { 
+                    System.out.print(i + " ");
+                    if (i == 5) {  
+                        break;
+                    }
+                    i--;
+                }  
+                
+                System.out.print("Final");
+            </sc>
+            <mem>i: 7</mem>
+            <shell>10 9 8 </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                int i = 10;
+                while (true) { 
+                    <h>System.out.print(i + " ");</h>
+                    if (i == 5) {  
+                        break;
+                    }
+                    i--;
+                }    
+                
+                System.out.print("Final");
+            </sc>
+            <mem>i: 7</mem>
+            <shell>10 9 8 </shell>
+        </step>
+        <step>
+            <explanation>7 no és igual a 5</explanation>
+            <sc java>
+                int i = 10;
+                while (true) { 
+                    System.out.print(i + " ");
+                    if (<h>i == 5</h>) {  
+                        break;
+                    }
+                    i--;
+                }  
+                
+                System.out.print("Final");
+            </sc>
+            <mem>i: 7</mem>
+            <shell>10 9 8 7 </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                int i = 10;
+                while (true) { 
+                    System.out.print(i + " ");
+                    if (i == 5) {  
+                        break;
+                    }
+                    <h>i--;</h>
+                }  
+                
+                System.out.print("Final");
+            </sc>
+            <mem>i: 7</mem>
+            <shell>10 9 8 7 </shell>
+        </step>
+
+
+
+        <step>
+            <explanation></explanation>
+            <sc java>
+                int i = 10;
+                while (<h>true</h>) { 
+                    System.out.print(i + " ");
+                    if (i == 5) {  
+                        break;
+                    }
+                    i--;
+                }  
+                
+                System.out.print("Final");
+            </sc>
+            <mem>i: 6</mem>
+            <shell>10 9 8 7 </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                int i = 10;
+                while (true) { 
+                    <h>System.out.print(i + " ");</h>
+                    if (i == 5) {  
+                        break;
+                    }
+                    i--;
+                } 
+                
+                System.out.print("Final");
+            </sc>
+            <mem>i: 6</mem>
+            <shell>10 9 8 7 </shell>
+        </step>
+        <step>
+            <explanation>6 no és igual a 5</explanation>
+            <sc java>
+                int i = 10;
+                while (true) { 
+                    System.out.print(i + " ");
+                    if (<h>i == 5</h>) {  
+                        break;
+                    }
+                    i--;
+                }    
+                
+                System.out.print("Final");
+            </sc>
+            <mem>i: 6</mem>
+            <shell>10 9 8 7 6 </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                int i = 10;
+                while (true) { 
+                    System.out.print(i + " ");
+                    if (i == 5) {  
+                        break;
+                    }
+                    <h>i--;</h>
+                } 
+                
+                System.out.print("Final");
+            </sc>
+            <mem>i: 6</mem>
+            <shell>10 9 8 7 6</shell>
+        </step>
+
+
+        <step>
+            <explanation>            </explanation>
+            <sc java>
+                int i = 10;
+                while (<h>true</h>) { 
+                    System.out.print(i + " ");
+                    if (i == 5) {  
+                        break;
+                    }
+                    i--;
+                }    
+                
+                System.out.print("Final");
+            </sc>
+            <mem>i: 5</mem>
+            <shell>10 9 8 7 6 </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                int i = 10;
+                while (true) { 
+                    <h>System.out.print(i + " ");</h>
+                    if (i == 5) {  
+                        break;
+                    }
+                    i--;
+                } 
+                
+                System.out.print("Final");
+            </sc>
+            <mem>i: 5</mem>
+            <shell>10 9 8 7 6</shell>
+        </step>
+        <step>
+            <explanation>En aquest punt, <w>i</w> sí és igual a 5</explanation>
+            <sc java>
+                int i = 10;
+                while (true) { 
+                    System.out.print(i + " ");
+                    if (<h>i == 5</h>) {  
+                        break;
+                    }
+                    i--;
+                }  
+                
+                System.out.print("Final");
+            </sc>
+            <mem>i: 5</mem>
+            <shell>10 9 8 7 6 5</shell>
+        </step>
+        <step>
+            <explanation>El <w>break</w> trencarà el bucle</explanation>
+            <sc java>
+                int i = 10;
+                while (true) { 
+                    System.out.print(i + " ");
+                    if (i == 5) {  
+                        <h>break</h>;
+                    }
+                    i--;
+                }     
+                
+                System.out.print("Final");
+            </sc>
+            <mem>i: 5</mem>
+            <shell>10 9 8 7 6 5 </shell>
+        </step>
+
+        <step>
+            <explanation></explanation>
+            <sc java>
+                int i = 10;
+                while (true) { 
+                    System.out.print(i + " ");
+                    if (i == 5) {  
+                        break;
+                    }
+                    i--;
+                }        
+
+                <h>System.out.print("Final");</h>
+            </sc>
+            <mem>i: 5</mem>
+            <shell>10 9 8 7 6 5 </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                int i = 10;
+                while (true) { 
+                    System.out.print(i + " ");
+                    if (i == 5) {  
+                        break;
+                    }
+                    i--;
+                }        
+
+                System.out.print("Final");
+            </sc>
+            <mem>i: 5</mem>
+            <shell>10 9 8 7 6 5 FINAL</shell>
+        </step>
+    </stepper>
+
+    <p>La sentència <w>break</w> només finalitza el bucle en el qual 
+    està col·locada. Si aquest bucle està dintre d'un altre bucle, el 
+    bucle exterior no s'aturarà.</p>
+
+    <p>El següent programa exemplifica aquest comportament:</p>
+
+    <stepper style="--sc-h:10; --mm-h:2; --sh-h:5; --ex-h:2; --sc-w:22;    --sc-mh:10; --mm-mh:2; --sh-mh:5; --ex-mh:3;">
+        <step>
+            <explanation></explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; i++) {
+                    for (int j = 0; j &lt; 5; j++) {
+                        System.out.print(j + " ");
+                        if (i == j) {
+                            break;
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem></mem>
+            <shell></shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                for (<h>int i = 0</h>; i &lt; 5; i++) {
+                    for (int j = 0; j &lt; 5; j++) {
+                        System.out.print(j + " ");
+                        if (i == j) {
+                            break;
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem></mem>
+            <shell></shell>
+        </step>
+        <step>
+            <explanation>
+                Com <w>i</w> és menor que <w>5</w> iterem el bucle extern.
+            </explanation>
+            <sc java>
+                for (int i = 0; <h>i &lt; 5</h>; i++) {
+                    for (int j = 0; j &lt; 5; j++) {
+                        System.out.print(j + " ");
+                        if (i == j) {
+                            break;
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>i: 0</mem>
+            <shell></shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; i++) {
+                    for (<h>int j = 0</h>; j &lt; 5; j++) {
+                        System.out.print(j + " ");
+                        if (i == j) {
+                            break;
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>i: 0</mem>
+            <shell></shell>
+        </step>
+        <step>
+            <explanation>
+                <w>j &lt; 5</w> és <w>true</w>, s'itera el bucle intern
+            </explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; i++) {
+                    for (int j = 0; <h>j &lt; 5</h>; j++) {
+                        System.out.print(j + " ");
+                        if (i == j) {
+                            break;
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>
+                i: 0
+                j: 0 
+            </mem>
+            <shell></shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; i++) {
+                    for (int j = 0; j &lt; 5; j++) {
+                        <h>System.out.print(j + " ");</h>
+                        if (i == j) {
+                            break;
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>
+                i: 0
+                j: 0
+            </mem>
+            <shell></shell>
+        </step>
+        <step>
+            <explanation>
+                Com <w>0 == 0</w> s'entra en el <w>if</w>
+            </explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; i++) {
+                    for (int j = 0; j &lt; 5; j++) {
+                        System.out.print(j + " ");
+                        if (<h>i == j</h>) {
+                            break;
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>
+                i: 0
+                j: 0
+            </mem>
+            <shell>0</shell>
+        </step>
+        <step>
+            <explanation>
+                El <w>break</w> finalitza el bucle intern
+            </explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; i++) {
+                    for (int j = 0; j &lt; 5; j++) {
+                        System.out.print(j + " ");
+                        if (i == j) {
+                            <h>break;</h>
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>
+                i: 0
+                j: 0
+            </mem>
+            <shell>0</shell>
+        </step>
+
+        <step>
+            <explanation></explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; i++) {
+                    for (int j = 0; j &lt; 5; j++) {
+                        System.out.print(j + " ");
+                        if (i == j) {
+                            break;
+                        }
+                    }
+                    <h>System.out.println();</h>
+                }
+            </sc>
+            <mem>
+                i: 0
+
+            </mem>
+            <shell>0</shell>
+        </step>
+        <step>
+            <explanation>
+                El bucle extern encara no ha finalitzat
+            </explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; <h>i++</h>) {
+                    for (int j = 0; j &lt; 5; j++) {
+                        System.out.print(j + " ");
+                        if (i == j) {
+                            break;
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>
+                i: 0
+
+            </mem>
+            <shell>
+                0 ⏎
+
+            </shell>
+        </step>
+        <step>
+            <explanation>
+                Es fa una altra iteració del bucle extern.
+            </explanation>
+            <sc java>
+                for (int i = 0; <h>i &lt; 5</h>; i++) {
+                    for (int j = 0; j &lt; 5; j++) {
+                        System.out.print(j + " ");
+                        if (i == j) {
+                            break;
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>
+                i: 1
+            </mem>
+            <shell>
+                0 ⏎
+
+            </shell>
+        </step>
+        <step>
+            <explanation>
+                El bucle intern torna a començar de nou
+            </explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; i++) {
+                    for (<h>int j = 0;</h> j &lt; 5; j++) {
+                        System.out.print(j + " ");
+                        if (i == j) {
+                            break;
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>
+                i: 1
+            </mem>
+            <shell>
+                0 ⏎
+
+            </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; i++) {
+                    for (int j = 0; <h>j &lt; 5</h>; j++) {
+                        System.out.print(j + " ");
+                        if (i == j) {
+                            break;
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>
+                i: 1
+                j: 0
+            </mem>
+            <shell>
+                0 ⏎
+
+            </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; i++) {
+                    for (int j = 0; j &lt; 5; j++) {
+                        <h>System.out.print(j + " ");</h>
+                        if (i == j) {
+                            break;
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>
+                i: 1
+                j: 0
+            </mem>
+            <shell>
+                0 ⏎
+
+            </shell>
+        </step>
+        <step>
+            <explanation>
+                Aquesta vegada la <w>i</w> és diferent de <w>j</w>, per tant no es farà el <w>break</w>, 
+                i el bucle intern encara no finalitza.
+            </explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; i++) {
+                    for (int j = 0; j &lt; 5; j++) {
+                        System.out.print(j + " ");
+                        if (<h>i == j</h>) {
+                            break;
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>
+                i: 1
+                j: 0
+            </mem>
+            <shell>
+                0 ⏎
+                0 
+            </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; i++) {
+                    for (int j = 0; j &lt; 5; <h>j++</h>) {
+                        System.out.print(j + " ");
+                        if (i == j) {
+                            break;
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>
+                i: 1
+                j: 0
+            </mem>
+            <shell>
+                0 ⏎
+                0 
+            </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; i++) {
+                    for (int j = 0; <h>j &lt; 5</h>; j++) {
+                        System.out.print(j + " ");
+                        if (i == j) {
+                            break;
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>
+                i: 1
+                j: 1
+            </mem>
+            <shell>
+                0 ⏎
+                0 
+            </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; i++) {
+                    for (int j = 0; j &lt; 5; j++) {
+                        <h>System.out.print(j + " ");</h>
+                        if (i == j) {
+                            break;
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>
+                i: 1
+                j: 1
+            </mem>
+            <shell>
+                0 ⏎
+                0 
+            </shell>
+        </step>
+        <step>
+            <explanation>
+                Ara sí que es farà el <w>break</w>.
+            </explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; i++) {
+                    for (int j = 0; j &lt; 5; j++) {
+                        System.out.print(j + " ");
+                        if (<h>i == j</h>) {
+                            break;
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>
+                i: 1
+                j: 1
+            </mem>
+            <shell>
+                0 ⏎
+                0 1 
+            </shell>
+        </step>
+        <step>
+            <explanation>
+                El bucle intern finalitza.
+            </explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; i++) {
+                    for (int j = 0; j &lt; 5; j++) {
+                        System.out.print(j + " ");
+                        if (i == j) {
+                            <h>break;</h>
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>
+                i: 1
+                j: 1
+            </mem>
+            <shell>
+                0 ⏎
+                0 1 
+            </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; i++) {
+                    for (int j = 0; j &lt; 5; j++) {
+                        System.out.print(j + " ");
+                        if (i == j) {
+                            break;
+                        }
+                    }
+                    <h>System.out.println();</h>
+                }
+            </sc>
+            <mem>
+                i: 1
+
+            </mem>
+            <shell>
+                0 ⏎
+                0 1 
+            </shell>
+        </step>
+        <step>
+            <explanation>
+                L'extern encara no ha finalitzat...
+            </explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; <h>i++</h>) {
+                    for (int j = 0; j &lt; 5; j++) {
+                        System.out.print(j + " ");
+                        if (i == j) {
+                            break;
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>
+                i: 1
+
+            </mem>
+            <shell>
+                0 ⏎
+                0 1 ⏎
+            </shell>
+        </step>
+        <step>
+            <explanation>
+                Es fa una altra iteració de l'extern
+            </explanation>
+            <sc java>
+                for (int i = 0; <h>i &lt; 5</h>; i++) {
+                    for (int j = 0; j &lt; 5; j++) {
+                        System.out.print(j + " ");
+                        if (i == j) {
+                            break;
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>
+                i: 2
+
+            </mem>
+            <shell>
+                0 ⏎
+                0 1 ⏎
+            </shell>
+        </step>
+        <step>
+            <explanation>
+                Torna a començar de zero l'intern
+            </explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; i++) {
+                    for (<h>int j = 0</h>; j &lt; 5; j++) {
+                        System.out.print(j + " ");
+                        if (i == j) {
+                            break;
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>
+                i: 2
+
+            </mem>
+            <shell>
+                0 ⏎
+                0 1 ⏎
+            </shell>
+        </step>
+        <step>
+            <explanation>            </explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; i++) {
+                    for (int j = 0; <h>j &lt; 5</h>; j++) {
+                        System.out.print(j + " ");
+                        if (i == j) {
+                            break;
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>
+                i: 2
+                j: 0
+            </mem>
+            <shell>
+                0 ⏎
+                0 1 ⏎
+            </shell>
+        </step>
+        <step>
+            <explanation>            </explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; i++) {
+                    for (int j = 0; j &lt; 5; j++) {
+                        <h>System.out.print(j + " ");</h>
+                        if (i == j) {
+                            break;
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>
+                i: 2
+                j: 0
+            </mem>
+            <shell>
+                0 ⏎
+                0 1 ⏎
+            </shell>
+        </step>
+        <step>
+            <explanation>No es farà el <w>break</w>           </explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; i++) {
+                    for (int j = 0; j &lt; 5; j++) {
+                        System.out.print(j + " ");
+                        if (<h>i == j</h>) {
+                            break;
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>
+                i: 2
+                j: 0
+            </mem>
+            <shell>
+                0 ⏎
+                0 1 ⏎
+                0
+            </shell>
+        </step>
+        <step>
+            <explanation>No es farà el <w>break</w>           </explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; i++) {
+                    for (int j = 0; j &lt; 5; <h>j++</h>) {
+                        System.out.print(j + " ");
+                        if (i == j) {
+                            break;
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>
+                i: 2
+                j: 0
+            </mem>
+            <shell>
+                0 ⏎
+                0 1 ⏎
+                0
+            </shell>
+        </step>
+        <step>
+            <explanation>   </explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; i++) {
+                    for (int j = 0; <h>j &lt; 5</h>; j++) {
+                        System.out.print(j + " ");
+                        if (i == j) {
+                            break;
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>
+                i: 2
+                j: 1
+            </mem>
+            <shell>
+                0 ⏎
+                0 1 ⏎
+                0
+            </shell>
+        </step>
+        <step>
+            <explanation>   </explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; i++) {
+                    for (int j = 0; j &lt; 5; j++) {
+                        <h>System.out.print(j + " ");</h>
+                        if (i == j) {
+                            break;
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>
+                i: 2
+                j: 1
+            </mem>
+            <shell>
+                0 ⏎
+                0 1 ⏎
+                0
+            </shell>
+        </step>
+        <step>
+            <explanation>Encara no es fa el <w>break</w>. Continua el bucle intern.</explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; i++) {
+                    for (int j = 0; j &lt; 5; j++) {
+                        System.out.print(j + " ");
+                        if (<h>i == j</h>) {
+                            break;
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>
+                i: 2
+                j: 1
+            </mem>
+            <shell>
+                0 ⏎
+                0 1 ⏎
+                0 1
+            </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; i++) {
+                    for (int j = 0; j &lt; 5; <h>j++</h>) {
+                        System.out.print(j + " ");
+                        if (i == j) {
+                            break;
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>
+                i: 2
+                j: 1
+            </mem>
+            <shell>
+                0 ⏎
+                0 1 ⏎
+                0 1
+            </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; i++) {
+                    for (int j = 0; <h>j &lt; 5</h>; j++) {
+                        System.out.print(j + " ");
+                        if (i == j) {
+                            break;
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>
+                i: 2
+                j: 2
+            </mem>
+            <shell>
+                0 ⏎
+                0 1 ⏎
+                0 1
+            </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; i++) {
+                    for (int j = 0; j &lt; 5; j++) {
+                        <h>System.out.print(j + " ");</h>
+                        if (i == j) {
+                            break;
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>
+                i: 2
+                j: 2
+            </mem>
+            <shell>
+                0 ⏎
+                0 1 ⏎
+                0 1
+            </shell>
+        </step>
+        <step>
+            <explanation>Ara sí que es farà el <w>break</w></explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; i++) {
+                    for (int j = 0; j &lt; 5; j++) {
+                        System.out.print(j + " ");
+                        if (<h>i == j</h>) {
+                            break;
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>
+                i: 2
+                j: 2
+            </mem>
+            <shell>
+                0 ⏎
+                0 1 ⏎
+                0 1 2
+            </shell>
+        </step>
+        <step>
+            <explanation>Finalitza el bucle intern</explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; i++) {
+                    for (int j = 0; j &lt; 5; j++) {
+                        System.out.print(j + " ");
+                        if (i == j) {
+                            <h>break;</h>
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>
+                i: 2
+                j: 2
+            </mem>
+            <shell>
+                0 ⏎
+                0 1 ⏎
+                0 1 2
+            </shell>
+        </step>
+        <step>
+            <explanation>Finalitza el bucle intern</explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; i++) {
+                    for (int j = 0; j &lt; 5; j++) {
+                        System.out.print(j + " ");
+                        if (i == j) {
+                            break;
+                        }
+                    }
+                    <h>System.out.println();</h>
+                }
+            </sc>
+            <mem>
+                i: 2
+
+            </mem>
+            <shell>
+                0 ⏎
+                0 1 ⏎
+                0 1 2
+            </shell>
+        </step>
+        <step>
+            <explanation>Segueix el bucle extern</explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; <h>i++</h>) {
+                    for (int j = 0; j &lt; 5; j++) {
+                        System.out.print(j + " ");
+                        if (i == j) {
+                            break;
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>
+                i: 2
+            </mem>
+            <shell>
+                0 ⏎
+                0 1 ⏎
+                0 1 2 ⏎
+            </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                for (int i = 0; <h>i &lt; 5</h>; i++) {
+                    for (int j = 0; j &lt; 5; j++) {
+                        System.out.print(j + " ");
+                        if (i == j) {
+                            break;
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>
+                i: 3
+            </mem>
+            <shell>
+                0 ⏎
+                0 1 ⏎
+                0 1 2 ⏎
+            </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; i++) {
+                    for (<h>int j = 0</h>; j &lt; 5; j++) {
+                        System.out.print(j + " ");
+                        if (i == j) {
+                            break;
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>
+                i: 3
+            </mem>
+            <shell>
+                0 ⏎
+                0 1 ⏎
+                0 1 2 ⏎
+            </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; i++) {
+                    for (int j = 0; <h>j &lt; 5</h>; j++) {
+                        System.out.print(j + " ");
+                        if (i == j) {
+                            break;
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>
+                i: 3
+                j: 0
+            </mem>
+            <shell>
+                0 ⏎
+                0 1 ⏎
+                0 1 2 ⏎
+            </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; i++) {
+                    for (int j = 0; j &lt; 5; j++) {
+                        <h>System.out.print(j + " ");</h>
+                        if (i == j) {
+                            break;
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>
+                i: 3
+                j: 0
+            </mem>
+            <shell>
+                0 ⏎
+                0 1 ⏎
+                0 1 2 ⏎
+            </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; i++) {
+                    for (int j = 0; j &lt; 5; j++) {
+                        System.out.print(j + " ");
+                        if (<h>i == j</h>) {
+                            break;
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>
+                i: 3
+                j: 0
+            </mem>
+            <shell>
+                0 ⏎
+                0 1 ⏎
+                0 1 2 ⏎
+                0 
+            </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; i++) {
+                    for (int j = 0; j &lt; 5; <h>j++</h>) {
+                        System.out.print(j + " ");
+                        if (i == j) {
+                            break;
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>
+                i: 3
+                j: 0
+            </mem>
+            <shell>
+                0 ⏎
+                0 1 ⏎
+                0 1 2 ⏎
+                0 
+            </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; i++) {
+                    for (int j = 0; <h>j &lt; 5</h>; j++) {
+                        System.out.print(j + " ");
+                        if (i == j) {
+                            break;
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>
+                i: 3
+                j: 1
+            </mem>
+            <shell>
+                0 ⏎
+                0 1 ⏎
+                0 1 2 ⏎
+                0 
+            </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; i++) {
+                    for (int j = 0; j &lt; 5; j++) {
+                        <h>System.out.print(j + " ");</h>
+                        if (i == j) {
+                            break;
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>
+                i: 3
+                j: 1
+            </mem>
+            <shell>
+                0 ⏎
+                0 1 ⏎
+                0 1 2 ⏎
+                0 
+            </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; i++) {
+                    for (int j = 0; j &lt; 5; j++) {
+                        System.out.print(j + " ");
+                        if (<h>i == j</h>) {
+                            break;
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>
+                i: 3
+                j: 1
+            </mem>
+            <shell>
+                0 ⏎
+                0 1 ⏎
+                0 1 2 ⏎
+                0 1 
+            </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; i++) {
+                    for (int j = 0; j &lt; 5; <h>j++</h>) {
+                        System.out.print(j + " ");
+                        if (i == j) {
+                            break;
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>
+                i: 3
+                j: 1
+            </mem>
+            <shell>
+                0 ⏎
+                0 1 ⏎
+                0 1 2 ⏎
+                0 1 
+            </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; i++) {
+                    for (int j = 0; <h>j &lt; 5</h>; j++) {
+                        System.out.print(j + " ");
+                        if (i == j) {
+                            break;
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>
+                i: 3
+                j: 2
+            </mem>
+            <shell>
+                0 ⏎
+                0 1 ⏎
+                0 1 2 ⏎
+                0 1 
+            </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; i++) {
+                    for (int j = 0; j &lt; 5; j++) {
+                        <h>System.out.print(j + " ");</h>
+                        if (i == j) {
+                            break;
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>
+                i: 3
+                j: 2
+            </mem>
+            <shell>
+                0 ⏎
+                0 1 ⏎
+                0 1 2 ⏎
+                0 1 
+            </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; i++) {
+                    for (int j = 0; j &lt; 5; j++) {
+                        System.out.print(j + " ");
+                        if (<h>i == j</h>) {
+                            break;
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>
+                i: 3
+                j: 2
+            </mem>
+            <shell>
+                0 ⏎
+                0 1 ⏎
+                0 1 2 ⏎
+                0 1 2
+            </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; i++) {
+                    for (int j = 0; j &lt; 5; <h>j++</h>) {
+                        System.out.print(j + " ");
+                        if (i == j) {
+                            break;
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>
+                i: 3
+                j: 2
+            </mem>
+            <shell>
+                0 ⏎
+                0 1 ⏎
+                0 1 2 ⏎
+                0 1 2
+            </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; i++) {
+                    for (int j = 0; <h>j &lt; 5</h>; j++) {
+                        System.out.print(j + " ");
+                        if (i == j) {
+                            break;
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>
+                i: 3
+                j: 3
+            </mem>
+            <shell>
+                0 ⏎
+                0 1 ⏎
+                0 1 2 ⏎
+                0 1 2
+            </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; i++) {
+                    for (int j = 0; j &lt; 5; j++) {
+                        <h>System.out.print(j + " ");</h>
+                        if (i == j) {
+                            break;
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>
+                i: 3
+                j: 3
+            </mem>
+            <shell>
+                0 ⏎
+                0 1 ⏎
+                0 1 2 ⏎
+                0 1 2
+            </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; i++) {
+                    for (int j = 0; j &lt; 5; j++) {
+                        System.out.print(j + " ");
+                        if (<h>i == j</h>) {
+                            break;
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>
+                i: 3
+                j: 3
+            </mem>
+            <shell>
+                0 ⏎
+                0 1 ⏎
+                0 1 2 ⏎
+                0 1 2 3 
+            </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; i++) {
+                    for (int j = 0; j &lt; 5; j++) {
+                        System.out.print(j + " ");
+                        if (i == j) {
+                            <h>break;</h>
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>
+                i: 3
+                j: 3
+            </mem>
+            <shell>
+                0 ⏎
+                0 1 ⏎
+                0 1 2 ⏎
+                0 1 2 3 
+            </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; i++) {
+                    for (int j = 0; j &lt; 5; j++) {
+                        System.out.print(j + " ");
+                        if (i == j) {
+                            break;
+                        }
+                    }
+                    <h>System.out.println();</h>
+                }
+            </sc>
+            <mem>
+                i: 3
+            </mem>
+            <shell>
+                0 ⏎
+                0 1 ⏎
+                0 1 2 ⏎
+                0 1 2 3 
+            </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; <h>i++</h>) {
+                    for (int j = 0; j &lt; 5; j++) {
+                        System.out.print(j + " ");
+                        if (i == j) {
+                            break;
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>
+                i: 3
+            </mem>
+            <shell>
+                0 ⏎
+                0 1 ⏎
+                0 1 2 ⏎
+                0 1 2 3 ⏎
+            </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                for (int i = 0; <h>i &lt; 5</h>; i++) {
+                    for (int j = 0; j &lt; 5; j++) {
+                        System.out.print(j + " ");
+                        if (i == j) {
+                            break;
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>
+                i: 4
+            </mem>
+            <shell>
+                0 ⏎
+                0 1 ⏎
+                0 1 2 ⏎
+                0 1 2 3 ⏎
+            </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; i++) {
+                    for (<h>int j = 0</h>; j &lt; 5; j++) {
+                        System.out.print(j + " ");
+                        if (i == j) {
+                            break;
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>
+                i: 4
+            </mem>
+            <shell>
+                0 ⏎
+                0 1 ⏎
+                0 1 2 ⏎
+                0 1 2 3 ⏎
+            </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; i++) {
+                    for (int j = 0; <h>j &lt; 5</h>; j++) {
+                        System.out.print(j + " ");
+                        if (i == j) {
+                            break;
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>
+                i: 4
+                j: 0
+            </mem>
+            <shell>
+                0 ⏎
+                0 1 ⏎
+                0 1 2 ⏎
+                0 1 2 3 ⏎
+            </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; i++) {
+                    for (int j = 0; j &lt; 5; j++) {
+                        <h>System.out.print(j + " ");</h>
+                        if (i == j) {
+                            break;
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>
+                i: 4
+                j: 0
+            </mem>
+            <shell>
+                0 ⏎
+                0 1 ⏎
+                0 1 2 ⏎
+                0 1 2 3 ⏎
+            </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; i++) {
+                    for (int j = 0; j &lt; 5; j++) {
+                        System.out.print(j + " ");
+                        if (<h>i == j</h>) {
+                            break;
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>
+                i: 4
+                j: 0
+            </mem>
+            <shell>
+                0 ⏎
+                0 1 ⏎
+                0 1 2 ⏎
+                0 1 2 3 ⏎
+                0 
+            </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; i++) {
+                    for (int j = 0; j &lt; 5; <h>j++</h>) {
+                        System.out.print(j + " ");
+                        if (i == j) {
+                            break;
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>
+                i: 4
+                j: 0
+            </mem>
+            <shell>
+                0 ⏎
+                0 1 ⏎
+                0 1 2 ⏎
+                0 1 2 3 ⏎
+                0 
+            </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; i++) {
+                    for (int j = 0; <h>j &lt; 5</h>; j++) {
+                        System.out.print(j + " ");
+                        if (i == j) {
+                            break;
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>
+                i: 4
+                j: 1
+            </mem>
+            <shell>
+                0 ⏎
+                0 1 ⏎
+                0 1 2 ⏎
+                0 1 2 3 ⏎
+                0 
+            </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; i++) {
+                    for (int j = 0; j &lt; 5; j++) {
+                        <h>System.out.print(j + " ");</h>
+                        if (i == j) {
+                            break;
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>
+                i: 4
+                j: 1
+            </mem>
+            <shell>
+                0 ⏎
+                0 1 ⏎
+                0 1 2 ⏎
+                0 1 2 3 ⏎
+                0 
+            </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; i++) {
+                    for (int j = 0; j &lt; 5; j++) {
+                        System.out.print(j + " ");
+                        if (<h>i == j</h>) {
+                            break;
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>
+                i: 4
+                j: 1
+            </mem>
+            <shell>
+                0 ⏎
+                0 1 ⏎
+                0 1 2 ⏎
+                0 1 2 3 ⏎
+                0 1
+            </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; i++) {
+                    for (int j = 0; j &lt; 5; <h>j++</h>) {
+                        System.out.print(j + " ");
+                        if (i == j) {
+                            break;
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>
+                i: 4
+                j: 1
+            </mem>
+            <shell>
+                0 ⏎
+                0 1 ⏎
+                0 1 2 ⏎
+                0 1 2 3 ⏎
+                0 1
+            </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; i++) {
+                    for (int j = 0; <h>j &lt; 5</h>; j++) {
+                        System.out.print(j + " ");
+                        if (i == j) {
+                            break;
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>
+                i: 4
+                j: 2
+            </mem>
+            <shell>
+                0 ⏎
+                0 1 ⏎
+                0 1 2 ⏎
+                0 1 2 3 ⏎
+                0 1
+            </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; i++) {
+                    for (int j = 0; j &lt; 5; j++) {
+                        <h>System.out.print(j + " ");</h>
+                        if (i == j) {
+                            break;
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>
+                i: 4
+                j: 2
+            </mem>
+            <shell>
+                0 ⏎
+                0 1 ⏎
+                0 1 2 ⏎
+                0 1 2 3 ⏎
+                0 1
+            </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; i++) {
+                    for (int j = 0; j &lt; 5; j++) {
+                        System.out.print(j + " ");
+                        if (<h>i == j</h>) {
+                            break;
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>
+                i: 4
+                j: 2
+            </mem>
+            <shell>
+                0 ⏎
+                0 1 ⏎
+                0 1 2 ⏎
+                0 1 2 3 ⏎
+                0 1 2
+            </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; i++) {
+                    for (int j = 0; j &lt; 5; <h>j++</h>) {
+                        System.out.print(j + " ");
+                        if (i == j) {
+                            break;
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>
+                i: 4
+                j: 2
+            </mem>
+            <shell>
+                0 ⏎
+                0 1 ⏎
+                0 1 2 ⏎
+                0 1 2 3 ⏎
+                0 1 2
+            </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; i++) {
+                    for (int j = 0; <h>j &lt; 5</h>; j++) {
+                        System.out.print(j + " ");
+                        if (i == j) {
+                            break;
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>
+                i: 4
+                j: 3
+            </mem>
+            <shell>
+                0 ⏎
+                0 1 ⏎
+                0 1 2 ⏎
+                0 1 2 3 ⏎
+                0 1 2
+            </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; i++) {
+                    for (int j = 0; j &lt; 5; j++) {
+                        <h>System.out.print(j + " ");</h>
+                        if (i == j) {
+                            break;
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>
+                i: 4
+                j: 3
+            </mem>
+            <shell>
+                0 ⏎
+                0 1 ⏎
+                0 1 2 ⏎
+                0 1 2 3 ⏎
+                0 1 2
+            </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; i++) {
+                    for (int j = 0; j &lt; 5; j++) {
+                        System.out.print(j + " ");
+                        if (<h>i == j</h>) {
+                            break;
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>
+                i: 4
+                j: 3
+            </mem>
+            <shell>
+                0 ⏎
+                0 1 ⏎
+                0 1 2 ⏎
+                0 1 2 3 ⏎
+                0 1 2 3 
+            </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; i++) {
+                    for (int j = 0; j &lt; 5; <h>j++</h>) {
+                        System.out.print(j + " ");
+                        if (i == j) {
+                            break;
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>
+                i: 4
+                j: 3
+            </mem>
+            <shell>
+                0 ⏎
+                0 1 ⏎
+                0 1 2 ⏎
+                0 1 2 3 ⏎
+                0 1 2 3 
+            </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; i++) {
+                    for (int j = 0; <h>j &lt; 5</h>; j++>) {
+                        System.out.print(j + " ");
+                        if (i == j) {
+                            break;
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>
+                i: 4
+                j: 4
+            </mem>
+            <shell>
+                0 ⏎
+                0 1 ⏎
+                0 1 2 ⏎
+                0 1 2 3 ⏎
+                0 1 2 3 
+            </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; i++) {
+                    for (int j = 0; j &lt; 5; j++>) {
+                        <h>System.out.print(j + " ");</h>
+                        if (i == j) {
+                            break;
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>
+                i: 4
+                j: 4
+            </mem>
+            <shell>
+                0 ⏎
+                0 1 ⏎
+                0 1 2 ⏎
+                0 1 2 3 ⏎
+                0 1 2 3 
+            </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; i++) {
+                    for (int j = 0; j &lt; 5; j++>) {
+                        System.out.print(j + " ");
+                        if (<h>i == j</h>) {
+                            break;
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>
+                i: 4
+                j: 4
+            </mem>
+            <shell>
+                0 ⏎
+                0 1 ⏎
+                0 1 2 ⏎
+                0 1 2 3 ⏎
+                0 1 2 3 4
+            </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; i++) {
+                    for (int j = 0; j &lt; 5; j++>) {
+                        System.out.print(j + " ");
+                        if (i == j) {
+                            <h>break;</h>
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>
+                i: 4
+                j: 4
+            </mem>
+            <shell>
+                0 ⏎
+                0 1 ⏎
+                0 1 2 ⏎
+                0 1 2 3 ⏎
+                0 1 2 3 4
+            </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; i++) {
+                    for (int j = 0; j &lt; 5; j++>) {
+                        System.out.print(j + " ");
+                        if (i == j) {
+                            break;
+                        }
+                    }
+                    <h>System.out.println();</h>
+                }
+            </sc>
+            <mem>
+                i: 4
+            </mem>
+            <shell>
+                0 ⏎
+                0 1 ⏎
+                0 1 2 ⏎
+                0 1 2 3 ⏎
+                0 1 2 3 4
+            </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; <h>i++</h>) {
+                    for (int j = 0; j &lt; 5; j++>) {
+                        System.out.print(j + " ");
+                        if (i == j) {
+                            break;
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>
+                i: 4
+            </mem>
+            <shell>
+                0 ⏎
+                0 1 ⏎
+                0 1 2 ⏎
+                0 1 2 3 ⏎
+                0 1 2 3 4 ⏎
+            </shell>
+        </step>
+        <step>
+            <explanation>S'ha arribat a <w>i: 5</w>, i com no és menor a <w>5</w> el bucle 
+            extern finalitza</explanation>
+            <sc java>
+                for (int i = 0; <h>i &lt; 5</h>; i++) {
+                    for (int j = 0; j &lt; 5; j++>) {
+                        System.out.print(j + " ");
+                        if (i == j) {
+                            break;
+                        }
+                    }
+                    System.out.println();
+                }
+            </sc>
+            <mem>
+                i: 5
+            </mem>
+            <shell>
+                0 ⏎
+                0 1 ⏎
+                0 1 2 ⏎
+                0 1 2 3 ⏎
+                0 1 2 3 4 ⏎
+            </shell>
+        </step>
+        <step>
+            <explanation>S'ha arribat a <w>i: 5</w>, i com no és menor a <w>5</w> el bucle 
+            extern finalitza</explanation>
+            <sc java>
+                for (int i = 0; i &lt; 5; i++) {
+                    for (int j = 0; j &lt; 5; j++>) {
+                        System.out.print(j + " ");
+                        if (i == j) {
+                            break;
+                        }
+                    }
+                    System.out.println();
+                }
+                <h>// el programa continua per aqui...</h> 
+            </sc>
+            <mem>
+            </mem>
+            <shell>
+                0 ⏎
+                0 1 ⏎
+                0 1 2 ⏎
+                0 1 2 3 ⏎
+                0 1 2 3 4 ⏎
+            </shell>
+        </step>
+    </stepper>
+
+    <h3>Etiquetar loops</h3>
+    <p>Hem vist que el <w>break</w> només finalitza el bucle més interior; on está col·locat el <w>break</w>.</p>
+    <p>També és possible finalitzar un bucle més extern amb <w>break</w>, però és necessari posar una etiqueta al bucle
+    que volem finalitzar.</p>
+    <p>Per a posar una etiqueta a un bucle, es posa el nom de la etiqueta seguit de dos punts <w>:</w>, just abans del bucle.</p>
+
+    <sc java>
+        nometiqueta:
+        for (...) {
+
+        }
+    </sc>
+
+    <p>Després, podem indicar al <w>break</w> quin bucle volem finalitzar indicant el nom de la etiqueta just després 
+        de la paraula <w>break</w>.</p>
+
+    <sc java>
+        bucleX:
+        for (...) {
+            for (...) {
+                for (...) {
+                    break bucleX;   // finalitza el bucle etiquetat amb 'bucleX'
+                }
+            }
+        }
+    </sc>
     
+    <p>El següent exemple mostra com finalitzar un bucle etiquetat:</p>
 
-    <p>Per exemple, si estem fent un programa per a gestionar un institut, segurament necessitem guardar dades dels alumnes.
-        Per exemple, podríem utilitzar aquestes tres variables per a guardar les dades d'un alumne:
-    </p>
+    <stepper style="--sc-h:9; --mm-h:2; --sh-h:1; --ex-h:2; --sc-w:22;    --sc-mh:12; --mm-mh:2; --sh-mh:1; --ex-mh:2;">
+ 
+        <step>
+            <explanation></explanation>
+            <sc java>
+                bucle_de_la_i:
+                for (int i = 0; i &lt; 10; i++) {
+                    bucle_de_la_j:
+                    for (int j = 0; j &lt; 10; j++) {
+                        System.out.print(j + " ");
+                        if (i == j) {
+                            break bucle_de_la_i;
+                        }
+                    }
+                    System.out.println();
+                }        
+            </sc>
+            <mem></mem>
+            <shell></shell>
+        </step>
 
-    <sc java>
-        String nom = "Joan";
-        int edat = 25;
-        float nota = 7.5f;
-    </sc>
-
-    <img style="width: 340px" src="img/c1.png">
-
-    <p>Un objecte ens permetria tenir aquestes tres variables agrupades.</p>
-
-    <h3>Crear objectes</h3>
-
-    <p>Per a crear objectes, primer s'ha de definir una classe especificant quines variables tindran aquests objectes.</p>
-
-    <p>Definim la classe <w>Alumne</w> i especifiquem les tres variables que tindran els objectes d'aquesta classe:</p>
-    <sc java>
-        class Alumne {
-            String nom;
-            int edat;
-            float nota;
-        }
-    </sc>
-
-    <p>Un cop definida la classe, es poden crear objectes a partir d'ella d'aquesta manera:</p>
-
-    <sc java>
-        Alumne unAlumne = new Alumne();
-    </sc>
-
-    <p>A partir de la definició de la classe <w>Alumne</w> hem creat un objecte i l'hem assignat a la variable <w>unAlumne</w>.
-        L'objecte al que fa referència la variable <w>unAlumne</w> conté totes les variables que s'han definit a classe <w>Alumne</w>. 
-    Se sol dir que la definició d'una classe és com el plànol amb el qual s'han de construir els objectes d'aquesta classe.
-    </p>
-
-    <img style="width: 600px"  src="img/c2.png">
-
-    <p>Podem utilitzar la definició de la classe <w>Alumne</w> per a crear nous objectes d'aquesta classe. Per exemple, podem crear 
-    un nou objecte per a guardar les dades d'un altre alumne:</p>
-
-    <sc java>
-        Alumne unAltreAlumne = new Alumne();
-    </sc>
-
-    <img style="width: 600px" src="img/c4.png">
-
-
-    <p>Per a accedir a les variables que hi ha a dintre d'un objecte utilitzarem l'operador punt <w>.</w>:</p>
-
-    <sc java>
-        unAlumne.nom = "Joan";
-        unAlumne.edat = 25;
-        unAlumne.nota = 7.5f;
-    </sc>
-
-    <img style="width: 300px"  src="img/c3.png">
-
-    <p>Així doncs, la sintaxi per a definir una classe és:</p>
-
-    <sc java>
-        class NomClasse {
-            tipus nomCamp;
-            tipus nomCamp2;
-
-            ...
-        }
-    </sc>
-
-    <p>Per a crear objectes d'una classe:</p>
-
-    <sc java>
-        NomClasse nomObjecte = new NomClasse();
-    </sc>
-
-    <p>Per a accedir als camps d'un objecte utilitzarem:</p>
-
-    <sc java>
-        nomObjecte.nomCamp
-    </sc>
-
-    <h3>Arrays d'objectes</h3>
-
-    <p>Si destijem guardar dades de diversos alumnes, posem que en són tres, ens serà convinent utilitzar un array d'objectes de classe <w>Alumne</w>:</p>
-
-    <sc java>
-        Alumne[] alumnes = new Alumne[3];
-
-        alumnes[0] = new Alumne();
-        alumnes[0].nom = "Joan";
-        alumnes[0].edat = 25;
-        alumnes[0].nota = 7.5f;
-
-        alumnes[1] = new Alumne();
-        alumnes[1].nom = "Anna";
-        alumnes[1].edat = 30;
-        alumnes[1].nota = 8.75f;
-
-        alumnes[2] = new Alumne();
-        alumnes[2].nom = "Marc";
-        alumnes[2].edat = 18;
-        alumnes[2].nota = 6.2f;
-    </sc>
-
-    <img src="img/obj1.png">
-    <!--
-    // TODOOO
-    <p>
-    Sharing references
-
-    More than one variable can refer to the same object.
-    </p>
-
-    <p>
-        It is important to understand that two variables refer to the same data in memory rather than two independent copies. Since our class is mutable, we can modify the object using both references.
-    </p>
-    <p>Les variables de les clases s'anomenen camps</p>
-    <p>
-        Nullability
-
-As for any reference types, a variable of a class-type can be null which means it is not initialized yet.
-
-Patient patient = null;
-
-This is a common feature in Java available for classes since they are reference types.
-    </p>
-    <sc java>
-        class Patient {
-
-            String name;
-            int age;
-            float height;
-        }
-    </sc>
-
-    -->
+        <step>
+            <explanation></explanation>
+            <sc java>
+                bucle_de_la_i:
+                for (<h>int i = 0</h>; i &lt; 10; i++) {
+                    bucle_de_la_j:
+                    for (int j = 0; j &lt; 10; j++) {
+                        System.out.print(j + " ");
+                        if (i == j) {
+                            break bucle_de_la_i;
+                        }
+                    }
+                    System.out.println();
+                }        
+            </sc>
+            <mem></mem>
+            <shell></shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                bucle_de_la_i:
+                for (int i = 0; <h>i &lt; 10</h>; i++) {
+                    bucle_de_la_j:
+                    for (int j = 0; j &lt; 10; j++) {
+                        System.out.print(j + " ");
+                        if (i == j) {
+                            break bucle_de_la_i;
+                        }
+                    }
+                    System.out.println();
+                }        
+            </sc>
+            <mem>
+                i: 0
+            </mem>
+            <shell></shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                bucle_de_la_i:
+                for (int i = 0; i &lt; 10; i++) {
+                    bucle_de_la_j:
+                    for (<h>int j = 0</h>; j &lt; 10; j++) {
+                        System.out.print(j + " ");
+                        if (i == j) {
+                            break bucle_de_la_i;
+                        }
+                    }
+                    System.out.println();
+                }        
+            </sc>
+            <mem>
+                i: 0
+            </mem>
+            <shell></shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                bucle_de_la_i:
+                for (int i = 0; i &lt; 10; i++) {
+                    bucle_de_la_j:
+                    for (int j = 0; <h>j &lt; 10</h>; j++) {
+                        System.out.print(j + " ");
+                        if (i == j) {
+                            break bucle_de_la_i;
+                        }
+                    }
+                    System.out.println();
+                }        
+            </sc>
+            <mem>
+                i: 0
+                j: 0
+            </mem>
+            <shell></shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                bucle_de_la_i:
+                for (int i = 0; i &lt; 10; i++) {
+                    bucle_de_la_j:
+                    for (int j = 0; j &lt; 10; j++) {
+                        <h>System.out.print(j + " ");</h>
+                        if (i == j) {
+                            break bucle_de_la_i;
+                        }
+                    }
+                    System.out.println();
+                }        
+            </sc>
+            <mem>
+                i: 0
+                j: 0
+            </mem>
+            <shell></shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                bucle_de_la_i:
+                for (int i = 0; i &lt; 10; i++) {
+                    bucle_de_la_j:
+                    for (int j = 0; j &lt; 10; j++) {
+                        System.out.print(j + " ");
+                        if (<h>i == j</h>) {
+                            break bucle_de_la_i;
+                        }
+                    }
+                    System.out.println();
+                }        
+            </sc>
+            <mem>
+                i: 0
+                j: 0
+            </mem>
+            <shell>
+                0
+            </shell>
+        </step>
+        <step>
+            <explanation>
+                Aquest break finalitzarà el bucle etiquetat amb <w>bucle_de_la_i</w>, és a dir, l'extern.
+            </explanation>
+            <sc java>
+                bucle_de_la_i:
+                for (int i = 0; i &lt; 10; i++) {
+                    bucle_de_la_j:
+                    for (int j = 0; j &lt; 10; j++) {
+                        System.out.print(j + " ");
+                        if (i == j) {
+                            <h>break bucle_de_la_i;</h>
+                        }
+                    }
+                    System.out.println();
+                }        
+            </sc>
+            <mem>
+                i: 0
+                j: 0
+            </mem>
+            <shell>
+                0
+            </shell>
+        </step>
+        <step>
+            <explanation>
+                Aquest break finalitzarà el bucle etiquetat amb <w>bucle_de_la_i</w>, és a dir, l'extern.
+            </explanation>
+            <sc java>
+                bucle_de_la_i:
+                for (int i = 0; i &lt; 10; i++) {
+                    bucle_de_la_j:
+                    for (int j = 0; j &lt; 10; j++) {
+                        System.out.print(j + " ");
+                        if (i == j) {
+                            break bucle_de_la_i;
+                        }
+                    }
+                    System.out.println();
+                }        
+                <h>// el programa continua aquí...</h>
+            </sc>
+            <mem>
+                i: 0
+                j: 0
+            </mem>
+            <shell>
+                0
+            </shell>
+        </step>
+    </stepper>
 </section>
 
-
-
 <section>
+    <h2>Sentència continue</h2>
+    <p>La sentència <w>continue</w> fa que un bucle se salti la iteració actual i vagi a la següent.</p>
+
+    <p>Es pot utilitzar amb tots els tipus de bucles:</p>
+    <ul>
+        <li><p>Dintre del <strong>bucle-for</strong>, la sentència <w>continue</w> fa que immediatament es vagi 
+        directament a la sentència de <strong>modificació</strong>.</p></li>
+        <li><p>Dinre del <strong>while</strong>/<strong>do-while</strong>, fa que es vagi directament a la condició.</p></li>
+    </ul>
+
+    <p>Al següent exemple, només els nombres parells s'imprimeixen. Els senars se salten:</p>
+
+    <stepper style="--sc-h:6; --mm-h:2; --sh-h:1; --ex-h:2; --sc-w:22;    --sc-mh:8; --mm-mh:2; --sh-mh:1; --ex-mh:2;">
+ 
+        <step>
+            <explanation></explanation>
+            <sc java>
+                int n = 5;
+                for (int i = 0; i &lt; n; i++) {
+                    if (i % 2 != 0) {
+                        continue;
+                    }
+                    System.out.print(i + " ");
+                }
+
+                System.out.print("Final");
+            </sc>
+            <mem></mem>
+            <shell></shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                <h>int n = 5;</h>
+                for (int i = 0; i &lt; n; i++) {
+                    if (i % 2 != 0) {
+                        continue;
+                    }
+                    System.out.print(i + " ");
+                }
+
+                System.out.print("Final");
+            </sc>
+            <mem></mem>
+            <shell></shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                int n = 5;
+                for (<h>int i = 0;</h> i &lt; n; i++) {
+                    if (i % 2 != 0) {
+                        continue;
+                    }
+                    System.out.print(i + " ");
+                }
+
+                System.out.print("Final");
+            </sc>
+            <mem>
+                n: 5
+            </mem>
+            <shell></shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                int n = 5;
+                for (int i = 0; <h>i &lt; n</h>; i++) {
+                    if (i % 2 != 0) {
+                        continue;
+                    }
+                    System.out.print(i + " ");
+                }
+
+                System.out.print("Final");
+            </sc>
+            <mem>
+                n: 5
+                i: 0
+            </mem>
+            <shell></shell>
+        </step>
+        <step>
+            <explanation>
+                El <m>0</m> és parell, no s'entra a l'<m>if</m>
+            </explanation>
+            <sc java>
+                int n = 5;
+                for (int i = 0; i &lt; n; i++) {
+                    if (<h>i % 2 != 0</h>) {
+                        continue;
+                    }
+                    System.out.print(i + " ");
+                }
+
+                System.out.print("Final");
+            </sc>
+            <mem>
+                n: 5
+                i: 0
+            </mem>
+            <shell></shell>
+        </step>
+        <step>
+            <explanation>            </explanation>
+            <sc java>
+                int n = 5;
+                for (int i = 0; i &lt; n; i++) {
+                    if (i % 2 != 0) {
+                        continue;
+                    }
+                    <h>System.out.print(i + " ");</h>
+                }
+
+                System.out.print("Final");
+            </sc>
+            <mem>
+                n: 5
+                i: 0
+            </mem>
+            <shell></shell>
+        </step>
+        <step>
+            <explanation>            </explanation>
+            <sc java>
+                int n = 5;
+                for (int i = 0; i &lt; n; <h>i++</h>) {
+                    if (i % 2 != 0) {
+                        continue;
+                    }
+                    System.out.print(i + " ");
+                }
+
+                System.out.print("Final");
+            </sc>
+            <mem>
+                n: 5
+                i: 0
+            </mem>
+            <shell>
+                0
+            </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                int n = 5;
+                for (int i = 0; <h>i &lt; n</h>; i++) {
+                    if (i % 2 != 0) {
+                        continue;
+                    }
+                    System.out.print(i + " ");
+                }
+
+                System.out.print("Final");
+            </sc>
+            <mem>
+                n: 5
+                i: 1
+            </mem>
+            <shell>
+                0
+            </shell>
+        </step>
+        <step>
+            <explanation>
+                L'<m>1</m> és senar, sí que s'entra a l'<m>if</m>
+            </explanation>
+            <sc java>
+                int n = 5;
+                for (int i = 0; i &lt; n; i++) {
+                    if (<h>i % 2 != 0</h>) {
+                        continue;
+                    }
+                    System.out.print(i + " ");
+                }
+
+                System.out.print("Final");
+            </sc>
+            <mem>
+                n: 5
+                i: 1
+            </mem>
+            <shell>
+                0
+            </shell>
+        </step>
+        <step>
+            <explanation>
+                El <m>continue</m> fa que se salti la iteració actual i vagi directament a la modificació
+            </explanation>
+            <sc java>
+                int n = 5;
+                for (int i = 0; i &lt; n; i++) {
+                    if (i % 2 != 0) {
+                        <h>continue;</h>
+                    }
+                    System.out.print(i + " ");
+                }
+
+                System.out.print("Final");
+            </sc>
+            <mem>
+                n: 5
+                i: 1
+            </mem>
+            <shell>
+                0
+            </shell>
+        </step>
+        <step>
+            <explanation>            </explanation>
+            <sc java>
+                int n = 5;
+                for (int i = 0; i &lt; n; <h>i++</h>) {
+                    if (i % 2 != 0) {
+                        continue;
+                    }
+                    System.out.print(i + " ");
+                }
+
+                System.out.print("Final");
+            </sc>
+            <mem>
+                n: 5
+                i: 1
+            </mem>
+            <shell>
+                0
+            </shell>
+        </step>
+        <step>
+            <explanation>            </explanation>
+            <sc java>
+                int n = 5;
+                for (int i = 0; <h>i &lt; n</h>; i++) {
+                    if (i % 2 != 0) {
+                        continue;
+                    }
+                    System.out.print(i + " ");
+                }
+                
+                System.out.print("Final");
+            </sc>
+            <mem>
+                n: 5
+                i: 2
+            </mem>
+            <shell>
+                0
+            </shell>
+        </step>
+        <step>
+            <explanation>El <m>2</m> és parell</explanation>
+            <sc java>
+                int n = 5;
+                for (int i = 0; i &lt; n; i++) {
+                    if (<h>i % 2 != 0</h>) {
+                        continue;
+                    }
+                    System.out.print(i + " ");
+                }
+
+                System.out.print("Final");
+            </sc>
+            <mem>
+                n: 5
+                i: 2
+            </mem>
+            <shell>
+                0
+            </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                int n = 5;
+                for (int i = 0; i &lt; n; i++) {
+                    if (i % 2 != 0) {
+                        continue;
+                    }
+                    <h>System.out.print(i + " ");</h>
+                }
+
+                System.out.print("Final");
+            </sc>
+            <mem>
+                n: 5
+                i: 2
+            </mem>
+            <shell>
+                0
+            </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                int n = 5;
+                for (int i = 0; i &lt; n; <h>i++</h>) {
+                    if (i % 2 != 0) {
+                        continue;
+                    }
+                    System.out.print(i + " ");
+                }
+
+                System.out.print("Final");
+            </sc>
+            <mem>
+                n: 5
+                i: 2
+            </mem>
+            <shell>
+                0 2
+            </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                int n = 5;
+                for (int i = 0; <h>i &lt; n</h>; i++) {
+                    if (i % 2 != 0) {
+                        continue;
+                    }
+                    System.out.print(i + " ");
+                }
+
+                System.out.print("Final");
+            </sc>
+            <mem>
+                n: 5
+                i: 3
+            </mem>
+            <shell>
+                0 2
+            </shell>
+        </step>
+        <step>
+            <explanation>El <m>3</m> és senar</explanation>
+            <sc java>
+                int n = 5;
+                for (int i = 0; i &lt; n; i++) {
+                    if (<h>i % 2 != 0</h>) {
+                        continue;
+                    }
+                    System.out.print(i + " ");
+                }
+
+                System.out.print("Final");
+            </sc>
+            <mem>
+                n: 5
+                i: 3
+            </mem>
+            <shell>
+                0 2
+            </shell>
+        </step>
+        <step>
+            <explanation>Directament a la modificació</explanation>
+            <sc java>
+                int n = 5;
+                for (int i = 0; i &lt; n; i++) {
+                    if (i % 2 != 0) {
+                        <h>continue;</h>
+                    }
+                    System.out.print(i + " ");
+                }
+
+                System.out.print("Final");
+            </sc>
+            <mem>
+                n: 5
+                i: 3
+            </mem>
+            <shell>
+                0 2
+            </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                int n = 5;
+                for (int i = 0; i &lt; n; <h>i++</h>) {
+                    if (i % 2 != 0) {
+                        continue;
+                    }
+                    System.out.print(i + " ");
+                }
+
+                System.out.print("Final");
+            </sc>
+            <mem>
+                n: 5
+                i: 3
+            </mem>
+            <shell>
+                0 2
+            </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                int n = 5;
+                for (int i = 0; <h>i &lt; n</h>; i++) {
+                    if (i % 2 != 0) {
+                        continue;
+                    }
+                    System.out.print(i + " ");
+                }
+
+                System.out.print("Final");
+            </sc>
+            <mem>
+                n: 5
+                i: 4
+            </mem>
+            <shell>
+                0 2
+            </shell>
+        </step>
+        <step>
+            <explanation>El <m>4</m> és parell. No s'entra a l'<m>if</m></explanation>
+            <sc java>
+                int n = 5;
+                for (int i = 0; i &lt; n; i++) {
+                    if (<h>i % 2 != 0</h>) {
+                        continue;
+                    }
+                    System.out.print(i + " ");
+                }
+
+                System.out.print("Final");
+            </sc>
+            <mem>
+                n: 5
+                i: 4
+            </mem>
+            <shell>
+                0 2
+            </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                int n = 5;
+                for (int i = 0; i &lt; n; i++) {
+                    if (i % 2 != 0) {
+                        continue;
+                    }
+                    <h>System.out.print(i + " ");</h>
+                }
+
+                System.out.print("Final");
+            </sc>
+            <mem>
+                n: 5
+                i: 4
+            </mem>
+            <shell>
+                0 2
+            </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                int n = 5;
+                for (int i = 0; i &lt; n; <h>i++</h>) {
+                    if (i % 2 != 0) {
+                        continue;
+                    }
+                    System.out.print(i + " ");
+                }
+
+                System.out.print("Final");
+            </sc>
+            <mem>
+                n: 5
+                i: 4
+            </mem>
+            <shell>
+                0 2 4
+            </shell>
+        </step>
+        <step>
+            <explanation>El bucle acaba quan <w>i: 5</w> ja no és menor a <w>n: 5</w></explanation>
+            <sc java>
+                int n = 5;
+                for (int i = 0; <h>i &lt; n</h>; i++) {
+                    if (i % 2 != 0) {
+                        continue;
+                    }
+                    System.out.print(i + " ");
+                }
+
+                System.out.print("Final");
+            </sc>
+            <mem>
+                n: 5
+                i: 5
+            </mem>
+            <shell>
+                0 2 4
+            </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                int n = 5;
+                for (int i = 0; i &lt; n; i++) {
+                    if (i % 2 != 0) {
+                        continue;
+                    }
+                    System.out.print(i + " ");
+                }
+
+                <h>System.out.print("Final");</h>
+            </sc>
+            <mem>
+                n: 5
+            </mem>
+            <shell>
+                0 2 4
+            </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                int n = 5;
+                for (int i = 0; i &lt; n; i++) {
+                    if (i % 2 != 0) {
+                        continue;
+                    }
+                    System.out.print(i + " ");
+                }
+                
+                System.out.print("Final");
+            </sc>
+            <mem>
+                n: 5
+            </mem>
+            <shell>
+                0 2 4 FINAL
+            </shell>
+        </step>
+    </stepper>
+    
+    <p>En la pràctica la sentència <w>continue</w> s'utilitza molt poc. Normalment es pot reescriure el bucle
+    per a que se salti la iteració sense utilitzar <w>continue</w>. L'anterior programa es podria haver escrit així:</p>
+
+    <sc java>
+        int n = 5;
+        for (int i = 0; i &lt; n; i++) {
+            if (i % 2 == 0) {
+                System.out.print(i + " ");
+            }
+        }
+    </sc>
 
     <quizz>
         <question single>
             <statement>
-                <p>Per a definir una classe amb un camp enter, quina és la forma correcta de fer-ho?</p>
+                <p>Què imprimeix el següent codi?</p>
+                <sc java>
+                    for (int i = 0; i &lt; 11; i++) {
+                        if (i % 2 != 0) {
+                            continue;
+                        } 
+                        System.out.print(i + " ");
+                    }
+                </sc>
             </statement>
-            <o>
-                <sc java>
-                    new LaMevaClasse() { }
-                </sc>
-            </o>
-            <o>
-                <sc java>
-                    class LaMevaClasse(){
-                        int elMeuCamp;
-                    }
-                </sc>
-            </o>
-            <o>
-                <sc java>
-                    LaMevaClasse {
-                        int elMeuCamp;
-                    }
-                </sc>
-            </o>
-            <o correct>
-                <sc java>
-                    class LaMevaClasse {
-                        int elMeuCamp;
-                    }
-                </sc>
-            </o>
-            <o>
-                <sc java>
-                    LaMevaClasse() {
-                        int elMeuCamp;
-                    }
-                </sc>
-            </o>
-        </question>
-        <question multi>
-            <statement>
-                <p>Donada la següent classe:</p>
-                <sc java>
-                    class Point3D {
-                        double x, y, z;
-                    }
-                </sc>
-                <p>Diges les afirmacions correctes sobre ella:</p>
-            </statement>
-            <o correct>La classe té tres camps del mateix tipus</o>
-            <o correct>La sentència <w>Ponint3D p = new Ponint3D();</w> crea un objecte d'aquesta classe</o>
-            <o>La declaració de la classe és incorrecta</o>
-            <o>Els valors dels camps són sempre els mateixos per a tots els objectes de la classe.</o>
-        </question>
-        <question single>
-            <statement>
-                <p>Quina és la paraula-clau per a crear objectes d'una classe?</p>
-            </statement>
-            <o>throw</o>
-            <o>type</o>
-            <o correct>new</o>
-            <o>create</o>
-        </question>
-        <question single>
-            <statement>
-                <p>Suposa qe tens aquesta classe al teu programa:</p>
-                <sc java>
-                    class Hotel {
-                        String name;
-                        String address;
-                        int rating;
-                    }
-                </sc>
-                <p>Hi han diversos objectes d'aquesta classe:</p>
-                <sc java>
-                    Hotel h1 = new Hotel();
-                    Hotel h2 = new Hotel();
-                    Hotel h3 = h2;
-
-                    h2.rating = 9;
-                    h3.rating = 8;
-                    h1.rating = 7;
-                </sc>
-                <p>Quin és el valor de <w>h2.rating</w> després d'executar el codi anterior?</p>
-            </statement>
+            <o correct>0 2 4 6 8 10</o>
+            <o>1 3 5 7 9</o>
+            <o>0 2 4 6 8 10 11</o>
             <o>0</o>
-            <o>9</o>
-            <o>7</o>
-            <o correct>8</o>
-
+        </question>
+        <question text>
+            <statement>
+                <p>Quants números imprimex el següent programa?</p>
+                <sc java> 
+                    for (int i = 0; i &lt; 5; i++) {
+                        System.out.println(i);
+                        if (i &lt; 3) {
+                            continue;
+                        } else {
+                            for (int j = 0; j &lt; 5; j++) {
+                                System.out.println(j);
+                            }
+                        }        
+                    }
+                </sc>
+            </statement>
+            <o>15</o>
         </question>
     </quizz>
 
     <challenge>
         <p>
-            <a href="https://dmoj.elpuig.xeill.net/problem/definirlaclasseco">Definir la classe CompteCorrent</a>
-            <br>
-            <a href="https://dmoj.elpuig.xeill.net/problem/bookclass4">Defineix la classe Book.</a>
-            <br>
-            <a href="https://dmoj.elpuig.xeill.net/problem/innerbox">La capsa dins la capsa.</a>
-            <br>
-            <a href="https://dmoj.elpuig.xeill.net/problem/f2eb6players">Crea els objectes necessaris (videojoc).</a>
-            <br>
+            <a href="https://dmoj.elpuig.xeill.net/problem/galib">Gàlib</a>
         </p>
     </challenge>
 </section>
 
 <section>
-    <h2>Variables primitives i de referència</h2>
+    <h2>Sentència return</h2>
+    <p>La sentència <w>return</w> finalitza l'execució del programa i es pot utilitzar a qualsevol lloc del codi font.</p>
+    <p>Al següent exemple, s'imprimeixen tots els nombres fins a trobar el número 3, moment en el que no finalitza només el bucle sinó el programa sencer:</p>
 
-    <p>Les variables en Java es classifiquen en "primitives" i "de referència".</p>
+    <stepper style="--sc-h:6; --mm-h:2; --sh-h:1; --ex-h:2; --sc-w:22;    --sc-mh:8; --mm-mh:2; --sh-mh:1; --ex-mh:2;">
+ 
+        <step>
+            <explanation></explanation>
+            <sc java>
+                int n = 5;
+                for (int i = 0; i &lt; n; i++) {
+                    if (i == 3) {
+                        return;
+                    }                    
+                    System.out.print(i + " ");
+                }
 
-    <p>Les variables <strong>primitives</strong> són aquelles de tipus <w>int</w>, <w>float</w>, <w>boolean</w>, <w>char</w>, ... Per exemple:</p>
+                System.out.print("Final");
+            </sc>
+            <mem></mem>
+            <shell></shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                <h>int n = 5;</h>
+                for (int i = 0; i &lt; n; i++) {
+                    if (i == 3) {
+                        return;
+                    }                    
+                    System.out.print(i + " ");
+                }
 
-    <sc java>
-        int unNumero;
-        float unAltreNumero;
-        
-        // les variables 'unNumero' i 'unAltreNumero' són variables primitives.
-    </sc>
-    <p>Les variables <strong>de referència</strong> són aquelles les quals el seu tipus és un array o una classe. Per exemple:</p>
+                System.out.print("Final");
+            </sc>
+            <mem></mem>
+            <shell></shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                int n = 5;
+                for (<h>int i = 0;</h> i &lt; n; i++) {
+                    if (i == 3) {
+                        return;
+                    }                    
+                    System.out.print(i + " ");
+                }
 
-    <sc java>
-        int[] unArrayDeNumeros;
-        Alumne alumne;
-        Alumne[] alumnes;
+                System.out.print("Final");
+            </sc>
+            <mem>
+                n: 5
+            </mem>
+            <shell></shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                int n = 5;
+                for (int i = 0; <h>i &lt; n</h>; i++) {
+                    if (i == 3) {
+                        return;
+                    }                    
+                    System.out.print(i + " ");
+                }
 
-        // les variables 'unArrayDeNumeros', 'alumne' i 'alumnes' són variables de referència.
-    </sc>
+                System.out.print("Final");
+            </sc>
+            <mem>
+                n: 5
+                i: 0
+            </mem>
+            <shell></shell>
+        </step>
+        <step>
+            <explanation>
+                El <m>0</m> no és 3, no s'entra a l'<m>if</m>
+            </explanation>
+            <sc java>
+                int n = 5;
+                for (int i = 0; i &lt; n; i++) {
+                    if (<h>i == 3</h>) {
+                        return;
+                    }                    
+                    System.out.print(i + " ");
+                }
+
+                System.out.print("Final");
+            </sc>
+            <mem>
+                n: 5
+                i: 0
+            </mem>
+            <shell></shell>
+        </step>        
+        <step>
+            <explanation>            </explanation>
+            <sc java>
+                int n = 5;
+                for (int i = 0; i &lt; n; i++) {
+                    if (i == 3) {
+                        return;
+                    }                    
+                    <h>System.out.print(i + " ");</h>
+                }
+
+                System.out.print("Final");
+            </sc>
+            <mem>
+                n: 5
+                i: 0
+            </mem>
+            <shell></shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                int n = 5;
+                for (int i = 0; i &lt; n; <h>i++</h>) {
+                    if (i == 3) {
+                        return;
+                    }                    
+                    System.out.print(i + " ");
+                }
+
+                System.out.print("Final");
+            </sc>
+            <mem>
+                n: 5
+                i: 0
+            </mem>
+            <shell>
+                0
+            </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                int n = 5;
+                for (int i = 0; <h>i &lt; n</h>; i++) {
+                    if (i == 3) {
+                        return;
+                    }                    
+                    System.out.print(i + " ");
+                }
+
+                System.out.print("Final");
+            </sc>
+            <mem>
+                n: 5
+                i: 1
+            </mem>
+            <shell>
+                0
+            </shell>
+        </step>
+        <step>
+            <explanation>
+                L'<m>1</m> no és igual a 3, no entra a l'<m>if</m>
+            </explanation>
+            <sc java>
+                int n = 5;
+                for (int i = 0; i &lt; n; i++) {
+                    if (<h>i == 5</h>) {
+                        return;
+                    }                    
+                    System.out.print(i + " ");
+                }
+
+                System.out.print("Final");
+            </sc>
+            <mem>
+                n: 5
+                i: 1
+            </mem>
+            <shell>
+                0
+            </shell>
+        </step>   
+        <step>
+            <explanation></explanation>
+            <sc java>
+                int n = 5;
+                for (int i = 0; i &lt; n; i++) {
+                    if (i == 5) {
+                        return;
+                    }                    
+                    <h>System.out.print(i + " ");</h>
+                }
+
+                System.out.print("Final");
+            </sc>
+            <mem>
+                n: 5
+                i: 1
+            </mem>
+            <shell>
+                0
+            </shell>
+        </step>                
+        <step>
+            <explanation>            </explanation>
+            <sc java>
+                int n = 5;
+                for (int i = 0; i &lt; n; <h>i++</h>) {
+                    if (i == 3) {
+                        return;
+                    }                    
+                    System.out.print(i + " ");
+                }
+
+                System.out.print("Final");
+            </sc>
+            <mem>
+                n: 5
+                i: 1
+            </mem>
+            <shell>
+                0 1
+            </shell>
+        </step>
+        <step>
+            <explanation>            </explanation>
+            <sc java>
+                int n = 5;
+                for (int i = 0; <h>i &lt; n</h>; i++) {
+                    if (i == 3) {
+                        return;
+                    }
+                    System.out.print(i + " ");
+                }
+
+                System.out.print("Final");
+            </sc>
+            <mem>
+                n: 5
+                i: 2
+            </mem>
+            <shell>
+                0 1
+            </shell>
+        </step>
+        <step>
+            <explanation>
+                El <m>2</m> no és igual a 3, no entra a l'<m>if</m>
+            </explanation>
+            <sc java>
+                int n = 5;
+                for (int i = 0; i &lt; n; i++) {
+                    if (<h>i == 3</h>) {
+                        return;
+                    }
+                    System.out.print(i + " ");
+                }
+
+                System.out.print("Final");
+            </sc>
+            <mem>
+                n: 5
+                i: 2
+            </mem>
+            <shell>
+                0 1
+            </shell>
+        </step>        
+        <step>
+            <explanation></explanation>
+            <sc java>
+                int n = 5;
+                for (int i = 0; i &lt; n; i++) {
+                    if (i == 3) {
+                        return;
+                    }                    
+                    <h>System.out.print(i + " ");</h>
+                }
+
+                System.out.print("Final");
+            </sc>
+            <mem>
+                n: 5
+                i: 2
+            </mem>
+            <shell>
+                0 1
+            </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                int n = 5;
+                for (int i = 0; i &lt; n; <h>i++</h>) {
+                    if (i == 3) {
+                        return;
+                    }
+                    System.out.print(i + " ");
+                }
+
+                System.out.print("Final");
+            </sc>
+            <mem>
+                n: 5
+                i: 2
+            </mem>
+            <shell>
+                0 1 2
+            </shell>
+        </step>
+        <step>
+            <explanation></explanation>
+            <sc java>
+                int n = 5;
+                for (int i = 0; <h>i &lt; n</h>; i++) {
+                    if (i == 3) {
+                        return;
+                    }
+                    System.out.print(i + " ");
+                }
+
+                System.out.print("Final");
+            </sc>
+            <mem>
+                n: 5
+                i: 3
+            </mem>
+            <shell>
+                0 1 2
+            </shell>
+        </step>
+        <step>
+            <explanation>El <m>3</m> és el número que estem buscant</explanation>
+            <sc java>
+                int n = 5;
+                for (int i = 0; i &lt; n; i++) {
+                    if (<h>i == 3</h>) {
+                        return;
+                    }                    
+                    System.out.print(i + " ");
+                }
+
+                System.out.print("Final");
+            </sc>
+            <mem>
+                n: 5
+                i: 3
+            </mem>
+            <shell>
+                0 1 2
+            </shell>
+        </step>
+        <step>
+            <explanation>Per tant executem la instrucció de retorn i el programa finalitza inmediatament</explanation>
+            <sc java>
+                int n = 5;
+                for (int i = 0; i &lt; n; i++) {
+                    if (i == 3) {
+                        <h>return;</h>
+                    }
+                    System.out.print(i + " ");
+                }
+
+                System.out.print("Final");
+            </sc>
+            <mem>
+                n: 5
+                i: 3
+            </mem>
+            <shell>
+                0 1 2
+            </shell>
+        </step>        
+    </stepper>
     
-    <p>Les variables prmitives emmagatzemen el valor que se les assigna, mentre que les variables de referència emmgatzemen una 
-        referència a l'objecte o array que se les assigna.
-    </p>
+    <p>En la pràctica la sentència <w>return</w> no es sol utilitzar dins de bucles. Normalment es pot reescriure el bucle
+    per a que se salti les execucions amb <w>break</w> i s'acabi el programa per si sol. L'anterior programa es podria haver escrit així:</p>
 
     <sc java>
-        int unNumero = 99;
-
-        int[] tresNumeros = new int[3];
-
-        class Alumne {
-            int edat;
-            float nota;
+        int n = 5;
+        for (int i = 0; i &lt; n; i++) {
+            if (i == 3) {
+                break;
+            }
+            else if (i % 2 == 0) {
+                System.out.print(i + " ");
+            }
         }
 
-        Alumne alumne = new Alumne();
+        if(i != 3) System.out.print("Final");
     </sc>
 
-    <img src="img/ref1.png">
-
-    <p>La diferència entre emmagatzemar el valor o la referència s'observa quan assignem el valor d'una variable a un altra, 
-        de forma directa amb <w>=</w>, o quan fem el pas de paràmetres a mètodes.
-    </p>
-
-    <p>Vejem què passa quan assignem una variable <strong>primitiva</strong> a una altra:</p>
-
-    <stepper class="stepper2">
-        <step>
-            <explanation>
-                 <img src="img/refb0.png">
-            </explanation>
-            <sc java>
-                int numA = 98 + 1;
-        
-                int numB = numA;
-        
-                numB = 55;
-        
-                System.out.println(numA);       // 99
-                System.out.println(numB);       // 55
-            </sc>
-        </step>
-        <step>
-            <explanation>
-                 <img src="img/refb0.png">
-            </explanation>
-            <sc java>
-                int numA = <h>98 + 1</h>;
-        
-                int numB = numA;
-        
-                numB = 55;
-        
-                System.out.println(numA);       // 99
-                System.out.println(numB);       // 55
-            </sc>
-        </step>
-        <step>
-            <explanation>
-                <img src="img/refb1.png">
-            </explanation>
-            <sc java>
-                <h>int numA = 98 + 1;</h>
-        
-                int numB = numA;
-        
-                numB = 55;
-        
-                System.out.println(numA);       // 99
-                System.out.println(numB);       // 55
-            </sc>
-        </step>
-        <step>
-            <explanation>
-                  <img src="img/refb2.png">
-            </explanation>
-            <sc java>
-                int numA = 98 + 1;
-        
-                <h>int numB = numA;</h>
-        
-                numB = 55;
-        
-                System.out.println(numA);       // 99
-                System.out.println(numB);       // 55
-            </sc>
-        </step>
-        <step>
-            <explanation>
-                  <img src="img/refb3.png">
-            </explanation>
-            <sc java>
-                int numA = 98 + 1;
-        
-                int numB = numA;
-        
-                <h>numB = 55;</h>
-        
-                System.out.println(numA);       // 99
-                System.out.println(numB);       // 55
-            </sc>
-        </step>
-        <step>
-            <explanation>
-                  <img src="img/refb4.png">
-            </explanation>
-            <sc java>
-                int numA = 98 + 1;
-        
-                int numB = numA;
-        
-                numB = 55;
-        
-                <h>System.out.println(numA);</h>       // 99
-                System.out.println(numB);       // 55
-            </sc>
-        </step>
-        <step>
-            <explanation>
-                  <img src="img/refb4.png">
-            </explanation>
-            <sc java>
-                int numA = 98 + 1;
-        
-                int numB = numA;
-        
-                numB = 55;
-        
-                System.out.println(numA);       // 99
-                <h>System.out.println(numB);</h>       // 55
-            </sc>
-        </step>
-        
-    </stepper>
-   
-    <p>Vejem què passa quan assignem una variable <strong>de referència</strong> a una altra:</p>
-    <stepper class="stepper2">
-        <step>
-            <explanation>
-                <img src="img/refc0.png">
-            </explanation>
-            <sc java>
-                class Alumne {
-                    float nota;
-                }
-
-                Alumne aluA = new Alumne();
-                aluA.nota = 10;
-
-                Alumne aluB = aluA;
-                aluB.nota = 5;
-
-                System.out.println(aluA.nota);
-                System.out.println(aluB.nota);
-            </sc>
-        </step>
-        <step>
-            <explanation>
-                <img src="img/refc0.png">
-            </explanation>
-            <sc java>
-                class Alumne {
-                    float nota;
-                }
-
-                Alumne aluA = <h>new Alumne()</h>;
-                aluA.nota = 10;
-
-                Alumne aluB = aluA;
-                aluB.nota = 5;
-
-                System.out.println(aluA.nota);
-                System.out.println(aluB.nota);
-            </sc>
-        </step>
-        <step>
-            <explanation>
-                <img src="img/refc1.png">
-            </explanation>
-            <sc java>
-                class Alumne {
-                    float nota;
-                }
-
-                <h>Alumne aluA = new Alumne();</h>
-                aluA.nota = 10;
-
-                Alumne aluB = aluA;
-                aluB.nota = 5;
-
-                System.out.println(aluA.nota);
-                System.out.println(aluB.nota);
-            </sc>
-        </step>
-        <step>
-            <explanation>
-                <img src="img/refc2.png">
-            </explanation>
-            <sc java>
-                class Alumne {
-                    float nota;
-                }
-
-                Alumne aluA = new Alumne();
-                <h>aluA.nota = 10;</h>
-
-                Alumne aluB = aluA;
-                aluB.nota = 5;
-
-                System.out.println(aluA.nota);
-                System.out.println(aluB.nota);
-            </sc>
-        </step>
-        <step>
-            <explanation>
-                <img src="img/refc3.png">
-            </explanation>
-            <sc java>
-                class Alumne {
-                    float nota;
-                }
-
-                Alumne aluA = new Alumne();
-                aluA.nota = 10;
-
-                <h>Alumne aluB = aluA;</h>
-                aluB.nota = 5;
-
-                System.out.println(aluA.nota);
-                System.out.println(aluB.nota);
-            </sc>
-        </step>
-        <step>
-            <explanation>
-                <img src="img/refc4.png">
-            </explanation>
-            <sc java>
-                class Alumne {
-                    float nota;
-                }
-
-                Alumne aluA = new Alumne();
-                aluA.nota = 10;
-
-                Alumne aluB = aluA;
-                <h>aluB.nota = 5;</h>
-
-                System.out.println(aluA.nota);
-                System.out.println(aluB.nota);
-            </sc>
-        </step>
-        <step>
-            <explanation>
-                <img src="img/refc5.png">
-            </explanation>
-            <sc java>
-                class Alumne {
-                    float nota;
-                }
-
-                Alumne aluA = new Alumne();
-                aluA.nota = 10;
-
-                Alumne aluB = aluA;
-                aluB.nota = 5;
-
-                <h>System.out.println(aluA.nota);</h>
-                System.out.println(aluB.nota);
-            </sc>
-        </step>
-        <step>
-            <explanation>
-                <img src="img/refc5.png">
-            </explanation>
-            <sc java>
-                class Alumne {
-                    float nota;
-                }
-
-                Alumne aluA = new Alumne();
-                aluA.nota = 10;
-
-                Alumne aluB = aluA;
-                aluB.nota = 5;
-
-                System.out.println(aluA.nota);
-                <h>System.out.println(aluB.nota);</h>
-
-            </sc>
-        </step>
-    </stepper>
+    <quizz>
+        <question single>
+            <statement>
+                <p>Què imprimeix el següent codi?</p>
+                <sc java>
+                    for (int i = 0; i &lt; 11; i++) {
+                        if (i % 2 != 0) {
+                            return;
+                        } 
+                        System.out.print(i + " ");
+                    }
+                </sc>
+            </statement>
+            <o>0 2 4 6 8 10</o>
+            <o>1 3 5 7 9</o>
+            <o>0 2 4 6 8 10 11</o>
+            <o correct>0</o>
+        </question>
+        <question text>
+            <statement>
+                <p>Quants números imprimex el següent programa?</p>
+                <sc java> 
+                    for (int i = 0; i &lt; 5; i++) {
+                        System.out.println(i);
+                        if (i &lt; 3) {
+                            continue;
+                        } else {
+                            return;
+                        }        
+                    }
+                </sc>
+            </statement>
+            <o>4</o>
+        </question>
+    </quizz>
 </section>
+
+
+

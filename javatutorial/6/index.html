@@ -4,2296 +4,561 @@
 <script type="module" src="/sofi/js/script.js"></script>
 <link rel="stylesheet" href="/sofi/css/estil.css">
 
-<nav></nav> 
+<nav></nav>
 <header>
-    <h1>Sentències de repetició</h1>
+    <h1>Sentències condicionals</h1>
+
     <abstract>
-        <p>Les sentències de repetició permeten repetir l'execució 
-            d'un bloc de codi més d'una vegada.
-            Per a fer-ho, Java proporciona les sentències <w>for</w>, <w>while</w>
-            i <w>do-while</w>.
+        <p>En aquesta activitat aprendràs a fer ús de les sentències condicionals, que permeten
+            a un programa fer distintes accions depenent del valor d'una expressió Booleana.
         </p>
-        <p>Aprendràs:</p>
-        <check>A utilitzar la sentència <strong>for</strong></check>
-        <check>A utilitzar les sentències <strong>while</strong> i <strong>do-while</strong></check>
+        <p>Aprendràs:</p>        
+        <check>A utilitzar la sentència <strong>switch</strong>.</check>
+        <check>A utilitzar la sentència <strong>if-else</strong>.</check>
     </abstract>
 </header>
 
 <section>
-    <h2>Sentència For</h2>
-
-    <p>La sentència <w>for</w> proporciona una forma comptacta 
-    d'iterar (<em>repetir</em>) un bloc de codi. Habitualment 
-    se l'anomena <strong>bucle for</strong>.</p>
-
-    <p>El <w>for</w> té la següent sintaxi:</p>
+    <h2>Sentència switch</h2>
+    <p>L'ús més habitual de la sentència <w>switch</w> és quan es necessita realitzar diferents accions en funció del 
+    valor d'una variable o expressió.</p>
+    <p>Un ús molt típic es dona en les pantalles que mostren un menú d'opcions. Per exemple, escollir diferents accions
+        en el menú d'un joc. Utilitzant la sentència <w>if-else</w> es pot fer així:</p>
 
     <sc java>
-        for (inicialitzacio; condicio; modificacio) {
-            // bloc de codi
+        System.out.println("1-Start\n2-Load\n3-Help\n4-Exit"); // es mostra el menu
+
+        int action = scanner.nextInt(); // l'usuari escull una opcio
+        
+        if (action == 1) {
+            System.out.println("Starting a new game...");
+        } else if (action == 2) {
+            System.out.println("Loading a saved game");
+        } else if (action == 3) {
+            System.out.println("Displaying help...");
+        } else if (action == 4) {
+            System.out.println("Exiting...");
+        } else {
+            System.out.println("Unsuitable action, please, try again");
         }
     </sc>
 
-    <p>Les parts del <em>bucle</em> són:</p>
+    <p>Aquest codi es perfectament vàlid, però en cas de que hi hagi moltes branques pot arribar a ser molt dens.</p>
 
-    <ul>
-        <li><p><strong>inicialització</strong>: s'executa una vegada abans 
-        que comenci el bucle. Normalment s'utilitza per a inicialitzar variables.
-        Aquestes variables només es poden utilitzar a dintre del bucle.</p></li>
-        <li><p><strong>condició</strong>: és una expressió booleana que determina
-        si s'ha de fer la següent iteració del bucle. Si és <w>false</w> el 
-        bucle finalitza.</p></li>
-        <li><p><strong>modificació</strong>: s'executa després de cada iteració 
-        del bucle. Normalment s'utilitza per a modificar les variables del bucle.</p></li>
-    </ul>
+    <h3>switch, case, default</h3>
+    <p>La sentència <w>switch</w> proporciona una forma d'escollir entre múltiples accions en el cas de que una 
+    variable o expressió tingui un valor o un altre.</p>
 
-    <p>A dintre del bloc del bucle, el programa pot realitzar qualssevol sentències vàlides.
-        Pot inclús tenir altres sentències de bucle.
+    <p>Utilitzant la sentència <w>switch</w> el codi anterior es veuria així:</p>
+
+    <sc java>
+        System.out.println("1-Start\n2-Load\n3-Help\n4-Exit"); // es mostra el menu
+
+        int action = scanner.nextInt(); // l'usuari escull una opcio
+
+        switch (action) {
+            case 1:
+                System.out.println("Starting a new game...");
+                break;
+            case 2:
+                System.out.println("Loading a saved game");
+                break;
+            case 3:
+                System.out.println("Displaying help...");
+                break;
+            case 4:
+                System.out.println("Exiting...");
+                break;
+            default:
+                System.out.println("Unsuitable action, please, try again");
+        }
+    </sc>
+
+    <p>Tot i que no hem explicat les paraules-clau <w>switch</w>, <w>case</w>, <w>default</w> i <w>break</w>, 
+    et pots fer una idea del que fa el codi.</p>
+
+    <p>La forma més general d'utilització de la sentència <w>switch</w> és aquesta:</p>
+
+    <sc java>
+        switch (expressio) {
+            case valor1:
+                // fer accio1
+                break;
+            case valor2:
+                // fer accio2
+                break;
+            
+            //... altres casos
+            
+            case valorN:
+                // fer accio N
+                break;
+            default:
+                // fer accio 'per defecte'
+        }
+    </sc>
+
+    <p><w>switch</w> avalua l'expressió (o variable), i després mira amb quin valor de cada cláusula <w>case</w> coincideix, 
+    i aleshores executa les sentències que hi hagi a partir d'aquí fins que trobi un <w>break</w>. En cas de que l'expressió no 
+    coincideixi amb el valor de cap <w>case</w>, s'executen les sentències que hi hagi al <w>default</w>.</p>
+
+    <p>Veiem un exmple d'una aplicació per a un supermercat on els clients escriuen el nom d'un producte i l'aplicació 
+        informa del seu preu:
     </p>
 
-    <p>El bucle <w>for</w> s'utilitza freqüentment per a iterar en un rang de valors. Anem 
-    a escriure un bucle-for per a imprimir números de 0 a 9 a la mateixa línia:</p>
-
-    <stepper style="--sc-h:5; --mm-h:2; --sh-h:1; --ex-h:2; --sc-w:22;    --sc-mh:5; --mm-mh:2; --sh-mh:1; --ex-mh:3;">
-        <step>
-            <explanation>
-            </explanation>
-            <sc java>
-                int n = 10;
-                for (int i = 0; i &lt; n; i++) {
-                    System.out.print(i + " ");
-                }  
-            </sc>
-            <mem>
-
-            </mem>
-            <shell>
-            </shell>
-        </step>
-        <step>
-            <explanation>
-            </explanation>
-            <sc java>
-                <h>int n = 10;</h>
-                for (int i = 0; i &lt; n; i++) {
-                    System.out.print(i + " ");
-                }  
-            </sc>
-            <mem>
-
-            </mem>
-            <shell>
-            </shell>
-        </step>
-        <step>
-            <explanation>
-                La primera vegada s'executa la <strong>inicialització</strong>
-            </explanation>
-            <sc java>
-                int n = 10;
-                for (<h>int i = 0</h>; i &lt; n; i++) {
-                    System.out.print(i + " ");
-                }  
-            </sc>
-            <mem>
-                <b>n: 10</b>
-            </mem>
-            <shell>
-            </shell>
-        </step>
-        <step>
-            <explanation>
-                S'avalua la <strong>condició</strong> <w>i &lt; n</w>, com 0 és menor que 10, es fa una iteració.
-            </explanation>
-            <sc java>
-                int n = 10;
-                for (int i = 0; <h>i &lt; n</h>; i++) {
-                    System.out.print(i + " ");
-                }  
-            </sc>
-            <mem>
-                n: 10
-                <b>i: 0</b>
-            </mem>
-            <shell>
-            </shell>
-        </step>
-        <step>
-            <explanation>
-            </explanation>
-            <sc java>
-                int n = 10;
-                for (int i = 0; i &lt; n; i++) {
-                    <h>System.out.print(i + " ")</h>;
-                }  
-            </sc>
-            <mem>
-                n: 10
-                i: 0
-            </mem>
-            <shell>
-
-            </shell>
-        </step>
-        <step>
-            <explanation>
-                Després de cada iteració es fa la <strong>modificació</strong>
-            </explanation>
-            <sc java>
-                int n = 10;
-                for (int i = 0; i &lt; n; <h>i++</h>) {
-                    System.out.print(i + " ");
-                }  
-            </sc>
-            <mem>
-                n: 10
-                i: 0
-            </mem>
-            <shell>
-                0␣
-            </shell>
-        </step>
-        <step>
-            <explanation>
-                Es torna a avaluar la <strong>condició</strong> per veure si s'ha de fer una altra iteració.
-                Com <w>1 &lt; 10</w> <u>no</u> és <w>false</w>, es torna a iterar.
-            </explanation>
-            <sc java>
-                int n = 10;
-                for (int i = 0; <h>i &lt; n;</h> i++) {
-                    System.out.print(i + " ");
-                }  
-            </sc>
-            <mem>
-                n: 10
-                <b>i: 1</b>
-            </mem>
-            <shell>
-                0␣
-            </shell>
-        </step>
-        <step>
-            <explanation>
-            </explanation>
-            <sc java>
-                int n = 10;
-                for (int i = 0; i &lt; n; i++) {
-                    <h>System.out.print(i + " ");</h>
-                }  
-            </sc>
-            <mem>
-                n: 10
-                i: 1
-            </mem>
-            <shell>
-                0␣
-            </shell>
-        </step>
-        <step>
-            <explanation>
-                Després de cada iteració es fa la <strong>modificacio</strong>
-            </explanation>
-            <sc java>
-                int n = 10;
-                for (int i = 0; i &lt; n; <h>i++</h>) {
-                    System.out.print(i + " ");
-                }  
-            </sc>
-            <mem>
-                n: 10
-                i: 1
-            </mem>
-            <shell>
-                0␣1␣
-            </shell>
-        </step>
-        <step>
-            <explanation>
-                Es torna a comprovar la <strong>condició</strong>. Com <w>i</w> segueix sent menor que <w>n</w>, 
-                es fa una nova iteració
-            </explanation>
-            <sc java>
-                int n = 10;
-                for (int i = 0; <h>i &lt; n</h>; i++) {
-                    System.out.print(i + " ");
-                }  
-            </sc>
-            <mem>
-                n: 10
-                <b>i: 2</b>
-            </mem>
-            <shell>
-                0␣1␣
-            </shell>
-        </step>
-        <step>
-            <explanation>
-                Es torna a comprovar la <strong>condició</strong>. Com <w>i</w> segueix sent menor que <w>n</w>, 
-                es fa una nova iteració
-            </explanation>
-            <sc java>
-                int n = 10;
-                for (int i = 0; i &lt; n; i++) {
-                    <h>System.out.print(i + " ");</h>
-                }  
-            </sc>
-            <mem>
-                n: 10
-                i: 2
-            </mem>
-            <shell>
-                0␣1␣
-            </shell>
-        </step>
-        <step>
-            <explanation>
-            </explanation>
-            <sc java>
-                int n = 10;
-                for (int i = 0; i &lt; n; <h>i++</h>) {
-                    System.out.print(i + " ");
-                }  
-            </sc>
-            <mem>
-                n: 10
-                i: 2
-            </mem>
-            <shell>
-                0␣1␣2␣
-            </shell>
-        </step>
-        <step>
-            <explanation>
-            </explanation>
-            <sc java>
-                int n = 10;
-                for (int i = 0; <h>i &lt; n</h>; i++) {
-                    System.out.print(i + " ");
-                }  
-            </sc>
-            <mem>
-                n: 10
-                <b>i: 3</b>
-            </mem>
-            <shell>
-                0␣1␣2␣
-            </shell>
-        </step>
-        <step>
-            <explanation>
-            </explanation>
-            <sc java>
-                int n = 10;
-                for (int i = 0; i &lt; n; i++) {
-                    <h>System.out.print(i + " ");</h>
-                }  
-            </sc>
-            <mem>
-                n: 10
-                i: 3
-            </mem>
-            <shell>
-                0␣1␣2␣
-            </shell>
-        </step>
-        <step>
-            <explanation>
-            </explanation>
-            <sc java>
-                int n = 10;
-                for (int i = 0; i &lt; n; <h>i++</h>) {
-                    System.out.print(i + " ");
-                }  
-            </sc>
-            <mem>
-                n: 10
-                i: 3
-            </mem>
-            <shell>
-                0␣1␣2␣3␣
-            </shell>
-        </step>
-        <step>
-            <explanation>
-            </explanation>
-            <sc java>
-                int n = 10;
-                for (int i = 0; <h>i &lt; n</h>; i++) {
-                    System.out.print(i + " ");
-                }  
-            </sc>
-            <mem>
-                n: 10
-                <b>i: 4</b>
-            </mem>
-            <shell>
-                0␣1␣2␣3␣
-            </shell>
-        </step>
-        <step>
-            <explanation>
-            </explanation>
-            <sc java>
-                int n = 10;
-                for (int i = 0; i &lt; n; i++) {
-                    <h>System.out.print(i + " ");</h>
-                }  
-            </sc>
-            <mem>
-                n: 10
-                i: 4
-            </mem>
-            <shell>
-                0␣1␣2␣3␣
-            </shell>
-        </step>
-        
-
-
-        <step>
-            <explanation>
-            </explanation>
-            <sc java>
-                int n = 10;
-                for (int i = 0; i &lt; n; <h>i++</h>) {
-                    System.out.print(i + " ");
-                }  
-            </sc>
-            <mem>
-                n: 10
-                i: 4
-            </mem>
-            <shell>
-                0␣1␣2␣3␣4␣
-            </shell>
-        </step>
-        <step>
-            <explanation>
-            </explanation>
-            <sc java>
-                int n = 10;
-                for (int i = 0; <h>i &lt; n</h>; i++) {
-                    System.out.print(i + " ");
-                }  
-            </sc>
-            <mem>
-                n: 10
-                <b>i: 5</b>
-            </mem>
-            <shell>
-                0␣1␣2␣3␣4␣
-            </shell>
-        </step>
-        <step>
-            <explanation>
-            </explanation>
-            <sc java>
-                int n = 10;
-                for (int i = 0; i &lt; n; i++) {
-                    <h>System.out.print(i + " ");</h>
-                }  
-            </sc>
-            <mem>
-                n: 10
-                i: 5
-            </mem>
-            <shell>
-                0␣1␣2␣3␣4␣
-            </shell>
-        </step>
-
-
-        <step>
-            <explanation>
-            </explanation>
-            <sc java>
-                int n = 10;
-                for (int i = 0; i &lt; n; <h>i++</h>) {
-                    System.out.print(i + " ");
-                }  
-            </sc>
-            <mem>
-                n: 10
-                i: 5
-            </mem>
-            <shell>
-                0␣1␣2␣3␣4␣5␣
-            </shell>
-        </step>
-        <step>
-            <explanation>
-            </explanation>
-            <sc java>
-                int n = 10;
-                for (int i = 0; <h>i &lt; n</h>; i++) {
-                    System.out.print(i + " ");
-                }  
-            </sc>
-            <mem>
-                n: 10
-                <b>i: 6</b>
-            </mem>
-            <shell>
-                0␣1␣2␣3␣4␣5␣
-            </shell>
-        </step>
-        <step>
-            <explanation>
-            </explanation>
-            <sc java>
-                int n = 10;
-                for (int i = 0; i &lt; n; i++) {
-                    <h>System.out.print(i + " ");</h>
-                }  
-            </sc>
-            <mem>
-                n: 10
-                i: 6
-            </mem>
-            <shell>
-                0␣1␣2␣3␣4␣5␣
-            </shell>
-        </step>
-
-
-        <step>
-            <explanation>
-            </explanation>
-            <sc java>
-                int n = 10;
-                for (int i = 0; i &lt; n; <h>i++</h>) {
-                    System.out.print(i + " ");
-                }  
-            </sc>
-            <mem>
-                n: 10
-                i: 6
-            </mem>
-            <shell>
-                0␣1␣2␣3␣4␣5␣6␣
-            </shell>
-        </step>
-        <step>
-            <explanation>
-            </explanation>
-            <sc java>
-                int n = 10;
-                for (int i = 0; <h>i &lt; n</h>; i++) {
-                    System.out.print(i + " ");
-                }  
-            </sc>
-            <mem>
-                n: 10
-                <b>i: 7</b>
-            </mem>
-            <shell>
-                0␣1␣2␣3␣4␣5␣6␣
-            </shell>
-        </step>
-        <step>
-            <explanation>
-            </explanation>
-            <sc java>
-                int n = 10;
-                for (int i = 0; i &lt; n; i++) {
-                    <h>System.out.print(i + " ");</h>
-                }  
-            </sc>
-            <mem>
-                n: 10
-                i: 7
-            </mem>
-            <shell>
-                0␣1␣2␣3␣4␣5␣6␣
-            </shell>
-        </step>
-
-
-        <step>
-            <explanation>
-            </explanation>
-            <sc java>
-                int n = 10;
-                for (int i = 0; i &lt; n; <h>i++</h>) {
-                    System.out.print(i + " ");
-                }  
-            </sc>
-            <mem>
-                n: 10
-                i: 7
-            </mem>
-            <shell>
-                0␣1␣2␣3␣4␣5␣6␣7␣
-            </shell>
-        </step>
-        <step>
-            <explanation>
-            </explanation>
-            <sc java>
-                int n = 10;
-                for (int i = 0; <h>i &lt; n</h>; i++) {
-                    System.out.print(i + " ");
-                }  
-            </sc>
-            <mem>
-                n: 10
-                <b>i: 8</b>
-            </mem>
-            <shell>
-                0␣1␣2␣3␣4␣5␣6␣7␣
-            </shell>
-        </step>
-        <step>
-            <explanation>
-            </explanation>
-            <sc java>
-                int n = 10;
-                for (int i = 0; i &lt; n; i++) {
-                    <h>System.out.print(i + " ");</h>
-                }  
-            </sc>
-            <mem>
-                n: 10
-                i: 8
-            </mem>
-            <shell>
-                0␣1␣2␣3␣4␣5␣6␣7␣
-            </shell>
-        </step>
-
-
-        <step>
-            <explanation>
-            </explanation>
-            <sc java>
-                int n = 10;
-                for (int i = 0; i &lt; n; <h>i++</h>) {
-                    System.out.print(i + " ");
-                }  
-            </sc>
-            <mem>
-                n: 10
-                i: 8
-            </mem>
-            <shell>
-                0␣1␣2␣3␣4␣5␣6␣7␣8␣
-            </shell>
-        </step>
-        <step>
-            <explanation>
-            </explanation>
-            <sc java>
-                int n = 10;
-                for (int i = 0; <h>i &lt; n</h>; i++) {
-                    System.out.print(i + " ");
-                }  
-            </sc>
-            <mem>
-                n: 10
-                <b>i: 9</b>
-            </mem>
-            <shell>
-                0␣1␣2␣3␣4␣5␣6␣7␣8␣
-            </shell>
-        </step>
-        <step>
-            <explanation>
-            </explanation>
-            <sc java>
-                int n = 10;
-                for (int i = 0; i &lt; n; i++) {
-                    <h>System.out.print(i + " ");</h>
-                }  
-            </sc>
-            <mem>
-                n: 10
-                i: 9
-            </mem>
-            <shell>
-                0␣1␣2␣3␣4␣5␣6␣7␣8␣
-            </shell>
-        </step>
-
-
-
-        <step>
-            <explanation>
-            </explanation>
-            <sc java>
-                int n = 10;
-                for (int i = 0; i &lt; n; <h>i++</h>) {
-                    System.out.print(i + " ");
-                }  
-            </sc>
-            <mem>
-                n: 10
-                i: 9
-            </mem>
-            <shell>
-                0␣1␣2␣3␣4␣5␣6␣7␣8␣9␣
-            </shell>
-        </step>
-        <step>
-            <explanation>
-                En aquest punt la <strong>condició</strong> s'avalua a <w>false</w> (10 <u>no</u> és menor que 10), 
-                així que ja no es fa cap més iteració.
-            </explanation>
-            <sc java>
-                int n = 10;
-                for (int i = 0; <h>i &lt; n</h>; i++) {
-                    System.out.print(i + " ");
-                }  
-            </sc>
-            <mem>
-                n: 10
-                <b>i: 10</b>
-            </mem>
-            <shell>
-                0␣1␣2␣3␣4␣5␣6␣7␣8␣9␣
-            </shell>
-        </step>
-        <step>
-            <explanation>
-                En aquest punt la <strong>condició</strong> s'avalua a <w>false</w> (10 <u>no</u> és menor que 10), 
-                així que ja no es fa cap més iteració.
-            </explanation>
-            <sc java>
-                int n = 10;
-                for (int i = 0; i &lt; n; i++) {
-                    System.out.print(i + " ");
-                }  
-                <h>// el programa continuaria per aqui ...</h>
-            </sc>
-            <mem>
-                n: 10
-                       <comment>// la variable i s'esborra de la memoria</comment>
-            </mem>
-            <shell>
-                0␣1␣2␣3␣4␣5␣6␣7␣8␣9␣
-            </shell>
-        </step>
-        
-    </stepper>
-
-    <p>Les variables declarades a la sentència d'<strong>inicialització</strong> només són visibles en l'àmbit (<em>scope</em>) del 
-    bucle -incloent totes les seves parts: condició, bloc i modificació-.</p>
-
-    <info>
-        <p>És una pràctica molt comuna entre els programadors anomenar les variables dels bucles amb <w>i</w>, <w>j</w>, <w>k</w>, ...
-        S'especula que l'origen ve dels <a href="https://en.wikipedia.org/wiki/Quaternion">Quaternions de Hamilton</a>.    
-        </p>
-    </info>
-
-    <p>Veiem un altre exemple. Calculem la suma dels números enters des de <w>ini</w> fins a <w>fin</w>.</p>
-
-    <p>Farem una execució del programa per a <w>ini = 2</w> i <w>fin = 5</w>, aleshores la suma serà <w>2 + 3 + 4 + 5 = 14</w>.</p>
-    <stepper style="--sc-h:9; --mm-h:4; --sh-h:3; --ex-h:1; --sc-w:22;    --sc-mh:9; --mm-mh:4; --sh-mh:3; --ex-mh:1;">
-        <step>
-            <explanation></explanation>
-            <sc java>
-                int ini = scanner.nextInt();
-                int fin = scanner.nextInt();
-
-                int sum = 0;
-                for (int i = ini; i &lt= fin; i++) {
-                    sum += i;
-                }
-                
-                System.out.println(sum);
-            </sc>
-            <mem>
-            </mem>
-            <shell>
-            </shell>
-        </step>
-        <step>
-            <explanation></explanation>
-            <sc java>
-                <h>int ini = scanner.nextInt();</h>
-                int fin = scanner.nextInt();
-
-                int sum = 0;
-                for (int i = ini; i &lt= fin; i++) {
-                    sum += i;
-                }
-                
-                System.out.println(sum);
-            </sc>
-            <mem>
-
-            </mem>
-            <shell>
-            </shell>
-        </step>
-        <step>
-            <explanation></explanation>
-            <sc java>
-                int ini = scanner.nextInt();
-                int fin = scanner.nextInt();
-
-                int sum = 0;
-                for (int i = ini; i &lt= fin; i++) {
-                    sum += i;
-                }
-                
-                System.out.println(sum);
-            </sc>
-            <mem>
-
-            </mem>
-            <shell>
-                <in>2</in>
-            </shell>
-        </step>
-        <step>
-            <explanation></explanation>
-            <sc java>
-                int ini = scanner.nextInt();
-                <h>int fin = scanner.nextInt();</h>
-
-                int sum = 0;
-                for (int i = ini; i &lt= fin; i++) {
-                    sum += i;
-                }
-                
-                System.out.println(sum);
-            </sc>
-            <mem>
-                <b>ini: 2</b>
-            </mem>
-            <shell>
-                <in>2</in>
-            </shell>
-        </step>
-        <step>
-            <explanation></explanation>
-            <sc java>
-                int ini = scanner.nextInt();
-                int fin = scanner.nextInt();
-
-                int sum = 0;
-                for (int i = ini; i &lt= fin; i++) {
-                    sum += i;
-                }
-                
-                System.out.println(sum);
-            </sc>
-            <mem>
-                ini: 2
-            </mem>
-            <shell>
-                <in>2</in>
-                <in>5</in>
-            </shell>
-        </step>
-        <step>
-            <explanation></explanation>
-            <sc java>
-                int ini = scanner.nextInt();
-                int fin = scanner.nextInt();
-
-                <h>int sum = 0;</h>
-                for (int i = ini; i &lt= fin; i++) {
-                    sum += i;
-                }
-                
-                System.out.println(sum);
-            </sc>
-            <mem>
-                ini: 2
-                <b>fin: 5</b>
-            </mem>
-            <shell>
-                <in>2</in>
-                <in>5</in>
-            </shell>
-        </step>
-        <step>
-            <explanation></explanation>
-            <sc java>
-                int ini = scanner.nextInt();
-                int fin = scanner.nextInt();
-
-                int sum = 0;
-                for (<h>int i = ini</h>; i &lt= fin; i++) {
-                    sum += i;
-                }
-                
-                System.out.println(sum);
-            </sc>
-            <mem>
-                ini: 2
-                fin: 5
-                <b>sum: 0</b>
-            </mem>
-            <shell>
-                <in>2</in>
-                <in>5</in>
-            </shell>
-        </step>
-        <step>
-            <explanation>
-                 2 és menor o igual a 5, es fa una iteració
-            </explanation>
-            <sc java>
-                int ini = scanner.nextInt();
-                int fin = scanner.nextInt();
-
-                int sum = 0;
-                for (int i = ini; <h>i &lt= fin</h>; i++) {
-                    sum += i;
-                }
-                
-                System.out.println(sum);
-            </sc>
-            <mem>
-                ini: 2
-                fin: 5
-                sum: 0
-                <b>i: 2</b>
-            </mem>
-            <shell>
-                <in>2</in>
-                <in>5</in>
-            </shell>
-        </step>
-        <step>
-            <explanation></explanation>
-            <sc java>
-                int ini = scanner.nextInt();
-                int fin = scanner.nextInt();
-
-                int sum = 0;
-                for (int i = ini; i &lt= fin; i++) {
-                    <h>sum += i;</h>
-                }
-                
-                System.out.println(sum);
-            </sc>
-            <mem>
-                ini: 2
-                fin: 5
-                sum: 0
-                i: 2
-            </mem>
-            <shell>
-                <in>2</in>
-                <in>5</in>
-            </shell>
-        </step>
-        <step>
-            <explanation></explanation>
-            <sc java>
-                int ini = scanner.nextInt();
-                int fin = scanner.nextInt();
-
-                int sum = 0;
-                for (int i = ini; i &lt= fin; <h>i++</h>) {
-                    sum += i;
-                }
-                
-                System.out.println(sum);
-            </sc>
-            <mem>
-                ini: 2
-                fin: 5
-                <b>sum: 2</b>
-                i: 2
-            </mem>
-            <shell>
-                <in>2</in>
-                <in>5</in>
-            </shell>
-        </step>
-        <step>
-            <explanation>
-                3 és menor o igual a 5, es fa una iteració
-            </explanation>
-            <sc java>
-                int ini = scanner.nextInt();
-                int fin = scanner.nextInt();
-
-                int sum = 0;
-                for (int i = ini; <h>i &lt= fin</h>; i++) {
-                    sum += i;
-                }
-                
-                System.out.println(sum);
-            </sc>
-            <mem>
-                ini: 2
-                fin: 5
-                sum: 2
-                <b>i: 3</b>
-            </mem>
-            <shell>
-                <in>2</in>
-                <in>5</in>
-            </shell>
-        </step>
-        <step>
-            <explanation></explanation>
-            <sc java>
-                int ini = scanner.nextInt();
-                int fin = scanner.nextInt();
-
-                int sum = 0;
-                for (int i = ini; i &lt= fin; i++) {
-                    <h>sum += i;</h>
-                }
-                
-                System.out.println(sum);
-            </sc>
-            <mem>
-                ini: 2
-                fin: 5
-                sum: 2
-                i: 3
-            </mem>
-            <shell>
-                <in>2</in>
-                <in>5</in>
-            </shell>
-        </step>
-        <step>
-            <explanation></explanation>
-            <sc java>
-                int ini = scanner.nextInt();
-                int fin = scanner.nextInt();
-
-                int sum = 0;
-                for (int i = ini; i &lt= fin; <h>i++</h>) {
-                    sum += i;
-                }
-                
-                System.out.println(sum);
-            </sc>
-            <mem>
-                ini: 2
-                fin: 5
-                <b>sum: 5</b>
-                i: 3
-            </mem>
-            <shell>
-                <in>2</in>
-                <in>5</in>
-            </shell>
-        </step>
-
-
-
-        <step>
-            <explanation>
-                4 és menor o igual a 5, es fa una iteració
-            </explanation>
-            <sc java>
-                int ini = scanner.nextInt();
-                int fin = scanner.nextInt();
-
-                int sum = 0;
-                for (int i = ini; <h>i &lt= fin</h>; i++) {
-                    sum += i;
-                }
-                
-                System.out.println(sum);
-            </sc>
-            <mem>
-                ini: 2
-                fin: 5
-                sum: 5
-                <b>i: 4</b>
-            </mem>
-            <shell>
-                <in>2</in>
-                <in>5</in>
-            </shell>
-        </step>
-        <step>
-            <explanation></explanation>
-            <sc java>
-                int ini = scanner.nextInt();
-                int fin = scanner.nextInt();
-
-                int sum = 0;
-                for (int i = ini; i &lt= fin; i++) {
-                    <h>sum += i;</h>
-                }
-                
-                System.out.println(sum);
-            </sc>
-            <mem>
-                ini: 2
-                fin: 5
-                sum: 5
-                i: 4
-            </mem>
-            <shell>
-                <in>2</in>
-                <in>5</in>
-            </shell>
-        </step>
-        <step>
-            <explanation></explanation>
-            <sc java>
-                int ini = scanner.nextInt();
-                int fin = scanner.nextInt();
-
-                int sum = 0;
-                for (int i = ini; i &lt= fin; <h>i++</h>) {
-                    sum += i;
-                }
-                
-                System.out.println(sum);
-            </sc>
-            <mem>
-                ini: 2
-                fin: 5
-                <b>sum: 9</b>
-                i: 4
-            </mem>
-            <shell>
-                <in>2</in>
-                <in>5</in>
-            </shell>
-        </step>
-
-
-
-        <step>
-            <explanation>
-                5 és menor o igual a 5, es fa una iteració
-            </explanation>
-            <sc java>
-                int ini = scanner.nextInt();
-                int fin = scanner.nextInt();
-
-                int sum = 0;
-                for (int i = ini; <h>i &lt= fin</h>; i++) {
-                    sum += i;
-                }
-                
-                System.out.println(sum);
-            </sc>
-            <mem>
-                ini: 2
-                fin: 5
-                sum: 9
-                <b>i: 5</b>
-            </mem>
-            <shell>
-                <in>2</in>
-                <in>5</in>
-            </shell>
-        </step>
-        <step>
-            <explanation></explanation>
-            <sc java>
-                int ini = scanner.nextInt();
-                int fin = scanner.nextInt();
-
-                int sum = 0;
-                for (int i = ini; i &lt= fin; i++) {
-                    <h>sum += i;</h>
-                }
-                
-                System.out.println(sum);
-            </sc>
-            <mem>
-                ini: 2
-                fin: 5
-                sum: 9
-                i: 5
-            </mem>
-            <shell>
-                <in>2</in>
-                <in>5</in>
-            </shell>
-        </step>
-        <step>
-            <explanation></explanation>
-            <sc java>
-                int ini = scanner.nextInt();
-                int fin = scanner.nextInt();
-
-                int sum = 0;
-                for (int i = ini; i &lt= fin; <h>i++</h>) {
-                    sum += i;
-                }
-                
-                System.out.println(sum);
-            </sc>
-            <mem>
-                ini: 2
-                fin: 5
-                <b>sum: 14</b>
-                i: 5
-            </mem>
-            <shell>
-                <in>2</in>
-                <in>5</in>
-            </shell>
-        </step>
-        <step>
-            <explanation>
-                6 <u>no</u> és menor o igual a 5, no es fan més iteracions
-            </explanation>
-            <sc java>
-                int ini = scanner.nextInt();
-                int fin = scanner.nextInt();
-
-                int sum = 0;
-                for (int i = ini; <h>i &lt= fin</h>; i++) {
-                    sum += i;
-                }
-                
-                System.out.println(sum);
-            </sc>
-            <mem>
-                ini: 2
-                fin: 5
-                sum: 14
-                <b>i: 6</b>
-            </mem>
-            <shell>
-                <in>2</in>
-                <in>5</in>
-            </shell>
-        </step>
-        <step>
-            <explanation></explanation>
-            <sc java>
-                int ini = scanner.nextInt();
-                int fin = scanner.nextInt();
-
-                int sum = 0;
-                for (int i = ini; i &lt= fin; i++) {
-                    sum += i;
-                }
-                
-                <h>System.out.println(sum);</h>
-            </sc>
-            <mem>
-                ini: 2
-                fin: 5
-                sum: 14
-                                <comment>// i esborrada</comment>
-            </mem>
-            <shell>
-                <in>2</in>
-                <in>5</in>
-            </shell>
-        </step>
-        <step>
-            <explanation></explanation>
-            <sc java>
-                int ini = scanner.nextInt();
-                int fin = scanner.nextInt();
-
-                int sum = 0;
-                for (int i = ini; i &lt= fin; i++) {
-                    sum += i;
-                }
-                
-                System.out.println(sum);
-            </sc>
-            <mem>
-                ini: 2
-                fin: 5
-                sum: 14
-                            
-            </mem>
-            <shell>
-                <in>2</in>
-                <in>5</in>
-                14
-            </shell>
-        </step>
-    </stepper>
-
-    <h3>Ometre parts</h3>
-    <p>Les tres parts (inicialització, condició i modificació) són opcionals, es poden posar o no segons convingui.</p>
-    <p>Per exemple, el següent <w>for</w> no utilitza cap de les tres:</p>
-    <sc java>
-        for (;;) {
-            System.out.println("all work and no play makes jack a dull boy");
-        }
-    </sc>
-    <shell>
-        all work and no play makes jack a dull boy
-        all work and no play makes jack a dull boy
-        all work and no play makes jack a dull boy
-        all work and no play makes jack a dull boy
-        ...
-        ...        
-    </shell>
-
-    <p>El bucle for itera el bloc de codi fins que la condició és <w>false</w>, 
-    com no hem posat cap condició, el bucle itera indefinidament.</p>
-
-    <p>Al següent exemple només s'especifica la condició, no la incialització 
-        ni la modificació. El <strong>for</strong> d'aquest exemple avalua 
-        si la paraula llegida amb l'scanner és igual a <string>si</string>. 
-        El bucle farà iteracions del bloc fins que la condició sigui <w>false</w>, és a dir,
-        fins que es llegeixi un String distint de <string>si</string>.</p>
-    
     <sc java>
         Scanner scanner = new Scanner(System.in);
+        System.out.println("Producte: ");
 
-        for(; scanner.next().equals("yes"); ){
-            System.out.println("Tornem a repetir");
+        String producte = scanner.nextLine();
+
+        switch (producte){
+            case "Taronjes":
+                System.out.println("1.55 euros/kilo");
+                break;
+            case "Pomes":
+                System.out.println("2.30 euros/kilo");
+                break;
+            case "Peres":
+                System.out.println("2.30 euros/kilo");
+                break;
+            case "Platans":
+                System.out.println("0.89 euros/kilo");
+                break;
+            default:
+                System.out.println("Producte no disponible");
         }
     </sc>
+
     <shell>
-        <in>yes</in>
-        Tornem a repetir
-        <in>yes</in>
-        Tornem a repetir
-        <in>yes</in>
-        Tornem a repetir
-        <in>prou!</in>
+        Producte:
+        <in>Peres</in>
+        2.30 euros/kilo
     </shell>
 
+    <p>Fixa't que en aquest exemple el preu de les Pomes i les Peres és el mateix. Podem simplificar 
+        el <w>switch</w> una mica, així:</p>
+    <sc java data-line="5,6,7,8">
+        switch (producte){
+            case "Taronjes":
+                System.out.println("1.55 euros/kilo");
+                break;
+            case "Pomes":
+            case "Peres":
+                System.out.println("2.30 euros/kilo");
+                break;
+            case "Platans":
+                System.out.println("0.89 euros/kilo");
+                break;
+            default:
+                System.out.println("Producte no disponible");
+        }
+    </sc>
 
-    <p>Una altre petit exemple, el programa "Endevina el número":</p>
-    <stepper  style="--sc-h:5; --mm-h:1; --sh-h:7; --ex-h:1; --sc-w:26;    --sc-mh:5; --mm-mh:1; --sh-mh:7; --ex-mh:1;">
-        <step>
-            <explanation>
-            </explanation>
-            <sc java>
-                System.out.println("Endevina el número secret:");
-                for(; scanner.nextInt() != 6;) {
-                    System.out.println("Segueix intentant-ho");
-                }
-                System.out.println("L'has endevinat!");
-            </sc>
-            <mem>
-            </mem>
-            <shell>
-            </shell>
-        </step>
-        <step>
-            <explanation>
-            </explanation>
-            <sc java>
-                <h>System.out.println("Endevina el número secret:");</h>
-                for(; scanner.nextInt() != 6;) {
-                    System.out.println("Segueix intentant-ho");
-                }
-                System.out.println("L'has endevinat!");
-            </sc>
-            <mem>
-            </mem>
-            <shell>
-            </shell>
-        </step>
-        <step>
-            <explanation>
-                
-            </explanation>
-            <sc java>
-                System.out.println("Endevina el número secret:");
-                for(; <h>scanner.nextInt() != 6</h>;) {
-                    System.out.println("Segueix intentant-ho");
-                }
-                System.out.println("L'has endevinat!");
-            </sc>
-            <mem>
-            </mem>
-            <shell>
-                Endevina el número secret:
-            </shell>
-        </step>
-        <step>
-            <explanation>
+    <p>Recorda que s'executen totes les sentències a partir del <w>case</w> que coincideix amb l'expressió fins que es troba
+    un <w>break</w>, així doncs en el cas de que la variable <w>producte</w> sigui <string>Pomes</string>, també s'executarà 
+    la sentència <ln>7</ln>, fins a trobar el <w>break</w> de la línia <ln>8</ln>.</p>
 
-            </explanation>
-            <sc java>
-                System.out.println("Endevina el número secret:");
-                for(; <h>scanner.nextInt() != 6</h>;) {
-                    System.out.println("Segueix intentant-ho");
-                }
-                System.out.println("L'has endevinat!");            
-            </sc>
-            <mem>
-            </mem>
-            <shell>
-                Endevina el número secret:
-                <in>4</in>
-            </shell>
-        </step>
-        <step>
-            <explanation>
-                <w>4 != 6</w> és <w>true</w>, es fa la iteració
-            </explanation>
-            <sc java>
-                System.out.println("Endevina el número secret:");
-                for(; <h>scanner.nextInt() != 6</h>;) {
-                    System.out.println("Segueix intentant-ho");
-                }
-                System.out.println("L'has endevinat!");            
-            </sc>
-            <mem>
-                scanner.nextInt(): 4
-            </mem>
-            <shell>
-                Endevina el número secret:
-                <in>4</in>
-            </shell>
-        </step>
-        <step>
-            <explanation>
-            </explanation>
-            <sc java>
-                System.out.println("Endevina el número secret:");
-                for(; scanner.nextInt() != 6;) {
-                    <h>System.out.println("Segueix intentant-ho");</h>
-                }
-                System.out.println("L'has endevinat!");            
-            </sc>
-            <mem>
-            </mem>
-            <shell>
-                Endevina el número secret:
-                <in>4</in>
-            </shell>
-        </step>
-        <step>
-            <explanation>
-            </explanation>
-            <sc java>
-                System.out.println("Endevina el número secret:");
-                for(; <h>scanner.nextInt() != 6</h>;) {
-                    System.out.println("Segueix intentant-ho");
-                }
-                System.out.println("L'has endevinat!");            
-            </sc>
-            <mem>
-            </mem>
-            <shell>
-                Endevina el número secret:
-                <in>4</in>
-                Segueix intentant-ho
-            </shell>
-        </step>
-        <step>
-            <explanation>
+    <!--TODO: switch fallthrough-->
 
-            </explanation>
-            <sc java>
-                System.out.println("Endevina el número secret:");
-                for(; <h>scanner.nextInt() != 6</h>;) {
-                    System.out.println("Segueix intentant-ho");
-                }
-                System.out.println("L'has endevinat!");            
-            </sc>
-            <mem>
-            </mem>
-            <shell>
-                Endevina el número secret:
-                <in>4</in>
-                Segueix intentant-ho
-                <in>2</in>
-            </shell>
-        </step>
-        <step>
-            <explanation>
-                <w>2 != 6</w> és <w>true</w>, es fa la iteració
-            </explanation>
-            <sc java>
-                System.out.println("Endevina el número secret:");
-                for(; <h>scanner.nextInt() != 6</h>;) {
-                    System.out.println("Segueix intentant-ho");
-                }
-                System.out.println("L'has endevinat!");            
-            </sc>
-            <mem>
-                scanner.nextInt(): 2
-            </mem>
-            <shell>
-                Endevina el número secret:
-                <in>4</in>
-                Segueix intentant-ho
-                <in>2</in>
-            </shell>
-        </step>
-        <step>
-            <explanation>
-            </explanation>
-            <sc java>
-                System.out.println("Endevina el número secret:");
-                for(; scanner.nextInt() != 6;) {
-                    <h>System.out.println("Segueix intentant-ho");</h>
-                }
-                System.out.println("L'has endevinat!");            
-            </sc>
-            <mem>
-            </mem>
-            <shell>
-                Endevina el número secret:
-                <in>4</in>
-                Segueix intentant-ho
-                <in>2</in>
-            </shell>
-        </step>
-        <step>
-            <explanation>
-            </explanation>
-            <sc java>
-                System.out.println("Endevina el número secret:");
-                for(; <h>scanner.nextInt() != 6</h>;) {
-                    System.out.println("Segueix intentant-ho");
-                }
-                System.out.println("L'has endevinat!");            
-            </sc>
-            <mem>
-            </mem>
-            <shell>
-                Endevina el número secret:
-                <in>4</in>
-                Segueix intentant-ho
-                <in>2</in>
-                Segueix intentant-ho
-            </shell>
-        </step>
+    <info>
+        <p>A la versió 12 de Java s'incorpora una forma abreujada de la sentència <w>switch</w> que utilitza fletxes <w>-&gt;</w>
+        en lloc dels dos punts <w>:</w> per a les cláules <w>case</w>. En aquesta nova forma no cal utilitzar <w>break</w>.</p>
+        <p>El programa anterior es podria escriure així:</p>
 
-        <step>
-            <explanation>
-
-            </explanation>
-            <sc java>
-                System.out.println("Endevina el número secret:");
-                for(; <h>scanner.nextInt() != 6</h>;) {
-                    System.out.println("Segueix intentant-ho");
-                }
-                System.out.println("L'has endevinat!");            
-            </sc>
-            <mem>
-            </mem>
-            <shell>
-                Endevina el número secret:
-                <in>4</in>
-                Segueix intentant-ho
-                <in>2</in>
-                Segueix intentant-ho
-                <in>6</in>
-            </shell>
-        </step>
-        <step>
-            <explanation>
-                <w>6 != 6</w> és <w>false</w>, ja no es fa cap iteració més
-            </explanation>
-            <sc java>
-                System.out.println("Endevina el número secret:");
-                for(; <h>scanner.nextInt() != 6</h>;) {
-                    System.out.println("Segueix intentant-ho");
-                }
-                System.out.println("L'has endevinat!");            
-            </sc>
-            <mem>
-                scanner.nextInt(): 6
-            </mem>
-            <shell>
-                Endevina el número secret:
-                <in>4</in>
-                Segueix intentant-ho
-                <in>2</in>
-                Segueix intentant-ho
-                <in>6</in>
-            </shell>
-        </step>
-        <step>
-            <explanation>
-            </explanation>
-            <sc java>
-                System.out.println("Endevina el número secret:");
-                for(; scanner.nextInt() != 6;) {
-                    System.out.println("Segueix intentant-ho");
-                }
-                <h>System.out.println("L'has endevinat!");</h>
-            </sc>
-            <mem>
-            </mem>
-            <shell>
-                Endevina el número secret:
-                <in>4</in>
-                Segueix intentant-ho
-                <in>2</in>
-                Segueix intentant-ho
-                <in>6</in>
-            </shell>
-        </step>
-        <step>
-            <explanation>
-            </explanation>
-            <sc java>
-                System.out.println("Endevina el número secret:");
-                for(; scanner.nextInt() != 6;) {
-                    System.out.println("Segueix intentant-ho");
-                }
-                System.out.println("L'has endevinat!");            
-            </sc>
-            <mem>
-            </mem>
-            <shell>
-                Endevina el número secret:
-                <in>4</in>
-                Segueix intentant-ho
-                <in>2</in>
-                Segueix intentant-ho
-                <in>6</in>
-                L'has endevinat
-            </shell>
-        </step>
-    </stepper>   
+        <sc java>
+            switch (producte) {
+                case "Taronjes" -> System.out.println("1.55 euros/kilo");
+                case "Pomes", "Peres" -> System.out.println("2.30 euros/kilo");
+                case "Platans" -> System.out.println("0.89 euros/kilo");
+                default -> System.out.println("Producte no disponible");
+            }    
+        </sc>
+    </info>
 
     <quizz>
-        <question single>
+        <question text>
             <statement>
-                <p>El següent codi calcula la suma dels números en el rang <w>ini</w> a <w>fin</w> (inclusiu). El resultat
-                es va emmagatzemant en la variable <w>acumulador</w>.</p>
-                <sc java>
-                    int accumulator = 0;                  
-                    for (int i = start; i &lt;= end; i++) { 
-                        accumulator += i;                 
-                    }
-                </sc>
+                <p>Què imprimeix el següent programa?</p>
 
-                <p>Quin dels següents codis calcula la multiplicació dels números en el rang?</p>
-            </statement>
-            <o correct>
                 <sc java>
-                    int accumulator = 1;                  
-                    for (int i = start; i &lt;= end; i++) { 
-                        accumulator *= i;                 
+                    String foo = "B";
+                    int bar = 0;
+            
+                    switch (foo){
+                        case "A":
+                            bar += 10;
+                        case "B":
+                            bar += 20;
+                        case "C":
+                            bar += 30;
+                        default:
+                            bar += 40;
                     }
-                </sc>
-            </o>
-            <o>
-                <sc java>
-                    int accumulator = 0;                  
-                    for (int i = 1; i &lt;= end; i++) { 
-                        accumulator *= i;                 
-                    }
-                </sc>
-            </o>
-            <o>
-                <sc java>
-                    int accumulator = 1;                  
-                    for (int i = start; i &lt;= end; i *= 1) { 
-                        accumulator += i;                 
-                    }
-                </sc>
-            </o>
-            <o>
-                <sc java>
-                    int accumulator = 1;                  
-                    for (int i = 1; i &lt;= end; i++) { 
-                        accumulator += i;                 
-                    }
-                </sc>
-            </o>
-        </question>
-
-        <question single>
-            <statement>
-                <p>Què imprimeix el següent codi?</p>
-                <sc java>
-                    int i = 0; 
-                    for (int k = 0; k &lt; 100; k++) { 
-                        i++; 
-                    } 
-                    System.out.println(i);
+            
+                    System.out.println(bar);
                 </sc>
             </statement>
-            <o>101</o>
-            <o correct>100</o>
-            <o>0</o>
-            <o>99</o>
+            <o>90</o>
         </question>
     </quizz>
 
     <challenge>
         <p>
-            <a href="https://dmoj.elpuig.xeill.net/problem/liniapunts">Línia de punts</a>
+            <a href="https://dmoj.elpuig.xeill.net/problem/c2l12lletresscra">Lletres de l'Scrabble</a>
             <br>
-            <a href="https://dmoj.elpuig.xeill.net/problem/c3l02interval">Interval</a>
-            <br>
-            <a href="https://dmoj.elpuig.xeill.net/problem/c3l03repeatx">Repeat X</a>
-            <br>
-            <a href="https://dmoj.elpuig.xeill.net/problem/c3l04divisiblesp">Divisibles per 3</a>
-            <br>
-            <a href="https://dmoj.elpuig.xeill.net/problem/fizzbuzzfor">FizzBuzz</a>
-            <br>
+            <a href="https://dmoj.elpuig.xeill.net/problem/c2l17saludaendi">Saluda en diferents idiomes</a>
         </p>
     </challenge>
 </section>
 
-<section>
-    <h2>while i do-while</h2>
-    <p>Java proporciona les sentències <w>while</w> i <w>do-while</w> per a repetir un fragment de codi.</p>
 
-    <h3>while</h3>
-    <p>El bucle <w>while</w> consisteix en un bloc de codi i una condició (expressió booleana). El codi es repeteix 
-    fins que la condició és <w>false</w>. La seva sintaxi és:</p>
+<section>
+    <h2>Sentència if-else</h2>
+
+    <p>La sentència <w>if-else</w> és una construcció que permet a un programa realitzar distintes accions
+        depenent del valor d'una expressió Booleana. Si és <w>true</w>, el programa realitza unes accions,
+        en cas contrari, si és <w>false</w>, el programa realitza unes altres operacions. Alguns exemples
+        de expressións Booleanes són: <w>a > b</w>, <w>i -j == 1</w>, <w>p && q</w>, etc.
+    </p>
+    <p>La sentència <w>if-else</w> te distintes formes. Anem a veure-les.</p>
+
+    <h3>if</h3>
+
+    <p>La forma més simple és la sentència <w>if</w> única. Consisteix en la paraula-clau <w>if</w>, una 
+    expressió Booleana entre parèntesi i un bloc tancat entre claus:</p>
 
     <sc java>
-        while (condicio) {
-            // bloc de codi
+        if (expressio) {
+            // cos: fer alguna cosa
         }
     </sc>
 
-    <p>El bloc de codi pot contenir qualssevol sentències Java incloent altres sentències condicionals o de repetició.</p>
+    <p>Si l'expressió és <w>true</w>, les sentències dintre del bloc s'executen; en cas contrari, el programa
+    se les salta.</p>
 
-    <p>Veiem un petit exemple, que imprimeix una variable mentre sigui menor a 5:</p>
-    
-    <stepper style="--sc-h:5; --mm-h:1; --sh-h:1; --ex-h:1; --sc-w:24;    --sc-mh:5; --mm-mh:1; --sh-mh:1; --ex-mh:1;">
-        <step>
-            <explanation></explanation>
-            <sc java>
-                int i = 0;
-                while (i &lt; 5) {
-                    System.out.print(i + " ");
-                    i++;
-                }
-            </sc>
-            <mem></mem>
-            <shell></shell>
-        </step>
-        <step>
-            <explanation></explanation>
-            <sc java>
-                <h>int i = 0;</h>
-                while (i &lt; 5) {
-                    System.out.print(i + " ");
-                    i++;
-                }
-            </sc>
-            <mem></mem>
-            <shell></shell>
-        </step>
-        <step>
-            <explanation>
-                0 és menor que 5, es fa una iteració
-            </explanation>
-            <sc java>
-                int i = 0;
-                while (<h>i &lt; 5</h>) {
-                    System.out.print(i + " ");
-                    i++;
-                }
-            </sc>
-            <mem>
-                i: 0
-            </mem>
-            <shell></shell>
-        </step>
-        <step>
-            <explanation>
-            </explanation>
-            <sc java>
-                int i = 0;
-                while (i &lt; 5) {
-                    <h>System.out.print(i + " ");</h>
-                    i++;
-                }
-            </sc>
-            <mem>
-                i: 0
-            </mem>
-            <shell></shell>
-        </step>
-        <step>
-            <explanation>
-            </explanation>
-            <sc java>
-                int i = 0;
-                while (i &lt; 5) {
-                    System.out.print(i + " ");
-                    <h>i++;</h>
-                }
-            </sc>
-            <mem>
-                i: 0
-            </mem>
-            <shell>
-                0
-            </shell>
-        </step>
-        <step>
-            <explanation>
-                1 és menor que 5, es fa una iteració
-            </explanation>
-            <sc java>
-                int i = 0;
-                while (<h>i &lt; 5</h>) {
-                    System.out.print(i + " ");
-                    i++;
-                }
-            </sc>
-            <mem>
-                i: 1
-            </mem>
-            <shell>
-                0
-            </shell>
-        </step>
-        <step>
-            <explanation>
-            </explanation>
-            <sc java>
-                int i = 0;
-                while (i &lt; 5) {
-                    <h>System.out.print(i + " ");</h>
-                    i++;
-                }
-            </sc>
-            <mem>
-                i: 1
-            </mem>
-            <shell>
-                0
-            </shell>
-        </step>
-        <step>
-            <explanation>
-            </explanation>
-            <sc java>
-                int i = 0;
-                while (i &lt; 5) {
-                    System.out.print(i + " ");
-                    <h>i++;</h>
-                }
-            </sc>
-            <mem>
-                i: 1
-            </mem>
-            <shell>
-                0 1
-            </shell>
-        </step>
-        <step>
-            <explanation>
-                2 és menor que 5, es fa una iteració
-            </explanation>
-            <sc java>
-                int i = 0;
-                while (<h>i &lt; 5</h>) {
-                    System.out.print(i + " ");
-                    i++;
-                }
-            </sc>
-            <mem>
-                i: 2
-            </mem>
-            <shell>
-                0 1
-            </shell>
-        </step>
-        <step>
-            <explanation>
-            </explanation>
-            <sc java>
-                int i = 0;
-                while (i &lt; 5) {
-                    <h>System.out.print(i + " ");</h>
-                    i++;
-                }
-            </sc>
-            <mem>
-                i: 2
-            </mem>
-            <shell>
-                0 1
-            </shell>
-        </step>
-        <step>
-            <explanation>
-            </explanation>
-            <sc java>
-                int i = 0;
-                while (i &lt; 5) {
-                    System.out.print(i + " ");
-                    <h>i++;</h>
-                }
-            </sc>
-            <mem>
-                i: 2
-            </mem>
-            <shell>
-                0 1 2
-            </shell>
-        </step>
-        <step>
-            <explanation>
-                3 és menor que 5, es fa una iteració
-            </explanation>
-            <sc java>
-                int i = 0;
-                while (<h>i &lt; 5</h>) {
-                    System.out.print(i + " ");
-                    i++;
-                }
-            </sc>
-            <mem>
-                i: 3
-            </mem>
-            <shell>
-                0 1 2
-            </shell>
-        </step>
-        <step>
-            <explanation>
-            </explanation>
-            <sc java>
-                int i = 0;
-                while (i &lt; 5) {
-                    <h>System.out.print(i + " ");</h>
-                    i++;
-                }
-            </sc>
-            <mem>
-                i: 3
-            </mem>
-            <shell>
-                0 1 2
-            </shell>
-        </step>
-        <step>
-            <explanation>
-            </explanation>
-            <sc java>
-                int i = 0;
-                while (i &lt; 5) {
-                    System.out.print(i + " ");
-                    <h>i++;</h>
-                }
-            </sc>
-            <mem>
-                i: 3
-            </mem>
-            <shell>
-                0 1 2 3
-            </shell>
-        </step>
-        <step>
-            <explanation>
-                4 és menor que 5, es fa una iteració
-            </explanation>
-            <sc java>
-                int i = 0;
-                while (<h>i &lt; 5</h>) {
-                    System.out.print(i + " ");
-                    i++;
-                }
-            </sc>
-            <mem>
-                i: 4
-            </mem>
-            <shell>
-                0 1 2 3
-            </shell>
-        </step>
-        <step>
-            <explanation>
-            </explanation>
-            <sc java>
-                int i = 0;
-                while (i &lt; 5) {
-                    <h>System.out.print(i + " ");</h>
-                    i++;
-                }
-            </sc>
-            <mem>
-                i: 4
-            </mem>
-            <shell>
-                0 1 2 3
-            </shell>
-        </step>
-        <step>
-            <explanation>
-            </explanation>
-            <sc java>
-                int i = 0;
-                while (i &lt; 5) {
-                    System.out.print(i + " ");
-                    <h>i++;</h>
-                }
-            </sc>
-            <mem>
-                i: 4
-            </mem>
-            <shell>
-                0 1 2 3 4
-            </shell>
-        </step>
-        <step>
-            <explanation>
-                5 &lt; 5 és <w>false</w>, ja no es fa cap iteració 
-            </explanation>
-            <sc java>
-                int i = 0;
-                while (<h>i &lt; 5</h>) {
-                    System.out.print(i + " ");
-                    i++;
-                }
-            </sc>
-            <mem>
-                i: 5
-            </mem>
-            <shell>
-                0 1 2 3 4
-            </shell>
-        </step>
-    </stepper>
+    <p>Per exemple:</p>
 
-    <info>
-        <p>Hauràs notat que el bucle <w>while</w> és molt similar al <w>for</w>. De fet són <em>equivalents</em>, l'exemple anterior
-        es podria haver escrit així:</p>
-        <sc java>
-            int i = 0;
-            for (; i &lt; 5;) {
-                System.out.print(i + " ");
-                i++;
-            }
-        </sc>
-        <p>O així:</p>
-        <sc java>
-            int i = 0;
-            for (; i &lt; 5; i++) {
-                System.out.print(i + " ");
-            }
-        </sc>
-        <p>O inclús així:</p>
-        <sc java>
-            for (int i = 0; i &lt; 5; i++) {
-                System.out.print(i + " ");
-            }
-        </sc>
-        <p>És important notar que en aquest últim exemple, Java eliminarà la variable <w>i</w> un cop acabi el <w>for</w>, 
-        cosa que no passa en els exemples anteriors.</p>
-    </info>
+    <sc java>
+        int edat = ...; // l'edat que sigui
+        if (edat > 17) {
+            System.out.println("Pots votar");
+        }
+    </sc>
+
+    <p>En aquest exemple, si l'<w>edat</w> és més gran que 17 el codi imprimeix "Pots votar", 
+    en cas contrari, no fa res.</p>
+
+    <p>L'expressió també pot ser el valor d'una variable de tipus <w>boolean</w>. Si el valor és <w>true</w>, el
+    bloc s'executarà, i si és <w>false</w> no.</p>
+
+    <sc java>
+        int edat = ...;
+        boolean majorEdat = edat > 17;
+        if (majorEdat) {
+            System.out.println("Pots votar");
+        }
+    </sc>
 
     <challenge>
         <p>
-            <a href="https://dmoj.elpuig.xeill.net/problem/c3l06codeanalyze">Code analyzer</a>
-            <br>
-            <a href="https://dmoj.elpuig.xeill.net/problem/sumadeparesyprod">Suma de parells i producte d'imparells</a>
-            <br>
-            <a href="https://dmoj.elpuig.xeill.net/problem/c3l08showlinenumbers">Show line numbers</a>
+            <a href="https://dmoj.elpuig.xeill.net/problem/enquestaframeworks">Enquesta frameworks</a>
         </p>
     </challenge>
 
-    <h3>do-while</h3>
-    <p>En el bucle <w>do-while</w>, el bloc de codi s'executa primer, i la condició s'avalua després. Si la condició és 
-    <w>true</w> el bloc es torna a executar. D'aquesta manera es garanteix que el bloc s'executarà al menys una vegada.</p>
 
-    <p>La seva sintaxi és:</p>
+    <h3>if-else</h3>
+    <p>La sentència <w>if</w> es pot extendre amb la paraula-clau <w>else</w> i un altre bloc per a fer accions 
+    alternatives quan l'expressió és falsa.</p>
+
     <sc java>
-        do {
-            // bloc de codi
-        } while (condicio);
+        if (expressio) {
+            // fer una cosa
+        } else {
+            // fer una altra cosa
+        }
     </sc>
 
-    <p>Un bon exemple és el següent programa, que llegeix dades de l'entrada stàndard fins que s'introdueix un cert valor.</p>
+    <p>En aquest cas, quan l'expressió és <w>true</w>, s'executa el primer bloc de codi; en cas contrari s'executa 
+    el segon bloc, però mai els dos.</p>
 
-    <stepper style="--sc-h:6; --mm-h:1; --sh-h:5; --ex-h:2; --sc-w:20;    --sc-mh:6; --mm-mh:1; --sh-mh:5; --ex-mh:3;">
-        <step>
-            <explanation></explanation>
-            <sc java>
-                int valor;
-                do {
-                    valor = scanner.nextInt();
-                    System.out.println(valor);
-                } while (valor != 0);
-            </sc>
-            <mem></mem>
-            <shell>
-                <in>3 5 7 0 11</in>
-            </shell>
-        </step>
-        <step>
-            <explanation></explanation>
-            <sc java>
-                <h>int valor;</h>
-                do {
-                    valor = scanner.nextInt();
-                    System.out.println(valor);
-                } while (valor != 0);
-            </sc>
-            <mem></mem>
-            <shell>
-                <in>3 5 7 0 11</in>
-            </shell>
-        </step>
-        <step>
-            <explanation>
-                La primera vegada s'executa el bloc sense avaluar la condició.
-            </explanation>
-            <sc java>
-                int valor;
-                do {
-                    <h>valor = scanner.nextInt();</h>
-                    System.out.println(valor);
-                } while (valor != 0);
-            </sc>
-            <mem>
-                valor: 
-            </mem>
-            <shell>
-                <in>3 5 7 0 11</in>
-            </shell>
-        </step>
-        <step>
-            <explanation>
-            </explanation>
-            <sc java>
-                int valor;
-                do {
-                    valor = scanner.nextInt();
-                    <h>System.out.println(valor);</h>
-                } while (valor != 0);
-            </sc>
-            <mem>
-                valor: 3
-            </mem>
-            <shell>
-                <in><consumed>3</consumed> 5 7 0 11</in>
-            </shell>
-        </step>
-        <step>
-            <explanation>
-                S'avalua la condició per veure si es fa una altra iteració
-            </explanation>
-            <sc java>
-                int valor;
-                do {
-                    valor = scanner.nextInt();
-                    System.out.println(valor);
-                } while (<h>valor != 0</h>);
-            </sc>
-            <mem>
-                valor: 3
-            </mem>
-            <shell>
-                <in><consumed>3</consumed> 5 7 0 11</in>
-                3
-            </shell>
-        </step>
+    <p>Al següent exemple, el programa imprimeix texts diferents depenent del valor de <w>num</w> (parell o imparell).</p>
 
+    <sc java>
+        int num = ...;  // num s'inicialitza en algun valor
+        
+        if (num % 2 == 0) {
+            System.out.println("Nombre parell");
+        } else {
+            System.out.println("Nombre imparell");
+        }
+    </sc>
 
+    <h3>if-else-if</h3>
 
-        <step>
-            <explanation>
-            </explanation>
-            <sc java>
-                int valor;
-                do {
-                    <h>valor = scanner.nextInt();</h>
-                    System.out.println(valor);
-                } while (valor != 0);
-            </sc>
-            <mem>
-                valor: 3
-            </mem>
-            <shell>
-                <in><consumed>3</consumed> 5 7 0 11</in>
-                3
-            </shell>
-        </step>
-        <step>
-            <explanation>
-            </explanation>
-            <sc java>
-                int valor;
-                do {
-                    valor = scanner.nextInt();
-                    <h>System.out.println(valor);</h>
-                } while (valor != 0);
-            </sc>
-            <mem>
-                valor: 5
-            </mem>
-            <shell>
-                <in><consumed>3 5</consumed> 7 0 11</in>
-                3
-            </shell>
-        </step>
-        <step>
-            <explanation>
-                S'avalua la condició per veure si es fa una altra iteració
-            </explanation>
-            <sc java>
-                int valor;
-                do {
-                    valor = scanner.nextInt();
-                    System.out.println(valor);
-                } while (<h>valor != 0</h>);
-            </sc>
-            <mem>
-                valor: 5
-            </mem>
-            <shell>
-                <in><consumed>3 5</consumed> 7 0 11</in>
-                3
-                5
-            </shell>
-        </step>
+    <p>La forma més general de la sentència condicional consisteix en vàries condicions encadenades:</p>
 
+    <sc java>
+        if (expressio0) {
+            // accions0
+        } else if (expressio1) {
+            // accions1
+        } else if (expressio2) {
+            // accions2
+        // ...
+        } else {
+            // accions else
+        }
+    </sc>
 
+    <p>En aquest cas el programa executa les accions en les que primer es compleix l'expressió. Si cap expressió 
+        es <w>true</w>, aleshores s'executa l'última acció.
+    </p>
 
-        <step>
-            <explanation>
-            </explanation>
-            <sc java>
-                int valor;
-                do {
-                    <h>valor = scanner.nextInt();</h>
-                    System.out.println(valor);
-                } while (valor != 0);
-            </sc>
-            <mem>
-                valor: 5
-            </mem>
-            <shell>
-                <in><consumed>3 5</consumed> 7 0 11</in>
-                3
-                5
-            </shell>
-        </step>
-        <step>
-            <explanation>
-            </explanation>
-            <sc java>
-                int valor;
-                do {
-                    valor = scanner.nextInt();
-                    <h>System.out.println(valor);</h>
-                } while (valor != 0);
-            </sc>
-            <mem>
-                valor: 7
-            </mem>
-            <shell>
-                <in><consumed>3 5 7</consumed> 0 11</in>
-                3
-                5
-            </shell>
-        </step>
-        <step>
-            <explanation>
-                S'avalua la condició per veure si es fa una altra iteració
-            </explanation>
-            <sc java>
-                int valor;
-                do {
-                    valor = scanner.nextInt();
-                    System.out.println(valor);
-                } while (<h>valor != 0</h>);
-            </sc>
-            <mem>
-                valor: 7
-            </mem>
-            <shell>
-                <in><consumed>3 5 7</consumed> 0 11</in>
-                3
-                5
-                7
-            </shell>
-        </step>
+    <p>El següent exemple recomana l'ordinador que es pot comprar depenent del pressupost.</p>
 
+    <sc java>
+        int pressupost = ...;
 
-        <step>
-            <explanation>
-            </explanation>
-            <sc java>
-                int valor;
-                do {
-                    <h>valor = scanner.nextInt();</h>
-                    System.out.println(valor);
-                } while (valor != 0);
-            </sc>
-            <mem>
-                valor: 7
-            </mem>
-            <shell>
-                <in><consumed>3 5 7</consumed> 0 11</in>
-                3
-                5
-                7
-            </shell>
-        </step>
-        <step>
-            <explanation>
-            </explanation>
-            <sc java>
-                int valor;
-                do {
-                    valor = scanner.nextInt();
-                    <h>System.out.println(valor);</h>
-                } while (valor != 0);
-            </sc>
-            <mem>
-                valor: 0
-            </mem>
-            <shell>
-                <in><consumed>3 5 7 0</consumed> 11</in>
-                3
-                5
-                7
-            </shell>
-        </step>
-        <step>
-            <explanation>
-                S'avalua la condició per veure si es fa una altra iteració.
-                Com <w>0 != 0</w> és <w>false</w>, no es torna a iterar. 
-            </explanation>
-            <sc java>
-                int valor;
-                do {
-                    valor = scanner.nextInt();
-                    System.out.println(valor);
-                } while (<h>valor != 0</h>);
-            </sc>
-            <mem>
-                valor: 0
-            </mem>
-            <shell>
-                <in><consumed>3 5 7 0</consumed> 11</in>
-                3
-                5
-                7
-                0
-            </shell>
-        </step>
-        <step>
-            <explanation></explanation>
-            <sc java>
-                int valor;
-                do {
-                    valor = scanner.nextInt();
-                    System.out.println(valor);
-                } while (valor != 0);
-                <h>// el programa continua per aqui...</h>
-            </sc>
-            <mem>
-                valor: 0
-            </mem>
-            <shell>
-                <in><consumed>3 5 7 0</consumed> 11</in>
-                3
-                5
-                7
-                0
-            </shell>
-        </step>
-    </stepper>
+        if (pressupost < 1000) {
+            System.out.println("Portatil");
+        } else if (pressupost < 2000) {
+            System.out.println("PC");
+        } else if (pressupost < 100_000) {
+            System.out.println("Servidor");
+        } else {
+            System.out.println("Comprat un data center o un ordinador quantic!");
+        }
+    </sc>
 
-    <p>En la pràctica, el bucle <w>do-while</w> se sol utilitzar menys que el <w>while</w>.</p>
+    <p>Una sentència condicional amb múlitples branques crea un <strong>arbre de decisió</strong>, el 
+    qual els seus nodes són expressions booleanes, i cada branca es marca amb <em>true</em> o <em>false</em>. 
+    La <em>branca-true</em> porta a un bloc de sentències i la <em>branca-false</em> porta a comprovar la 
+    següent expressió. L'última <em>branca-false</em> significa <em>"en qualsevol altre cas"</em>.</p>
+
+    <info>
+        <p>Quan parlem sobre sentències condicionals, sovint els programadors utilitzen el terme 
+            "sentències de control de flux". El <strong>control de flux</strong> és l'ordre en que s'executen les 
+            diferents parts del programa.
+        </p>
+    </info>
+
+    <p>Aquest diagrama il·lustra l'arbre de decisió de l'exemple del pressupost.</p>
+
+    <img src="img/arbre decisio.png">
+
+    <h3>Niament de sentències if-else</h3>
+    <p>Les sentències <w>if-else</w> es poden niar (posar unes dintre d'altres). És a dir, en el bloc
+    d'una condició es poden posar altres <w>if-else</w>, que només seran executades si es compleix la condició ( 
+    i per tant s'executa el bloc).</p>
+    
+    <p>El següent exemple executa un editor específic depenent del Sistema Operatiu i la seva versió:</p>
+
+    <sc java>
+        import java.io.IOException;
+        import java.util.Scanner;
+
+        public class Main {
+            public static void main(String[] args) throws IOException {
+                Scanner scanner = new Scanner(System.in);
+
+                String os = scanner.nextLine();
+                String version = scanner.nextLine();
+
+                if (os.equals("Ubuntu")) {
+                    System.out.println("Checking Ubuntu version...");
+                    if(version.equals("20.04")) {
+                        Runtime.getRuntime().exec("gedit");
+                    } else if (version.equals("18.04")){
+                        Runtime.getRuntime().exec("nano");
+                    } else {
+                        System.out.println("Ubuntu version not supported");
+                    }
+                } else if (os.equals("Windows")) {
+                    System.out.println("All Windows versions supported");
+                    if(version.equals("10 Pro")) {
+                        Runtime.getRuntime().exec("notepad.exe");
+                    } else {
+                        Runtime.getRuntime().exec("write.exe");
+                    }
+                } else {
+                    System.out.println("OS not supported");
+                }
+            }
+        }
+    </sc>
+    
+    <p>Aquest és l'arbre de decisió:</p>
+    <img src="img/arbre decisio OS.png">
+
+    <quizz>
+        <question single>
+            <statement>
+                <p>Si <w>val</w> és 50, quina és la sortida d'aquest codi?</p>
+                <sc java>
+                    if (val == 10) {
+                        System.out.println("val == 10");
+                    } else if (val >= 20 && val &lt; 50) {
+                        System.out.println("20 &lt;= val &lt; 50");
+                    } else {
+                        if (val &lt; 20) {
+                            System.out.println("val &lt; 20");
+                        } else {
+                            System.out.println("val >= 50");
+                        }
+                    }
+                </sc>
+            </statement>
+            <o>val &lt; 20</o>
+            <o correct>val >= 50</o>
+            <o>val == 10</o>
+            <o>20 &lt;= val &lt; 50</o>
+            <o>Cap d'aquestes</o>
+        </question>
+
+        <question single>
+            <statement>
+                <p>Selecciona l'exemple correcte de la sentència condicional</p>
+            </statement>
+
+            <o><sc java>
+                if i &lt; j { 
+                    String a = "Hello";
+                 }</sc></o>
+            <o><sc java>
+                if (i &lt; j): 
+                String a = "Hello";
+                </sc></o>
+            <o correct><sc java>
+                if (i &lt; j) { 
+                    String a = "Hello";
+                }</sc></o>
+            <o><sc java>
+                if {i &lt; j} ( 
+                    String a = "Hello";
+                )</sc></o>
+            <o><sc java>
+                if [i &lt; j] 
+                    String a = "Hello";
+                </sc></o>
+        </question>
+
+        <question multi>
+            <statement>
+                <p>Selecciona la sortida del programa segons el valor de la variable <w>a</w>.</p>
+                <sc java>
+                    if (a &lt;= 0) {
+                        if(a == 0) {
+                            System.out.print("a");
+                        } else { 
+                            System.out.print("b");
+                        }
+                    }
+                    System.out.print("c");
+                </sc>
+            </statement>
+            <p><w>a = 0</w></p>
+            <o>a</o>
+            <o>ab</o>
+            <o correct>ac</o>
+            <o>c</o>
+            <p><w>a = -1</w></p>
+            <o>ab</o>
+            <o correct>bc</o>
+            <o>ac</o>
+            <o>c</o>
+            <p><w>a = 1</w></p>
+            <o>ab</o>
+            <o>bc</o>
+            <o>ac</o>
+            <o correct>c</o>
+        </question>
+    </quizz>
+</section>
+
+<section>
+    <h2>Operador ternari</h2>
+    <p>La sintaxi general de l'operador ternari <w>?:</w> és aquesta:</p>
+
+    <sc java>
+        condicio ? valorSiCerta : valorSiFalsa
+    </sc>
+
+    <p>Aquest operador retorna el valor <w>valorSiCerta</w> si la <w>condició</w> s'avalua a <w>true</w>. 
+    Si la condició resulta ser <w>false</w>, aleshores retorna <w>valorSiFalsa</w>.</p>
+
+    <p>Exemple:</p>
+    <sc java>
+        System.out.println(10 > 5 ? "major" : "menor");   // major
+
+        int num = 10;
+        System.out.println(num % 2 == 0 ? "parell" : "imparell");   // parell
+        
+        num = 11;
+        System.out.println(num % 2 == 0 ? "parell" : "imparell");   // imparell
+    </sc>
+
+    <p>També podem guardar el resultat que retorna l'operador ternari en un variable. El tipus d'aquesta
+        variable ha de coincidir amb el tipus dels valors <w>valorSiCerta</w> i <w>valorSiFalsa</w>. 
+        Per exemple, el següent programa calcula la 'quota mensual' d'un soci, si el soci té més de 10 anys d'antiguetat, 
+        la quota són 30, i si no en són 40.</p>
+    
+        <sc java>
+        int anysAntiguetat = 3;
+
+        float quotaMensual = anysAntiguetat > 10 ? 30f : 40f;
+
+        System.out.println(quotaMensual);   // 40.0
+    </sc>
+
+    <p>L'operador ternari es pot enllaçar per a fer expressions més complexes:</p>
+
+    <sc java>
+          condicio1 ? valor1 
+        : condicio2 ? valor2
+        : condicio3 ? valor3
+        valor4;
+    </sc>
+
+    <p> El valor retornat és el que primer compleix la condició. Si no es compleix cap condició, aleshores es 
+        retorna l'últim valor. </p>
+    <sc java>
+        int edat = 18;
+        String beguda = edat < 18 ? "Coca-cola"
+                      : edat < 45 ? "Cervesa"
+                      : "Vi";
+        System.out.println(beguda);  // Cervesa
+    </sc>
+
+    <quizz>
+        <question single>
+            <statement>
+                <p>Quin valor tindrà la variable <w>x</w>?</p>
+                <sc java>
+                    int a = 10;
+                    int b = 30;
+                    int c = 20;
+
+                    String x = a < b ? "One"
+                             : b < c ? "Two"
+                             : "Three";
+                </sc>
+            </statement>
+            <o correct>One</o>
+            <o>Two</o>
+            <o>Three</o>
+        </question>
+    </quizz>
 
     <challenge>
-        <p>            
-            <a href="https://dmoj.elpuig.xeill.net/problem/piedrapapeltijera">Pedra, Paper, Tisora</a>
+
+        <p>
+            <a href="https://dmoj.elpuig.xeill.net/problem/horadaperturaopera">Hora d'apertura</a>            
+            <br>
+            <a href="https://dmoj.elpuig.xeill.net/problem/paresonones">Pares o nones</a>
+            <br>
+            <a href="https://dmoj.elpuig.xeill.net/problem/c1l19sobrenous">Sobren ous</a>
         </p>
     </challenge>
+
 </section>
