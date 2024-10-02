@@ -58,7 +58,7 @@ function show(o){
                 .replace(/\s*public class Solution {\n\n*/,"")
                 .replace(/\s*public static void main\(String\[\] args\)\s*{\s*\n/,"")
                 .replace(/\s*\/\* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. \*\/\n/,"")
-                .replace(/Scanner scanner = new Scanner\(System.in\);\n/,"")
+                .replace(/Scanner sc = new Scanner\(System.in\);\n/,"")
                 .replace(/\n\s*\n(\s*\n)+/,"\n\n")
                 .replace(/\n*\s*}\s*\n*\s*}$/,"")
                 +"</sc>");

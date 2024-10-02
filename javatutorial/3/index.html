@@ -55,7 +55,7 @@
     <p>Després s'ha d'afegir aquesta construcció a dintre del mètode <w>main</w>:</p>
 
     <sc java>
-        Scanner scanner = new Scanner(System.in); 
+        Scanner sc = new Scanner(System.in); 
     </sc>
 
     <p>En aquesta línia hem creat un objecte de la classe <w>Scanner</w>, que ens 
@@ -76,11 +76,11 @@
         public class Main {
 
             public static void main(String[] args) {
-                Scanner scanner = new Scanner(System.in);  
+                Scanner sc = new Scanner(System.in);  
 
                 System.out.println("Hola, com et dius?");
 
-                String nom = scanner.nextLine();
+                String nom = sc.nextLine();
 
                 System.out.print("Hola ");
                 System.out.print(nom);
@@ -133,13 +133,13 @@
 
         public class Main {
             public static void main(String[] args){
-                Scanner scanner = new Scanner(System.in);
+                Scanner sc = new Scanner(System.in);
 
-                int quantitat = scanner.nextInt();
-                float preu = scanner.nextFloat();
-                boolean pagat = scanner.nextBoolean();
-                String codi = scanner.next();
-                String nom = scanner.nextLine();
+                int quantitat = sc.nextInt();
+                float preu = sc.nextFloat();
+                boolean pagat = sc.nextBoolean();
+                String codi = sc.next();
+                String nom = sc.nextLine();
 
                 System.out.println(quantitat);
                 System.out.println(preu);
@@ -174,8 +174,8 @@
         </p>
 
         <sc java>
-            Scanner scanner = new Scanner(System.in);
-            scanner.useLocale(Locale.US);   // usar el format angles
+            Scanner sc = new Scanner(System.in);
+            sc.useLocale(Locale.US);   // usar el format angles
         </sc>
 
         <p>Per contra, els mètodes <w>print()</w> i <w>println()</w> sempre imprimeixen 
@@ -189,7 +189,7 @@
     per a guardar un valor llegit amb <w>nextInt()</w>:</p>
 
     <sc java>
-        String a = scanner.nextInt();   // error, cal utlitzar el tipus int
+        String a = sc.nextInt();   // error, cal utlitzar el tipus int
     </sc>
 
     <p>Per sort, l'IDE ens ajuda a detectar i solucionar aquests errors, indicant en 
@@ -211,7 +211,7 @@
 
     <sc java>
         System.out.println("Introdueix un número:");
-        int numero = scanner.nextInt();
+        int numero = sc.nextInt();
     </sc>
 
     <shell>
@@ -242,9 +242,9 @@
 
     <sc java data-line="2,4">
         System.out.println("Introdueix el primer número:")
-        int a = scanner.nextInt();
+        int a = sc.nextInt();
         System.out.println("Introdueix el segon número:")
-        int b = scanner.nextInt();
+        int b = sc.nextInt();
 
         System.out.println("Els números introduïts són:")
         System.out.println(a);
@@ -301,7 +301,7 @@
             <p>Veiem un exmple amb el mètode <w>nextInt()</w>. Si tenim aquest programa:</p>
 
             <sc java>
-                int a = scanner.nextInt();
+                int a = sc.nextInt();
             </sc>
 
             <p>i al flux d'entrada s'introdueix el següent:</p>
@@ -323,11 +323,11 @@
             <p>Exemple 2</p>
             <p>Si tenim aquest programa:</p>
             <sc java>
-                boolean a = scanner.nextBoolean();
-                float b = scanner.nextFloat();
-                String c = scanner.next();
-                int d = scanner.nextInt();
-                String e = scanner.nextLine();
+                boolean a = sc.nextBoolean();
+                float b = sc.nextFloat();
+                String c = sc.next();
+                int d = sc.nextInt();
+                String e = sc.nextLine();
             </sc>
 
             <p>i al flux d'entrada tenim el següent:</p>
@@ -385,12 +385,12 @@
 
                 public class Main {
                     public static void main(String[] args){
-                        Scanner scanner = new Scanner(System.in);
+                        Scanner sc = new Scanner(System.in);
 
                         System.out.println("Introdueix un número:");
-                        int numero = scanner.nextInt();
+                        int numero = sc.nextInt();
                         System.out.println("Introdueix un text:");
-                        String text = scanner.nextLine();
+                        String text = sc.nextLine();
                 
                         System.out.println("El numero és " + numero);
                         System.out.println("El text és " + text);
@@ -441,10 +441,10 @@
 
             <sc java data-line="2,3,5">
                 System.out.println("Introdueix un número:");
-                int numero = scanner.nextInt();
-                scanner.nextLine();   // consumim el salt-de-linia
+                int numero = sc.nextInt();
+                sc.nextLine();   // consumim el salt-de-linia
                 System.out.println("Introdueix un text:");
-                String text = scanner.nextLine();
+                String text = sc.nextLine();
             </sc>
 
             <p>D'aquesta manera el primer <w>nextInt()</w> <ln>2</ln> llegirà el número:</p>
@@ -482,8 +482,8 @@
             <p>Considerem aquest programa:</p>
             <sc java data-line="2,3">
                 System.out.println("Introdueixi la seva edat i el seu nom:");
-                int edat = scanner.nextInt();
-                String nom = scanner.nextLine();
+                int edat = sc.nextInt();
+                String nom = sc.nextLine();
         
                 System.out.println("Edat:");
                 System.out.println(edat);
@@ -521,8 +521,8 @@
             <p>El programa quedaria així:</p>
             <sc java data-line="3">
                 System.out.println("Introdueixi la seva edat i el seu nom:");
-                int edat = scanner.nextInt();
-                String nom = scanner.nextLine().trim();   // eliminem els espais al principi
+                int edat = sc.nextInt();
+                String nom = sc.nextLine().trim();   // eliminem els espais al principi
         
                 System.out.println("Edat:");
                 System.out.println(edat);

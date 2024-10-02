@@ -13,7 +13,7 @@
     <h4>Repetir un nombre de vegades</h4>
     <sc java>
 
-        int X = scanner.nextInt();
+        int X = sc.nextInt();
         for (int i=0; i &lt; X; i++) {
 
         }
@@ -23,7 +23,7 @@
     <sc java>
         // repetir fins a trobar el valor "END" a l'entrada  
 
-        String paraula = scanner.next();
+        String paraula = sc.next();
 
         for (; !paraula.equals("END"); ) {   
     
@@ -31,7 +31,7 @@
 
             }
             
-            paraula = scanner.next();
+            paraula = sc.next();
         }
     </sc>
 
@@ -39,7 +39,7 @@
     <sc java>
         // repetir fins a trobar el valor "END" a l'entrada  
 
-        String paraula = scanner.next();
+        String paraula = sc.next();
 
         while (!paraula.equals("END")) {   
             
@@ -47,7 +47,7 @@
 
             }
         
-            paraula = scanner.next();
+            paraula = sc.next();
         }
     </sc>
 
@@ -55,8 +55,8 @@
     <sc java>
         // repetir fins a trobar dos zeros a l'entrada  
 
-        int n1 = scanner.nextInt();
-        int n2 = scanner.nextInt();
+        int n1 = sc.nextInt();
+        int n2 = sc.nextInt();
 
         while (n1 != 0 && n2 != 0) {   
             
@@ -64,8 +64,8 @@
 
             }</replace>
         
-            n1 = scanner.nextInt();
-            n2 = scanner.nextInt();
+            n1 = sc.nextInt();
+            n2 = sc.nextInt();
         }
     </sc>
 

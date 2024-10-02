@@ -28,7 +28,7 @@
     <sc java>
         System.out.println("1-Start\n2-Load\n3-Help\n4-Exit"); // es mostra el menu
 
-        int action = scanner.nextInt(); // l'usuari escull una opcio
+        int action = sc.nextInt(); // l'usuari escull una opcio
         
         if (action == 1) {
             System.out.println("Starting a new game...");
@@ -54,7 +54,7 @@
     <sc java>
         System.out.println("1-Start\n2-Load\n3-Help\n4-Exit"); // es mostra el menu
 
-        int action = scanner.nextInt(); // l'usuari escull una opcio
+        int action = sc.nextInt(); // l'usuari escull una opcio
 
         switch (action) {
             case 1:
@@ -107,10 +107,10 @@
     </p>
 
     <sc java>
-        Scanner scanner = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
         System.out.println("Producte: ");
 
-        String producte = scanner.nextLine();
+        String producte = sc.nextLine();
 
         switch (producte){
             case "Taronjes":
@@ -360,10 +360,10 @@
 
         public class Main {
             public static void main(String[] args) throws IOException {
-                Scanner scanner = new Scanner(System.in);
+                Scanner sc = new Scanner(System.in);
 
-                String os = scanner.nextLine();
-                String version = scanner.nextLine();
+                String os = sc.nextLine();
+                String version = sc.nextLine();
 
                 if (os.equals("Ubuntu")) {
                     System.out.println("Checking Ubuntu version...");
